@@ -1,2 +1,65 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class= "container-home">
+
+  <%= render "shared/navbar_home" %>
+
+  <section class="hero bg-color text-white text-center py-5 mt-2 mb-2">
+    <div class="banner-home">
+      <div class="container">
+        <div class="title-page" style="margin-top: 1rem ; margin-left: 2rem;">
+          <h1 class="display-4">Discover the beauty of our planet </h1>
+          <p class="lead">join us on a journey to preserve nature's wonders while reducing CO2 emissions for a sustainable future.</p>
+          <p><%= link_to "Get Started", class: "btn btn-light btn-lg"%></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<div class="homepagecard">
+  <div class="homepage-text">
+
+    <h2>
+      Estimate you CO2
+      Emissions
+    </h2>
+
+    <p> Everyday actions like commuting, using energy, and even shopping can release greenhouse gases into the atmosphere,
+      impacting our environment. Begin by quantifying your contribution to emissions,
+      and then embark on a journey to lower your carbon footprint and offset unavoidable emissions
+    </p>
+
+  </div>
+
+  <div class="homepageimage2">
+    <%= image_tag 'forest-sky.jpg', alt: 'Image Description', class: 'card-img' %>
+  </div>
+</div>
+
+
+
+<div class="emission-form-card">
+  <div class="formandresult">
+    <div class="form">
+      <h2>CO2 Emissions Calculator</h2>
+      <%# create a simple form , post method , the user will submit the form to
+      calculate_emissions_path, (which is rails route helper that generates url
+      for calculate emissions action) %>
+
+      <%# data-turbo-frame
+      It specifies the Turbo Stream frame that should be updated when the form is submitted. %>
+
+      <%= simple_form_for(:pages, url: calculate_emissions_path, method: :post, 'data-turbo-frame': 'result_frame') do |f| %>
+        <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
+        <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
+        <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
+        <%= f.button :submit, 'Calculate CO2 Emissions', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+
+    <div class="result" id="result_frame" data-turbo-frame="result_frame">
+      <%= render partial: 'pages/result_partial' %>
+    </div>
+  </div>
+</div>

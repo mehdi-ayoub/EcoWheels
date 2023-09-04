@@ -1,0 +1,9 @@
+<%#
+ below line will initiaite a turbo stream update
+ will look for an html with an id result_frame
+  and will update its content by the result which we have in the result_partial
+  folder
+ %>
+<%= turbo_stream.update "result_frame" do %>
+  <%= render partial: 'pages/result_partial' %>
+<% end %>

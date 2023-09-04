@@ -1,0 +1,25 @@
+<nav class="new-navbar">
+  <div class="navbar-container">
+    <div class="icon">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <i class="fa-solid fa-earth-americas"></i>
+      <% end %>
+    </div>
+    <div class="navbar-menu">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to "Home", class: "nav-link" %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Add Planet", class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Log in", class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
