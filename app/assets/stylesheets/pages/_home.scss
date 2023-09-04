@@ -1,1 +1,179 @@
 // Specific CSS for your home-page
+.img-thumbnail {
+  width: 100%;
+  height: 500px;
+}
+
+// the container holding the navbar and the background pic
+.container-home {
+  background-image: url('homepageimage.jpg');
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  padding: 70px 0px;
+}
+
+// stying the navbar in general
+.new-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: transparent;
+  z-index: 1000;
+  color: white;
+}
+
+/* Change the background color to white on hover */
+.new-navbar:hover {
+  background-color: white;
+  color: black;
+  transition: background-color 0.1s; /* Add a transition effect */
+}
+
+// for the logo and the elements in the navbar
+.navbar-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+// for the elements ( to be in the middle of the navbar )
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+/* You can adjust this value between element */
+.nav-item {
+  margin-right: 10px;
+}
+
+/* ----- navbar styling finished ------- */
+
+
+
+/* ----- styling the card for the form ------ */
+
+
+/* Styles for the emission-form-card */
+
+.emission-form-card {
+  display: flex; /* Add flex display */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the formandresult container */
+.formandresult {
+  display: flex; /* Add flex display */
+  flex-direction: row; /* Set to row for horizontal alignment */
+  flex: 1;
+}
+
+/* Styles for the form section */
+.form {
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 70px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  width: 700px;
+  height: 500px;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.form h2 {
+  font-size: 24px; /* Adjust font size as needed */
+}
+
+/* Styles for the result section */
+.result {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #292929;
+  color: white;
+  border-right: 1px solid #292929;
+  border-radius: 5px;
+  padding: 70px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+  h3 p {
+    margin: 50px;
+  }
+
+  p {
+    font-size: 4rem;
+    font-weight: 600;
+  }
+}
+
+
+/* -------------------styling of the second card------------------------------------- */
+/* Style for the card container */
+.homepagecard {
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  height: 500px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 20px;
+}
+
+/* Style for the text container */
+.homepage-text {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.homepage-text h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.homepage-text p {
+  font-size: 16px;
+}
+
+/* Style for the image container */
+.homepageimage2 {
+  width: 50%; /* Adjust the width as needed */
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the image inside the container */
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
