@@ -10,6 +10,7 @@
   background-size: cover;
   background-position: center;
   margin: auto;
+  margin-bottom: 20px;
   padding: 70px 0px;
 }
 
@@ -73,8 +74,6 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: 1px solid white;
-  border-radius: 5px;
   padding: 20px;
   margin-top: 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -133,18 +132,21 @@
 .homepagecard {
   display: flex;
   flex-direction: row;
-  width: 700px;
-  height: 500px;
-  border: 1px solid #ddd;
+  // width: 700px;
+  // height: 500px;
   border-radius: 5px;
   overflow: hidden;
-  margin: 20px;
+  margin: auto;
+  // justify-content: center;
+  // align-items: center;
 }
 
 /* Style for the text container */
 .homepage-text {
   flex: 1;
   background-color: white;
+  width: 700px;
+  height: 500px;
   padding: 20px;
   display: flex;
   flex-direction: column;

@@ -39,7 +39,6 @@
 
 
 
-
 <div class="emission-form-card">
   <div class="formandresult">
     <div class="form">
@@ -50,7 +49,7 @@
 
       <%# data-turbo-frame
       It specifies the Turbo Stream frame that should be updated when the form is submitted. %>
-      
+
       <%= simple_form_for(:pages, url: calculate_emissions_path, method: :post, 'data-turbo-frame': 'result_frame') do |f| %>
         <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
         <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
