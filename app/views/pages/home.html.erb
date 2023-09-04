@@ -39,10 +39,9 @@
 
 
 
-<div class="emission-form-card">
-  <div class="formandresult">
-    <div class="form">
-      <h2>CO2 Emissions Calculator</h2>
+<div class="formandresult">
+  <div class="form">
+    <h2>CO2 Emissions Calculator</h2>
       <%# create a simple form , post method , the user will submit the form to
       calculate_emissions_path, (which is rails route helper that generates url
       for calculate emissions action) %>
@@ -50,16 +49,16 @@
       <%# data-turbo-frame
       It specifies the Turbo Stream frame that should be updated when the form is submitted. %>
 
-      <%= simple_form_for(:pages, url: calculate_emissions_path, method: :post, 'data-turbo-frame': 'result_frame') do |f| %>
-        <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
-        <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
-        <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
-        <%= f.button :submit, 'Calculate CO2 Emissions', class: 'btn btn-primary' %>
-      <% end %>
-    </div>
+    <%= simple_form_for(:pages, url: calculate_emissions_path, method: :post, 'data-turbo-frame': 'result_frame') do |f| %>
+      <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
+      <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
+      <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
+      <%= f.button :submit, 'Calculate CO2 Emissions', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 
-    <div class="result" id="result_frame" data-turbo-frame="result_frame">
-      <%= render partial: 'pages/result_partial' %>
-    </div>
+  <div class="result" id="result_frame" data-turbo-frame="result_frame">
+    <%= render partial: 'pages/result_partial' %>
   </div>
 </div>
+
