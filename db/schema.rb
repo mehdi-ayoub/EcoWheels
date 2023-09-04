@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_124811) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_134641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "shipments", force: :cascade do |t|
+    t.string "city"
+    t.float "distance_traveled"
+    t.string "vehicle_type"
+    t.string "fuel_type"
+    t.float "fuel_consumption"
+    t.string "product_name"
+    t.date "shipment_start"
+    t.date "shipment_end"
+    t.float "co2_emissions"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shipments_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +38,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_124811) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "shipments", "users"
 end
