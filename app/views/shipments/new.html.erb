@@ -1,5 +1,21 @@
-<h3>Add a new shipment</h3>
-<div class="container">
+<div class= "container-new">
+
+  <%= render "shared/navbar_home" %>
+
+  <section class="text-center py-5 mt-2 mb-2">
+    <div class="banner-new">
+      <div class="container">
+        <div class="title-page" style="margin-top: 1rem ; margin-left: 2rem;">
+          <h1 class="display-4">Add a new shipment </h1>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="container-form">
   <%= render "form" %>
-  <%= link_to "Go back to the shipment list without saving", shipments_path %>
+  <br>
+    <%= link_to "Go back to the shipment list without saving", shipments_path %>
+  <br>
 </div>

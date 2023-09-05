@@ -10,6 +10,8 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = Shipment.new(shipment_params)
+    @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
+    @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
     @shipment.user = current_user
 
     authorize @shipment
