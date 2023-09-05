@@ -1,6 +1,11 @@
 class ShipmentsController < ApplicationController
   def index
-    @shipments = policy_scope(Shipment).all
+    if params[:query].present?
+      @shipments = Shipment.search(params[:query])
+    else
+      @shipments = Shipment.all
+    end
+    @shipments = policy_scope(@shipments)
   end
 
   def new
@@ -42,7 +47,7 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     if @shipment.update(shipment_params)
-      redirect_to shipment_path(@shipment), notice: "Shipment successfully edited."
+      redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
