@@ -1,8 +1,12 @@
 class ShipmentsController < ApplicationController
   def index
-    @shipments = policy_scope(current_user.shipments
-    @shipments = sort_shipments(@shipment)s) if params[:sort_by]
+    @shipments = current_user.shipments
+    @shipments = sort_shipments(@shipment) if params[:sort_by]
     @shipments = filter_shipments(@shipments)
+    if params[:query].present?
+      @shipments = Shipment.search(params[:query])
+    end
+    @shipments = policy_scope(@shipments)
   end
 
   def new
