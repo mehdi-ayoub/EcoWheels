@@ -155,8 +155,6 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.4-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -261,7 +259,6 @@ GEM
     zeitwerk (2.6.11)
 
 PLATFORMS
-  x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -276,6 +273,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pg (~> 1.1)
+  psych (~> 5.1)
   puma (~> 5.0)
   rails (~> 7.0.7, >= 7.0.7.2)
   sassc-rails
@@ -292,4 +290,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.16
+   2.4.19
