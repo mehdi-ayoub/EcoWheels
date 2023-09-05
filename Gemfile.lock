@@ -266,11 +266,7 @@ GEM
     zeitwerk (2.6.11)
 
 PLATFORMS
-<<<<<<< HEAD
-  x86_64-darwin-20
-=======
   x86_64-darwin-21
->>>>>>> master
   x86_64-linux
 
 DEPENDENCIES
