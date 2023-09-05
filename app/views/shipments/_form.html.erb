@@ -1,0 +1,15 @@
+<div class="form-inputs">
+  <%= simple_form_for @shipment do |f| %>
+  <%= f.input :city %>
+  <%= f.input :distance_traveled %>
+  <%= f.input :vehicle_type %>
+  <%= f.input :fuel_type %>
+  <%= f.input :fuel_consumption %>
+  <%= f.input :product_name %>
+  <%= f.input :shipment_start %>
+  <%= f.input :shipment_end %>
+  <%= f.input :co2_emissions %>
+  <%= f.input :shipment_end %>
+  <%= f.submit "Add Shipment", class: "btn btn-primary"%>
+  <% end %>
+</div>
