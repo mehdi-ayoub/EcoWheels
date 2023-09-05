@@ -3,6 +3,8 @@ class ShipmentsController < ApplicationController
     @shipments = policy_scope(Shipment).all
   end
 
+  #comment
+
   def new
     @shipment = Shipment.new
     authorize @shipment
