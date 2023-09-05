@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   post 'calculate_emissions', to: 'pages#calculate_emissions'
 
-  resources :shipments
+  resources :shipments, only: [:index, :new, :create, :edit, :update, :destroy, :show]
 end
