@@ -1,18 +1,51 @@
 <div class="form-inputs">
-  <%= simple_form_for @shipment do |f| %>
+  <%= simple_form_for @shipment, html: { id: "new_shipment" } do |f| %>
     <%= f.input :product_name %>
     <%= f.input :city %>
-    <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
     <%= f.input :shipment_start %>
     <%= f.input :shipment_end %>
     <%= f.input :vehicle_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'] %>
-    <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
+    <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type' %>
+    <%= f.input :start_location, input_html: { id: "start_location" } %>
+    <%= f.input :end_location, input_html: { id: "end_location" } %>
+    <%= f.hidden_field :distance_traveled, id: 'distance_traveled' %>
+
     <%= f.button :submit, 'Add Shipment', class: 'btn btn-primary' %>
   <% end %>
 
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("new_shipment");
 
-  <%# assign value from service method to co2_emissions variable (hide) %>
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
 
+        const startLocation = document.getElementById("start_location").value;
+        const endLocation = document.getElementById("end_location").value;
 
+        Promise.all([
+          fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${startLocation}.json?access_token=pk.eyJ1IjoibWVoZGlheW91YiIsImEiOiJjbG02anZpMm40cnBoM2pwdmMwbWFsem44In0.PcPnwBmrJJd_sGhV8G8JVQ`),
+          fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${endLocation}.json?access_token=pk.eyJ1IjoibWVoZGlheW91YiIsImEiOiJjbG02anZpMm40cnBoM2pwdmMwbWFsem44In0.PcPnwBmrJJd_sGhV8G8JVQ`)
+        ])
+        .then(([startRes, endRes]) => Promise.all([startRes.json(), endRes.json()]))
+        .then(([startData, endData]) => {
+          const startCoordinates = startData.features[0].geometry.coordinates;
+          const endCoordinates = endData.features[0].geometry.coordinates;
 
+          // The distance calculation in JavaScript may not be as accurate as server-side calculations
+          // Ideally, you might want to use server-side logic to calculate the actual distance
+          // This is just for demonstration purposes
+          const distance = Math.sqrt(Math.pow(endCoordinates[0] - startCoordinates[0], 2) + Math.pow(endCoordinates[1] - startCoordinates[1], 2));
+          document.getElementById("distance_traveled").value = distance;
+
+          // You can also calculate CO2 emissions here based on vehicle and fuel type, then assign it to a hidden field
+
+          // If everything looks good, you can programmatically submit the form
+          form.submit();
+        })
+        .catch(error => console.log("Error in geocoding:", error));
+      });
+    });
+  </script>
 </div>

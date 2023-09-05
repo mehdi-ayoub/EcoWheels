@@ -15,11 +15,22 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = Shipment.new(shipment_params)
+    @shipment.user = current_user
+    authorize @shipment
+
+    @shipment.save! # This triggers validation and geocoding
+
+    # Check if geocoding was successful
+    if @shipment.start_latitude && @shipment.start_longitude && @shipment.end_latitude && @shipment.end_longitude
+      start_coordinates = [@shipment.start_latitude, @shipment.start_longitude]
+      end_coordinates = [@shipment.end_latitude, @shipment.end_longitude]
+      distance = Geocoder::Calculations.distance_between(start_coordinates, end_coordinates, :units => :km)
+    else
+      @shipment.distance_traveled = 0 # or some other default value
+    end
+
     @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
     @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
-    @shipment.user = current_user
-
-    authorize @shipment
 
     if @shipment.save
       redirect_to shipments_path, notice: "A shipment was successfully created."
@@ -27,6 +38,7 @@ class ShipmentsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
 
   def show
     @shipment = Shipment.find(params[:id])
@@ -60,19 +72,18 @@ class ShipmentsController < ApplicationController
     # Ensure that only the owner can update the planet
     if current_user == @shipment.user
       if @shipment.destroy!
-        redirect_to shipments_path, notice: "Planet was successfully deleted."
+        redirect_to shipments_path, notice: "Shipment was successfully deleted."
       else
         render :index
       end
     else
-      redirect_to shipments_path, alert: "You are not authorized to delete this planet."
+      redirect_to shipments_path, alert: "You are not authorized to delete this Shipment."
     end
   end
 
   private
 
   def shipment_params
-    params.require(:shipment).permit(:city, :distance_traveled, :vehicle_type, :fuel_type, :fuel_consumption,
-                                     :product_name, :shipment_start, :shipment_end, :co2_emissions)
+    params.require(:shipment).permit(:product_name, :city, :shipment_start, :shipment_end, :vehicle_type, :fuel_type, :start_location, :end_location, :distance_traveled)
   end
 end
