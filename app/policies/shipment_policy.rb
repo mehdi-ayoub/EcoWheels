@@ -3,6 +3,8 @@ class ShipmentPolicy < ApplicationPolicy
 
     def resolve
       # scope.all
+      # scope could be Shipment model or list of records like Shipment.all
+      # user referes to user that is logged in (current_user)
       scope.where(user: user)
     end
 

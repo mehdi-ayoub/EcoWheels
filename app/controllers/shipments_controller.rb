@@ -2,12 +2,11 @@ class ShipmentsController < ApplicationController
   def index
     @shipments = Shipment.all
     if params[:query].present?
-      @shipments = Shipment.where("name LIKE ?", "%#{params[:query]}%")
+      @shipments = Shipment.search(params[:query])
     else
       @shipments = Shipment.all
-      # @planets = Shipment.search (params[:query])
     end
-    @shipments = policy_scope(Shipment).all
+    @shipments = policy_scope(@shipments)
   end
 
   def new
