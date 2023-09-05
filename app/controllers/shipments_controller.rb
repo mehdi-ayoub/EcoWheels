@@ -19,6 +19,9 @@ class ShipmentsController < ApplicationController
 
   def show
     @shipment = Shipment.find(params[:id])
+    @restaurant = Restaurant.new
+    @user = User.new
+    @email = Emai.new
   end
 
   def edit
