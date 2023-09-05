@@ -1,6 +1,5 @@
 class ShipmentsController < ApplicationController
   def index
-    @shipments = Shipment.all
     if params[:query].present?
       @shipments = Shipment.search(params[:query])
     else

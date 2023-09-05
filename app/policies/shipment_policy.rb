@@ -23,7 +23,7 @@ class ShipmentPolicy < ApplicationPolicy
   end
 
   def edit?
-    return update
+    return update?
   end
 
   def update?
