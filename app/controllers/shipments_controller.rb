@@ -1,6 +1,12 @@
 class ShipmentsController < ApplicationController
   def index
     @shipments = Shipment.all
+    if params[:query].present?
+      @shipments = Shipment.where("name LIKE ?", "%#{params[:query]}%")
+    else
+      @shipments = Shipment.all
+      # @planets = Shipment.search (params[:query])
+    end
   end
 
   def new
@@ -23,13 +29,12 @@ class ShipmentsController < ApplicationController
 
   def edit
     @shipment = Shipment.find(params[:id])
-    redirect_to shipments_path, notice: "Shipment successfully edited."
   end
 
   def update
     @shipment = Shipment.find(params[:id])
     if @shipment.update(shipment_params)
-      redirect_to shipment_path(@shipment), notice: "Shipment successfully edited."
+      redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
