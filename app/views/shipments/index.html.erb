@@ -1,1 +1,50 @@
-<h1>Show all shipments</h1>
+<%= form_with url: shipments_path, method: :get, local: true, class: "mb-4" do |form| %>
+  <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control' %>
+  <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control' %>
+  <%= form.text_field :fuel_type, value: params[:fuel_type], placeholder: 'Fuel Type', class: 'form-control' %>
+  <%= form.text_field :product_name, value: params[:product_name], placeholder: 'Product Name', class: 'form-control' %>
+  <%= form.date_field :shipment_start, value: params[:shipment_start], placeholder: 'Shipment Start', class: 'form-control' %>
+  <%= form.date_field :shipment_end, value: params[:shipment_end], placeholder: 'Shipment End', class: 'form-control' %>
+  <%= form.number_field :co2_emissions, value: params[:co2_emissions], placeholder: 'CO2 Emissions', class: 'form-control' %>
+  <%= form.submit 'Filter', class: 'btn btn-primary mt-2' %>
+<% end %>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="mb-4">Your Shipments</h1>
+          
+            <% if flash[:notice] %>
+                <div class="alert alert-success">
+                    <%= flash[:notice] %>
+                </div>
+            <% end %>
+
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th><%= link_to "City", shipments_path(sort_by: 'city') %></th>
+                        <th><%= link_to "Vehicle Type", shipments_path(sort_by: 'vehicle_type') %></th>
+                        <th><%= link_to "Fuel Type", shipments_path(sort_by: 'fuel_type') %></th>
+                        <th><%= link_to "Product Name", shipments_path(sort_by: 'product_name') %></th>
+                        <th><%= link_to "Shipment Start", shipments_path(sort_by: 'shipment_start') %></th>
+                        <th><%= link_to "Shipment End", shipments_path(sort_by: 'shipment_end') %></th>
+                        <th><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @shipments.each do |shipment| %>
+                        <tr>
+                            <td><%= shipment.city %></td>
+                            <td><%= shipment.vehicle_type %></td>
+                            <td><%= shipment.fuel_type %></td>
+                            <td><%= shipment.product_name %></td>
+                            <td><%= shipment.shipment_start %></td>
+                            <td><%= shipment.shipment_end %></td>
+                            <td><%= shipment.co2_emissions %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
