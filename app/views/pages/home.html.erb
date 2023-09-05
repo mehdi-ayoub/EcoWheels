@@ -21,7 +21,8 @@
   <div class="homepage-text">
 
     <h2>
-      Estimate you CO2
+      <span class="underline"> Estimate </span> your
+      <br>
       Emissions
     </h2>
 
@@ -33,16 +34,15 @@
   </div>
 
   <div class="homepageimage2">
-    <%= image_tag 'forest-sky.jpg', alt: 'Image Description', class: 'card-img' %>
+    <%= image_tag 'forest-sky.jpg', alt: 'Home Page', class: 'card-img' %>
   </div>
 </div>
 
 
 
-<div class="emission-form-card">
-  <div class="formandresult">
-    <div class="form">
-      <h2>CO2 Emissions Calculator</h2>
+<div class="formandresult">
+  <div class="form">
+    <h2>CO2 Emissions Calculator</h2>
       <%# create a simple form , post method , the user will submit the form to
       calculate_emissions_path, (which is rails route helper that generates url
       for calculate emissions action) %>
@@ -50,16 +50,57 @@
       <%# data-turbo-frame
       It specifies the Turbo Stream frame that should be updated when the form is submitted. %>
 
-      <%= simple_form_for(:pages, url: calculate_emissions_path, method: :post, 'data-turbo-frame': 'result_frame') do |f| %>
-        <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
-        <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
-        <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
-        <%= f.button :submit, 'Calculate CO2 Emissions', class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-
-    <div class="result" id="result_frame" data-turbo-frame="result_frame">
-      <%= render partial: 'pages/result_partial' %>
-    </div>
+    <%= simple_form_for(:pages, url: calculate_emissions_path, method: :post, 'data-turbo-frame': 'result_frame') do |f| %>
+      <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
+      <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
+      <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
+      <%= f.button :submit, 'Calculate CO2 Emissions', class: 'btn btn-primary' %>
+    <% end %>
   </div>
+
+  <div class="result" id="result_frame" data-turbo-frame="result_frame">
+    <%= render partial: 'pages/result_partial' %>
+  </div>
+</div>
+
+<%# <%= image_tag 'home-page-animal.jpg', alt: 'Home Page', class: 'card-img2' %>
+
+  <div class="thirdphoto">
+
+  </div>
+
+
+
+
+
+<div class="thirdcontainer">
+
+
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag 'home-page-animal.jpeg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'forest-sky.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'homepageimage.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="thirdtext">
+    <h1> The Power Of Nature </h1>
+    <h2> Photos Can Save The World </h2>
+  </div>
+
 </div>
