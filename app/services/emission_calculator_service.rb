@@ -1,11 +1,10 @@
-class EmissionCalculator < ApplicationService
+class EmissionCalculatorService < ApplicationService
   attr_accessor :vehicle_type, :fuel_type, :distance_traveled
 
-  def intialize(co2_emissions)
-    @co2_emissions = co2_emissions
+  def intialize
   end
 
-  def call
+  def call(params)
 
     vehicle_type = params[:vehicle_type]
     fuel_type = params[:fuel_type]
@@ -15,15 +14,13 @@ class EmissionCalculator < ApplicationService
     carbon_content = calculate_carbon_content(fuel_type)
 
     co2_emissions = (fuel_consumption / 100) * distance_traveled * carbon_content
-    @result = co2_emissions.round(2)
+    co2_emissions.round(2)
 
     # If the distance traveled is zero, set @result to 0 by default
   end
 
-  private
-
   def calculate_fuel_consumption(vehicle_type)
-    case car_type
+    case vehicle_type
     when '4 Cylinder'
       7.29
     when '6 Cylinder'

@@ -2,22 +2,17 @@
   <%= simple_form_for @shipment do |f| %>
     <%= f.input :product_name %>
     <%= f.input :city %>
-    <%= f.input :distance_traveled %>
+    <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
     <%= f.input :shipment_start %>
     <%= f.input :shipment_end %>
-  <% end %>
-
-  <%= simple_form_for(:shipments, url: EmissionCalculator.call(arg), method: :post) do |f| %>
-    <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
+    <%= f.input :vehicle_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'] %>
     <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
-    <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
     <%= f.button :submit, 'Add Shipment', class: 'btn btn-primary' %>
   <% end %>
 
+
   <%# assign value from service method to co2_emissions variable (hide) %>
 
-    <div class="result" id="result_frame" data-turbo-frame="result_frame">
-      <%= render partial: 'pages/result_partial' %>
 
 
 </div>
