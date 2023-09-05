@@ -1,15 +1,18 @@
 <div class="form-inputs">
   <%= simple_form_for @shipment do |f| %>
-  <%= f.input :city %>
-  <%= f.input :distance_traveled %>
-  <%= f.input :vehicle_type %>
-  <%= f.input :fuel_type %>
-  <%= f.input :fuel_consumption %>
-  <%= f.input :product_name %>
-  <%= f.input :shipment_start %>
-  <%= f.input :shipment_end %>
-  <%= f.input :co2_emissions %>
-  <%= f.input :shipment_end %>
-  <%= f.submit "Add Shipment", class: "btn btn-primary"%>
+    <%= f.input :product_name %>
+    <%= f.input :city %>
+    <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
+    <%= f.input :shipment_start %>
+    <%= f.input :shipment_end %>
+    <%= f.input :vehicle_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'] %>
+    <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
+    <%= f.button :submit, 'Add Shipment', class: 'btn btn-primary' %>
   <% end %>
+
+
+  <%# assign value from service method to co2_emissions variable (hide) %>
+
+
+
 </div>
