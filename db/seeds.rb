@@ -8,8 +8,8 @@
 
 hai = User.create(email: "hai@gmail.com", password: "hai@gmail.com", first_name: "hai dinh", last_name: "nguyen")
 
-shipment1 = Shipment.create!(city: "London", vehicle_type: "Car", user: hai)
-shipment2 = Shipment.create!(city: "Paris", vehicle_type: "Truck", user: hai)
+# shipment1 = Shipment.create!(city: "London", vehicle_type: "Car", user: hai)
+# shipment2 = Shipment.create!(city: "Paris", vehicle_type: "Truck", user: hai)
 
 shipment2 = Shipment.create!(city: "Paris", vehicle_type: "Truck", user_id: 1)
 shipment2 = Shipment.create!(city: "London", vehicle_type: "Truck", user_id: 2)
