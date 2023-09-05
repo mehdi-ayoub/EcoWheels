@@ -21,7 +21,8 @@
   <div class="homepage-text">
 
     <h2>
-      Estimate you CO2
+      <span class="underline"> Estimate </span> your
+      <br>
       Emissions
     </h2>
 
@@ -33,7 +34,7 @@
   </div>
 
   <div class="homepageimage2">
-    <%= image_tag 'forest-sky.jpg', alt: 'Image Description', class: 'card-img' %>
+    <%= image_tag 'forest-sky.jpg', alt: 'Home Page', class: 'card-img' %>
   </div>
 </div>
 
@@ -62,3 +63,44 @@
   </div>
 </div>
 
+<%# <%= image_tag 'home-page-animal.jpg', alt: 'Home Page', class: 'card-img2' %>
+
+  <div class="thirdphoto">
+
+  </div>
+
+
+
+
+
+<div class="thirdcontainer">
+
+
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag 'home-page-animal.jpeg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'forest-sky.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'homepageimage.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="thirdtext">
+    <h1> The Power Of Nature </h1>
+    <h2> Photos Can Save The World </h2>
+  </div>
+
+</div>
