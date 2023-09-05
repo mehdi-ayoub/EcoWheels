@@ -8,6 +8,7 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = Shipment.new(shipment_params)
+    EmissionCalculator.call(params[:vehicle_type, :fuel_type, :distance_traveled])
     @shipment.user = current_user
     if @shipment.save
       redirect_to shipments_path, notice: "A shipment was successfully created."
