@@ -1,17 +1,23 @@
 class ShipmentsController < ApplicationController
   def index
-    @shipments = current_user.shipments
-    @shipments = sort_shipments(@shipments) if params[:sort_by]
+    @shipments = policy_scope(current_user.shipments
+    @shipments = sort_shipments(@shipment)s) if params[:sort_by]
     @shipments = filter_shipments(@shipments)
   end
 
   def new
     @shipment = Shipment.new
+    authorize @shipment
   end
 
   def create
     @shipment = Shipment.new(shipment_params)
+    @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
+    @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
     @shipment.user = current_user
+
+    authorize @shipment
+
     if @shipment.save
       redirect_to shipments_path, notice: "A shipment was successfully created."
     else
@@ -20,17 +26,34 @@ class ShipmentsController < ApplicationController
   end
 
   def show
+    @shipment = Shipment.find(params[:id])
+    authorize @shipment
   end
 
   def edit
+    @shipment = Shipment.find(params[:id])
+
+    authorize @shipment
+    redirect_to shipments_path, notice: "Shipment successfully edited."
   end
 
   def update
+
+    @shipment = Shipment.find(params[:id])
+
+    authorize @shipment
+
+    if @shipment.update(shipment_params)
+      redirect_to shipment_path(@shipment), notice: "Shipment successfully edited."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @shipment = Shipment.find(params[:id])
 
+    authorize @shipment
     # Ensure that only the owner can update the planet
     if current_user == @shipment.user
       if @shipment.destroy!
