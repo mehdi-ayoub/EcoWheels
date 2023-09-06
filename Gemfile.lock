@@ -284,8 +284,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-sass (~> 6.1)
-  groupdate
   geocoder
+  groupdate
   importmap-rails
   jbuilder
   pg (~> 1.1)
