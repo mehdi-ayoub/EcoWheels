@@ -22,21 +22,6 @@ class ShipmentsController < ApplicationController
     @shipment.user = current_user
     authorize @shipment
 
-    # Calculate the distance traveled using haversine method from the helper
-    # if @shipment.start_latitude.present? && @shipment.start_longitude.present? && @shipment.end_latitude.present? && @shipment.end_longitude.present?
-      # @shipment.distance_traveled = 100
-      # haversine_distance(
-      #   @shipment.start_latitude,
-      #   @shipment.start_longitude,
-      #   @shipment.end_latitude,
-      #   @shipment.end_longitude
-      # ).round(2)
-    # else
-    #   @shipment.distance_traveled = 0
-    # end
-
-    # Initialize EmissionCalculatorService
-
     if @shipment.save
       emission_service = EmissionCalculatorService.new
 
