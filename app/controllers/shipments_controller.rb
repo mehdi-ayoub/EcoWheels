@@ -37,6 +37,11 @@ class ShipmentsController < ApplicationController
   def show
     @shipment = Shipment.find(params[:id])
     authorize @shipment
+
+    @markers = [
+      { lat: @shipment.start_latitude, lng: @shipment.start_longitude, popup: 'Start Location' },
+      { lat: @shipment.end_latitude, lng: @shipment.end_longitude, popup: 'End Location' },
+    ]
   end
 
   def edit
@@ -58,7 +63,7 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
-    authorize @shipment
+    # authorize @shipment
     @shipment = Shipment.find(params[:id])
 
     authorize @shipment
