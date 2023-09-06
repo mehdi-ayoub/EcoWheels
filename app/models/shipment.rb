@@ -40,8 +40,9 @@ class Shipment < ApplicationRecord
     # Calculate CO2 emissions and fuel consumption
 
     self.fuel_consumption = emission_service.calculate_fuel_consumption(vehicle_type)
-
+    puts "hello"
     self.co2_emissions = emission_service.call(self)
+    pp emission_service.call(self)
   end
 
   def geocode_start_and_end
