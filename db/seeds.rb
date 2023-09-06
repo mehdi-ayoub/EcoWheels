@@ -100,17 +100,6 @@ Shipment.create!(
   user: john_doe
 )
 
-Shipment.create!(
-  city: "Canberra",
-  distance_traveled: 120.0,
-  vehicle_type: "Train",
-  fuel_type: "Electric",
-  fuel_consumption: 0.0,
-  product_name: "Clothing",
-  shipment_start: "2023-06-01",
-  shipment_end: "2023-06-05",
-  co2_emissions: 0.0,
-  user: john_doe
-)
+#write seed
 
 puts "Seed data created successfully!"

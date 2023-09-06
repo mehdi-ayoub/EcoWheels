@@ -48,7 +48,7 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     if @shipment.update(shipment_params)
-      redirect_to shipment_path(@shipment), notice: "Shipment successfully edited."
+      redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
