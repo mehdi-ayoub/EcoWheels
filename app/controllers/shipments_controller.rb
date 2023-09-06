@@ -56,7 +56,7 @@ class ShipmentsController < ApplicationController
     @shipment = Shipment.find(params[:id])
     authorize @shipment
 
-    # if @shipment.update(shipment_params)
+    if @shipment.update(shipment_params)
     #   @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
     #   @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
     #   redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
