@@ -31,6 +31,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_161159) do
     t.float "start_longitude"
     t.float "end_latitude"
     t.float "end_longitude"
+    t.string "start_location"
+    t.string "end_location"
     t.index ["user_id"], name: "index_shipments_on_user_id"
   end
 
