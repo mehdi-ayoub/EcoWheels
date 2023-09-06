@@ -27,14 +27,6 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     if @shipment.save
-      emission_service = EmissionCalculatorService.new
-
-      # Calculate CO2 emissions and fuel consumption
-
-      @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(shipment_params[:vehicle_type])
-      @shipment.co2_emissions = emission_service.call(@shipment)
-      @shipment.save
-
       redirect_to shipments_path, notice: "A shipment was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -58,25 +50,8 @@ class ShipmentsController < ApplicationController
     @shipment = Shipment.find(params[:id])
     authorize @shipment
 
-    emission_service = EmissionCalculatorService.new
-    @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(shipment_params[:vehicle_type])
-    @shipment.co2_emissions = emission_service.call(@shipment)
-    @shipment.save
-
-    # if @shipment.update(shipment_params)
-
-      # Save
-      # Recalculate fuel consumption and CO2 emissions
-      # emission_service = EmissionCalculatorService.new
-      # @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(@shipment.vehicle_type)
-      # @shipment.co2_emissions = emission_service.call(shipment_params)
-
-
-      if @shipment.save
-        redirect_to shipments_path, notice: "Shipment was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @shipment.update(shipment_params)
+      redirect_to shipments_path, notice: "Shipment was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -86,27 +61,17 @@ class ShipmentsController < ApplicationController
     authorize @shipment
     @shipment = Shipment.find(params[:id])
 
-<<<<<<< HEAD
     authorize @shipment
 
     # Ensure that only the owner can update the planet
     if current_user == @shipment.user
       if @shipment.destroy!
         redirect_to shipments_path, notice: "Shipment was successfully deleted."
-=======
-    if current_user == @shipment.user
-      if @shipment.destroy!
-        redirect_to shipments_path, notice: "The shipment was successfully deleted."
->>>>>>> master
       else
         render :index
       end
     else
-<<<<<<< HEAD
-      redirect_to shipments_path, alert: "You are not authorized to delete this Shipment."
-=======
       redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
->>>>>>> master
     end
   end
 
