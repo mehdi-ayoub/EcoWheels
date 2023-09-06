@@ -28,7 +28,7 @@ class ShipmentsController < ApplicationController
 
     if @shipment.save
       redirect_to shipments_path, notice: "A shipment was successfully created."
-    elseß
+    else
       render :new, status: :unprocessable_entity
     end
   end
@@ -62,17 +62,15 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
-    # authorize @shipment
     @shipment = Shipment.find(params[:id])
-
+    
     authorize @shipment
-
-    # Ensure that only the owner can update the planet
+    
     if current_user == @shipment.user
-      if @shipment.destroy!
-        redirect_to shipments_path, notice: "Shipment was successfully deleted."
+      if @shipment.destroy
+        redirect_to shipments_path, notice: "The shipment was successfully deleted."
       else
-        render :index
+        redirect_to shipments_path, alert: "Error deleting shipment."
       end
     else
       redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
