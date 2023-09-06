@@ -46,16 +46,15 @@ class ShipmentsController < ApplicationController
 
   def edit
     @shipment = Shipment.find(params[:id])
-
     authorize @shipment
-    redirect_to shipments_path, notice: "Shipment successfully edited."
   end
 
   def update
     @shipment = Shipment.find(params[:id])
+    @shipment.update(shipment_params)
     authorize @shipment
 
-    if @shipment.update(shipment_params)
+    if @shipment.save
       redirect_to shipments_path, notice: "Shipment was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -63,17 +62,15 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
-    # authorize @shipment
     @shipment = Shipment.find(params[:id])
-
+    
     authorize @shipment
-
-    # Ensure that only the owner can update the planet
+    
     if current_user == @shipment.user
-      if @shipment.destroy!
-        redirect_to shipments_path, notice: "Shipment was successfully deleted."
+      if @shipment.destroy
+        redirect_to shipments_path, notice: "The shipment was successfully deleted."
       else
-        render :index
+        redirect_to shipments_path, alert: "Error deleting shipment."
       end
     else
       redirect_to shipments_path, alert: "You are not authorized to delete this shipment."

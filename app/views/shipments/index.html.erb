@@ -1,14 +1,16 @@
-<%= link_to 'Add New Shipment', new_shipment_path %>
-<%= form_with url: shipments_path, method: :get, local: true, class: "mb-4" do |form| %>
-  <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control' %>
-  <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control' %>
-  <%= form.text_field :fuel_type, value: params[:fuel_type], placeholder: 'Fuel Type', class: 'form-control' %>
-  <%= form.text_field :product_name, value: params[:product_name], placeholder: 'Product Name', class: 'form-control' %>
-  <%= form.date_field :shipment_start, value: params[:shipment_start], placeholder: 'Shipment Start', class: 'form-control' %>
-  <%= form.date_field :shipment_end, value: params[:shipment_end], placeholder: 'Shipment End', class: 'form-control' %>
-  <%= form.number_field :co2_emissions, value: params[:co2_emissions], placeholder: 'CO2 Emissions', class: 'form-control' %>
-  <%= form.submit 'Filter', class: 'btn btn-primary mt-2' %>
-<% end %>
+<%= render 'shipments/navbar' %>
+<div class="collapse mb-4" id="filterForm">
+  <%= form_with url: shipments_path, method: :get, local: true do |form| %>
+    <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control mb-2' %>
+    <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control mb-2' %>
+    <%= form.text_field :fuel_type, value: params[:fuel_type], placeholder: 'Fuel Type', class: 'form-control mb-2' %>
+    <%= form.text_field :product_name, value: params[:product_name], placeholder: 'Product Name', class: 'form-control mb-2' %>
+    <%= form.date_field :shipment_start, value: params[:shipment_start], placeholder: 'Shipment Start', class: 'form-control mb-2' %>
+    <%= form.date_field :shipment_end, value: params[:shipment_end], placeholder: 'Shipment End', class: 'form-control mb-2' %>
+    <%= form.number_field :co2_emissions, value: params[:co2_emissions], placeholder: 'CO2 Emissions', class: 'form-control mb-2' %>
+    <%= form.submit 'Filter', class: 'btn btn-primary mt-2' %>
+  <% end %>
+</div>
 <div class="container mt-5">
     <div class="row">
         <div class="col">
@@ -51,7 +53,8 @@
                               <% end %>
                             </td>
                             <td>
-                                <%= link_to 'Delete', shipment_path(shipment), method: :delete, data: { confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' %>
+                                <%= link_to 'Delete', shipment_path(shipment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' %>
+                                <%= link_to 'Edit', edit_shipment_path(shipment) %>
                             </td>
                         </tr>
                     <% end %>
