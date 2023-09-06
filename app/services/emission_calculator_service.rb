@@ -4,11 +4,11 @@ class EmissionCalculatorService < ApplicationService
   def initialize
   end
 
-  def call(params)
+  def call(shipment)
 
-    vehicle_type = params[:vehicle_type]
-    fuel_type = params[:fuel_type]
-    distance_traveled = params[:distance_traveled].to_f
+    vehicle_type = shipment.vehicle_type
+    fuel_type = shipment.fuel_type
+    distance_traveled = shipment.distance_traveled.to_f
 
     fuel_consumption = calculate_fuel_consumption(vehicle_type)
     carbon_content = calculate_carbon_content(fuel_type)

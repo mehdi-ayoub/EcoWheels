@@ -2,6 +2,8 @@ class ShipmentsController < ApplicationController
   include DistanceHelper
 
   def index
+
+
     if params[:query].present?
       @shipments = Shipment.search(params[:query])
     else
@@ -21,25 +23,29 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     # Calculate the distance traveled using haversine method from the helper
-    if @shipment.start_latitude.present? && @shipment.start_longitude.present? && @shipment.end_latitude.present? && @shipment.end_longitude.present?
-      @shipment.distance_traveled = haversine_distance(
-        @shipment.start_latitude,
-        @shipment.start_longitude,
-        @shipment.end_latitude,
-        @shipment.end_longitude
-      ).round(2)
-    else
-      @shipment.distance_traveled = 0
-    end
+    # if @shipment.start_latitude.present? && @shipment.start_longitude.present? && @shipment.end_latitude.present? && @shipment.end_longitude.present?
+      # @shipment.distance_traveled = 100
+      # haversine_distance(
+      #   @shipment.start_latitude,
+      #   @shipment.start_longitude,
+      #   @shipment.end_latitude,
+      #   @shipment.end_longitude
+      # ).round(2)
+    # else
+    #   @shipment.distance_traveled = 0
+    # end
 
     # Initialize EmissionCalculatorService
-    emission_service = EmissionCalculatorService.new
-
-    # Calculate CO2 emissions and fuel consumption
-    @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(shipment_params[:vehicle_type])
-    @shipment.co2_emissions = emission_service.call(shipment_params)
 
     if @shipment.save
+      emission_service = EmissionCalculatorService.new
+
+      # Calculate CO2 emissions and fuel consumption
+
+      @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(shipment_params[:vehicle_type])
+      @shipment.co2_emissions = emission_service.call(@shipment)
+      @shipment.save
+
       redirect_to shipments_path, notice: "A shipment was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -72,12 +78,12 @@ class ShipmentsController < ApplicationController
         @shipment.update(distance_traveled: 0)
       end
 
+
+      # Save
       # Recalculate fuel consumption and CO2 emissions
       emission_service = EmissionCalculatorService.new
       @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(@shipment.vehicle_type)
       @shipment.co2_emissions = emission_service.call(shipment_params)
-
-      # Save
       if @shipment.save
         redirect_to shipments_path, notice: "Shipment was successfully updated."
       else
@@ -92,6 +98,7 @@ class ShipmentsController < ApplicationController
     @shipment = Shipment.find(params[:id])
 
     authorize @shipment
+
     # Ensure that only the owner can update the planet
     if current_user == @shipment.user
       if @shipment.destroy!
@@ -103,6 +110,7 @@ class ShipmentsController < ApplicationController
       redirect_to shipments_path, alert: "You are not authorized to delete this Shipment."
     end
   end
+
 
   private
 
