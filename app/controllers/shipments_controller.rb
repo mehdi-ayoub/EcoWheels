@@ -1,16 +1,18 @@
 class ShipmentsController < ApplicationController
+  include DistanceHelper
+
   def index
     @shipments = current_user.shipments
     @shipments = filter_shipments(@shipments)
-  
+
     if params[:sort_by]
       @shipments = sort_shipments(@shipments)
     end
-  
+
     if params[:query].present?
       @shipments = @shipments.search(params[:query])
     end
-    
+
     @shipments = policy_scope(@shipments)
   end
 
@@ -21,18 +23,24 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = Shipment.new(shipment_params)
-    @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
-    @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
     @shipment.user = current_user
-
     authorize @shipment
 
     if @shipment.save
+      emission_service = EmissionCalculatorService.new
+
+      # Calculate CO2 emissions and fuel consumption
+
+      @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(shipment_params[:vehicle_type])
+      @shipment.co2_emissions = emission_service.call(@shipment)
+      @shipment.save
+
       redirect_to shipments_path, notice: "A shipment was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
   end
+
 
   def show
     @shipment = Shipment.find(params[:id])
@@ -47,13 +55,28 @@ class ShipmentsController < ApplicationController
   end
 
   def update
-
     @shipment = Shipment.find(params[:id])
-
     authorize @shipment
 
-    if @shipment.update(shipment_params)
-      redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
+    emission_service = EmissionCalculatorService.new
+    @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(shipment_params[:vehicle_type])
+    @shipment.co2_emissions = emission_service.call(@shipment)
+    @shipment.save
+
+    # if @shipment.update(shipment_params)
+
+      # Save
+      # Recalculate fuel consumption and CO2 emissions
+      # emission_service = EmissionCalculatorService.new
+      # @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(@shipment.vehicle_type)
+      # @shipment.co2_emissions = emission_service.call(shipment_params)
+
+
+      if @shipment.save
+        redirect_to shipments_path, notice: "Shipment was successfully updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -63,22 +86,35 @@ class ShipmentsController < ApplicationController
     authorize @shipment
     @shipment = Shipment.find(params[:id])
 
+<<<<<<< HEAD
+    authorize @shipment
+
+    # Ensure that only the owner can update the planet
+    if current_user == @shipment.user
+      if @shipment.destroy!
+        redirect_to shipments_path, notice: "Shipment was successfully deleted."
+=======
     if current_user == @shipment.user
       if @shipment.destroy!
         redirect_to shipments_path, notice: "The shipment was successfully deleted."
+>>>>>>> master
       else
         render :index
       end
     else
+<<<<<<< HEAD
+      redirect_to shipments_path, alert: "You are not authorized to delete this Shipment."
+=======
       redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
+>>>>>>> master
     end
   end
+
 
   private
 
   def shipment_params
-    params.require(:shipment).permit(:city, :distance_traveled, :vehicle_type, :fuel_type, :fuel_consumption,
-                                     :product_name, :shipment_start, :shipment_end, :co2_emissions)
+    params.require(:shipment).permit(:product_name, :city, :shipment_start, :shipment_end, :vehicle_type, :fuel_type, :start_location, :end_location, :distance_traveled)
   end
 
   def sort_shipments(shipments)
