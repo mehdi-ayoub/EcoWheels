@@ -118,6 +118,7 @@ GEM
     ffi (1.15.5)
     font-awesome-sass (6.4.2)
       sassc (~> 2.0)
+    geocoder (1.8.2)
     globalid (1.2.0)
       activesupport (>= 6.1)
     groupdate (6.3.0)
@@ -284,6 +285,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass (~> 6.1)
   groupdate
+  geocoder
   importmap-rails
   jbuilder
   pg (~> 1.1)
