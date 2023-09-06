@@ -60,14 +60,15 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
-    authorize @shipment
     @shipment = Shipment.find(params[:id])
-
+    
+    authorize @shipment
+    
     if current_user == @shipment.user
-      if @shipment.destroy!
+      if @shipment.destroy
         redirect_to shipments_path, notice: "The shipment was successfully deleted."
       else
-        render :index
+        redirect_to shipments_path, alert: "Error deleting shipment."
       end
     else
       redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
