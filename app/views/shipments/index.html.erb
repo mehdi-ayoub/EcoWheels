@@ -1,3 +1,17 @@
+
+    <div class="container-search">
+     <div class="d-flex align-items-end">
+    <%= form_with url: shipments_path, method: :get, class: "d-flex d-inline-flex p-2" do %>
+      <%= text_field_tag :query,
+       params[:query],
+       class: "form-control",
+       placeholder: "Find a shipment"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+     </div>
+    </div>
+
 <%= form_with url: shipments_path, method: :get, local: true, class: "mb-4" do |form| %>
   <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control' %>
   <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control' %>
@@ -12,7 +26,7 @@
     <div class="row">
         <div class="col">
             <h1 class="mb-4">Your Shipments</h1>
-          
+
             <% if flash[:notice] %>
                 <div class="alert alert-success">
                     <%= flash[:notice] %>
@@ -44,6 +58,7 @@
                             <td><%= shipment.co2_emissions %></td>
                             <td>
                                 <%= link_to 'Delete', shipment_path(shipment), method: :delete, data: { confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' %>
+                                <%= link_to 'Edit', edit_shipment_path(shipment), method: :edit %>
                             </td>
                         </tr>
                     <% end %>

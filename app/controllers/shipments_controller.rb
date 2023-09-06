@@ -2,15 +2,15 @@ class ShipmentsController < ApplicationController
   def index
     @shipments = current_user.shipments
     @shipments = filter_shipments(@shipments)
-  
+
     if params[:sort_by]
       @shipments = sort_shipments(@shipments)
     end
-  
+
     if params[:query].present?
       @shipments = @shipments.search(params[:query])
     end
-    
+
     @shipments = policy_scope(@shipments)
   end
 
@@ -41,9 +41,7 @@ class ShipmentsController < ApplicationController
 
   def edit
     @shipment = Shipment.find(params[:id])
-
     authorize @shipment
-    redirect_to shipments_path, notice: "Shipment successfully edited."
   end
 
   def update
@@ -53,6 +51,8 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     if @shipment.update(shipment_params)
+      @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
+      @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
       redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
     else
       render :edit, status: :unprocessable_entity
