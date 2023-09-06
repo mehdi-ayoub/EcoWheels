@@ -5,9 +5,10 @@ class Shipment < ApplicationRecord
   geocoded_by :start_location, latitude: :start_latitude, longitude: :start_longitude
   geocoded_by :end_location, latitude: :end_latitude, longitude: :end_longitude
 
-  after_validation :geocode_start_location, if: :start_location_changed?
-  after_validation :geocode_end_location, if: :end_location_changed?
-  after_validation :calculate_distance
+  before_validation :geocode_start_location, if: :start_location_changed?
+  before_validation :geocode_end_location, if: :end_location_changed?
+  before_validation :calculate_distance
+  before_validation :calculate_emissions
 
   belongs_to :user
 
@@ -53,6 +54,15 @@ class Shipment < ApplicationRecord
     ).round(2)
   end
 
+  def calculate_emissions
+    emission_service = EmissionCalculatorService.new
+
+    # Calculate CO2 emissions and fuel consumption
+
+    self.fuel_consumption = emission_service.calculate_fuel_consumption(vehicle_type)
+
+    self.co2_emissions = emission_service.call(self)
+  end
 end
 
 # :start_latitude, :start_longitude, :end_latitude, :end_longitude,
