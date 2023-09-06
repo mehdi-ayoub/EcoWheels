@@ -88,27 +88,17 @@ class ShipmentsController < ApplicationController
     authorize @shipment
     @shipment = Shipment.find(params[:id])
 
-<<<<<<< HEAD
     authorize @shipment
 
     # Ensure that only the owner can update the planet
     if current_user == @shipment.user
       if @shipment.destroy!
         redirect_to shipments_path, notice: "Shipment was successfully deleted."
-=======
-    if current_user == @shipment.user
-      if @shipment.destroy!
-        redirect_to shipments_path, notice: "The shipment was successfully deleted."
->>>>>>> master
       else
         render :index
       end
     else
-<<<<<<< HEAD
       redirect_to shipments_path, alert: "You are not authorized to delete this Shipment."
-=======
-      redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
->>>>>>> master
     end
   end
 
