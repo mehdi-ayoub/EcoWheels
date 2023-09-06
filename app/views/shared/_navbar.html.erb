@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <div class="container-fluid">
     <%= link_to "#", class: "navbar-brand" do %>
       <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
@@ -15,6 +15,9 @@
             <%= link_to "Home", "#", class: "nav-link" %>
           </li>
           <li class="nav-item">
+          <li class="nav-item">
+            <%= link_to "My Shipments", shipments_path, class: "nav-link" %>
+          </li>
             <%= link_to "Messages", "#", class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
@@ -36,13 +39,3 @@
     </div>
   </div>
 </div>
-<nav>
-    <%= form_with url: shipments_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-       params[:query],
-       class: "form-control",
-       placeholder: "Find a shipment"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
- </nav>
