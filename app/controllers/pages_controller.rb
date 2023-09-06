@@ -24,6 +24,20 @@ class PagesController < ApplicationController
     end
   end
 
+  def dashboard
+    @shipments = current_user.shipments
+
+    if params[:sort_by]
+      @shipments = sort_shipments(@shipments)
+    end
+
+    if params[:query].present?
+      @shipments = @shipments.search(params[:query])
+    end
+
+    @shipments = policy_scope(@shipments)
+  end
+
   private
 
   def calculate_fuel_consumption(car_type)

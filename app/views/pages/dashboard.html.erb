@@ -1,0 +1,23 @@
+<h2>Dashboard</h2>
+
+<%= line_chart Shipment.group_by_day(:shipment_start, range: 1.month.ago.midnight..Time.now).sum(:co2_emissions) %>
+<%= pie_chart Shipment.group(:product_name).count %>
+<%= column_chart Shipment.group_by_day_of_week(:shipment_start, format: "%a").count %>
+<%= bar_chart Shipment.group(:vehicle_type).sum(:id) %>
+
+<% @shipments.each do |shipment| %>
+    <tr>
+    <td><%= shipment.city %></td>
+    <td><%= shipment.vehicle_type %></td>
+    <td><%= shipment.fuel_type %></td>
+    <td><%= shipment.product_name %></td>
+    <td><%= shipment.shipment_start %></td>
+    <td><%= shipment.shipment_end %></td>
+    <td><%= shipment.co2_emissions %></td>
+    <td>
+  <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
+      <%= shipment.distance_traveled.round(2) %> km
+  <% else %>
+      N/A
+  <% end %>
+<% end %>
