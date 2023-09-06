@@ -1,9 +1,9 @@
 <h2>Dashboard</h2>
 
-<%= line_chart Shipment.group_by_day(:shipment_start, range: 1.month.ago.midnight..Time.now).sum(:co2_emissions) %>
-<%= pie_chart Shipment.group(:product_name).count %>
-<%= column_chart Shipment.group_by_day_of_week(:shipment_start, format: "%a").count %>
-<%= bar_chart Shipment.group(:vehicle_type).sum(:id) %>
+<%= line_chart Shipment.group_by_day(:shipment_start, range: 1.month.ago.midnight..Time.now).sum(:co2_emissions), download: true %>
+<%= pie_chart Shipment.group(:product_name).count, download: true %>
+<%= column_chart Shipment.group_by_day_of_week(:shipment_start, format: "%a").count, download: true %>
+<%= bar_chart Shipment.group(:vehicle_type).sum(:id), download: true %>
 
 <% @shipments.each do |shipment| %>
     <tr>

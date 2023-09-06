@@ -17,7 +17,7 @@ class Shipment < ApplicationRecord
                       :fuel_consumption, :product_name, :shipment_start,
                       :shipment_end, :co2_emissions
 
-  validates_presence_of :start_location, :end_location
+  # validates_presence_of :start_location, :end_location
 
   pg_search_scope :search,
   against: [:city, :distance_traveled, :vehicle_type, :fuel_type, :product_name],
@@ -43,8 +43,9 @@ class Shipment < ApplicationRecord
     # Calculate CO2 emissions and fuel consumption
 
     self.fuel_consumption = emission_service.calculate_fuel_consumption(vehicle_type)
-
+    puts "hello"
     self.co2_emissions = emission_service.call(self)
+    pp emission_service.call(self)
   end
 
   def geocode_start_and_end

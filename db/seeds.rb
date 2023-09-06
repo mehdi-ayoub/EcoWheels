@@ -22,7 +22,7 @@ puts "Creating Seed data!"
 # Create Shipments for hai
 Shipment.create!(
   city: 'Los Angeles',
-  vehicle_type: 'Truck',
+  vehicle_type: 'Heavy Truck',
   fuel_type: 'Diesel',
   fuel_consumption: 12.5,
   product_name: 'Electronics',
@@ -38,8 +38,8 @@ Shipment.create!(
 
 Shipment.create!(
   city: 'New York',
-  vehicle_type: 'Airplane',
-  fuel_type: 'Jet Fuel',
+  vehicle_type: 'Medium Truck',
+  fuel_type: 'Diesel',
   fuel_consumption: 500.0,
   product_name: 'Furniture',
   shipment_start: Date.today - 20,
@@ -54,8 +54,8 @@ Shipment.create!(
 
 Shipment.create!(
   city: 'Chicago',
-  vehicle_type: 'Train',
-  fuel_type: 'Electric',
+  vehicle_type: 'Medium Truck',
+  fuel_type: 'Gasoline',
   fuel_consumption: 0.5,
   product_name: 'Automobile Parts',
   shipment_start: Date.today - 7,
@@ -71,8 +71,8 @@ Shipment.create!(
 # Creating shipments for john_doe
 Shipment.create!(
   city: "Boston",
-  vehicle_type: "Truck",
-  fuel_type: "Diesel",
+  vehicle_type: "8 Cylinder",
+  fuel_type: "Gasoline",
   fuel_consumption: 10.5,
   product_name: "Electronics",
   shipment_start: "2023-08-10",
@@ -87,8 +87,8 @@ Shipment.create!(
 
 Shipment.create!(
   city: "Washington DC",
-  vehicle_type: "Plane",
-  fuel_type: "Jet Fuel",
+  vehicle_type: "8 Cylinder",
+  fuel_type: "Diesel",
   fuel_consumption: 500.0,
   product_name: "Furniture",
   shipment_start: "2023-09-05",
@@ -103,7 +103,7 @@ Shipment.create!(
 
 Shipment.create!(
   city: "Alberta",
-  vehicle_type: "Van",
+  vehicle_type: "Heavy Truck",
   fuel_type: "Gasoline",
   fuel_consumption: 8.0,
   product_name: "Books",
@@ -119,8 +119,8 @@ Shipment.create!(
 
 Shipment.create!(
   city: 'Denver',
-  vehicle_type: 'Hyperloop',
-  fuel_type: 'Electric',
+  vehicle_type: '4 Cylinder',
+  fuel_type: 'Diesel',
   fuel_consumption: 0,
   product_name: 'Consumer goods',
   shipment_start: Date.today - 10,
@@ -134,3 +134,5 @@ Shipment.create!(
 )
 
 puts "Seed data created successfully!"
+
+
