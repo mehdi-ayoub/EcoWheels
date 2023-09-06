@@ -1,11 +1,16 @@
 class ShipmentsController < ApplicationController
   def index
     @shipments = current_user.shipments
-    @shipments = sort_shipments(@shipment) if params[:sort_by]
     @shipments = filter_shipments(@shipments)
-    if params[:query].present?
-      @shipments = Shipment.search(params[:query])
+  
+    if params[:sort_by]
+      @shipments = sort_shipments(@shipments)
     end
+  
+    if params[:query].present?
+      @shipments = @shipments.search(params[:query])
+    end
+    
     @shipments = policy_scope(@shipments)
   end
 
@@ -55,10 +60,9 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
+    authorize @shipment
     @shipment = Shipment.find(params[:id])
 
-    authorize @shipment
-    # Ensure that only the owner can update the planet
     if current_user == @shipment.user
       if @shipment.destroy!
         redirect_to shipments_path, notice: "The shipment was successfully deleted."

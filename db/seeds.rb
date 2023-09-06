@@ -51,15 +51,15 @@ Shipment.create!(
   distance_traveled: 80.2,
   vehicle_type: 'Train',
   fuel_type: 'Electric',
-  fuel_consumption: 40.5,
+  fuel_consumption: 0.5,
   product_name: 'Automobile Parts',
   shipment_start: Date.today - 7,
   shipment_end: Date.today - 2,
-  co2_emissions: 50.2,
+  co2_emissions: 0.2,
   user: hai
 )
 
-# Creating shipments for user1
+# Creating shipments for john_doe
 Shipment.create!(
   city: "Boston",
   distance_traveled: 150.5,
@@ -86,7 +86,6 @@ Shipment.create!(
   user: john_doe
 )
 
-# Creating shipments for user2
 Shipment.create!(
   city: "Alberta",
   distance_traveled: 50.0,
@@ -100,6 +99,17 @@ Shipment.create!(
   user: john_doe
 )
 
-#write seed
+Shipment.create!(
+  city: 'Denver',
+  distance_traveled: 180.2,
+  vehicle_type: 'Hyperloop',
+  fuel_type: 'Electric',
+  fuel_consumption: 0,
+  product_name: 'Consumer goods',
+  shipment_start: Date.today - 10,
+  shipment_end: Date.today - 5,
+  co2_emissions: 0.2,
+  user: hai
+)
 
 puts "Seed data created successfully!"
