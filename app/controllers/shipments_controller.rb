@@ -1,16 +1,18 @@
 class ShipmentsController < ApplicationController
+  include DistanceHelper
+
   def index
     @shipments = current_user.shipments
     @shipments = filter_shipments(@shipments)
-  
+
     if params[:sort_by]
       @shipments = sort_shipments(@shipments)
     end
-  
+
     if params[:query].present?
       @shipments = @shipments.search(params[:query])
     end
-    
+
     @shipments = policy_scope(@shipments)
   end
 
@@ -21,10 +23,7 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = Shipment.new(shipment_params)
-    @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
-    @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
     @shipment.user = current_user
-
     authorize @shipment
 
     if @shipment.save
@@ -33,6 +32,7 @@ class ShipmentsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
 
   def show
     @shipment = Shipment.find(params[:id])
@@ -47,13 +47,11 @@ class ShipmentsController < ApplicationController
   end
 
   def update
-
     @shipment = Shipment.find(params[:id])
-
     authorize @shipment
 
     if @shipment.update(shipment_params)
-      redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
+      redirect_to shipments_path, notice: "Shipment was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -75,11 +73,11 @@ class ShipmentsController < ApplicationController
     end
   end
 
+
   private
 
   def shipment_params
-    params.require(:shipment).permit(:city, :distance_traveled, :vehicle_type, :fuel_type, :fuel_consumption,
-                                     :product_name, :shipment_start, :shipment_end, :co2_emissions)
+    params.require(:shipment).permit(:product_name, :city, :shipment_start, :shipment_end, :vehicle_type, :fuel_type, :start_location, :end_location, :distance_traveled)
   end
 
   def sort_shipments(shipments)
