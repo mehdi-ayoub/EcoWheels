@@ -12,6 +12,7 @@
      </div>
     </div>
 
+<%= link_to 'Add New Shipment', new_shipment_path %>
 <%= form_with url: shipments_path, method: :get, local: true, class: "mb-4" do |form| %>
   <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control' %>
   <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control' %>
@@ -56,6 +57,13 @@
                             <td><%= shipment.shipment_start %></td>
                             <td><%= shipment.shipment_end %></td>
                             <td><%= shipment.co2_emissions %></td>
+                            <td>
+                              <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
+                                  <%= shipment.distance_traveled.round(2) %> km
+                              <% else %>
+                                  N/A
+                              <% end %>
+                            </td>
                             <td>
                                 <%= link_to 'Delete', shipment_path(shipment), method: :delete, data: { confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' %>
                                 <%= link_to 'Edit', edit_shipment_path(shipment), method: :edit %>
