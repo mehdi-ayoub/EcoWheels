@@ -28,7 +28,7 @@ class ShipmentsController < ApplicationController
 
     if @shipment.save
       redirect_to shipments_path, notice: "A shipment was successfully created."
-    else
+    elseß
       render :new, status: :unprocessable_entity
     end
   end
@@ -46,16 +46,15 @@ class ShipmentsController < ApplicationController
 
   def edit
     @shipment = Shipment.find(params[:id])
-
     authorize @shipment
-    redirect_to shipments_path, notice: "Shipment successfully edited."
   end
 
   def update
     @shipment = Shipment.find(params[:id])
+    @shipment.update(shipment_params)
     authorize @shipment
 
-    if @shipment.update(shipment_params)
+    if @shipment.save
       redirect_to shipments_path, notice: "Shipment was successfully updated."
     else
       render :edit, status: :unprocessable_entity
