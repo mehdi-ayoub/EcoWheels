@@ -1,4 +1,9 @@
 <div class="form-inputs">
+  <% if @shipment.errors.any? %>
+    <% @shipment.errors.full_messages.each do |error| %>
+      <p style="color: red"><%= error %></p>
+    <% end %>
+  <% end %>
   <%= simple_form_for @shipment, html: { id: "new_shipment" } do |f| %>
     <%= f.input :product_name %>
     <%= f.input :city %>
