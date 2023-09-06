@@ -1,42 +1,20 @@
-<!-- app/views/shipments/index.html.erb -->
+<ul>
+  <% @shipments.each do |shipment| %>
+    <li>
+      <strong>Product Name:</strong> <%= shipment.product_name %><br>
+      <strong>City:</strong> <%= shipment.city %><br>
+      <strong>Vehicle Type:</strong> <%= shipment.vehicle_type %><br>
+      <strong>Fuel Type:</strong> <%= shipment.fuel_type %><br>
+      <strong>Fuel Consumption:</strong> <%= shipment.fuel_consumption %><br>
+      <strong>CO2 Emissions:</strong> <%= shipment.co2_emissions %><br>
+      <strong>Distance Traveled:</strong>
+      <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
+        <%= shipment.distance_traveled.round(2) %> km
+      <% else %>
+        N/A
+      <% end %><br>
+    </li>
+  <% end %>
+</ul>
 
-<h1>Shipments</h1>
-
-<%= link_to 'New Shipment', new_shipment_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Product Name</th>
-      <th>City</th>
-      <th>Distance Traveled</th>
-      <th>Vehicle Type</th>
-      <th>Fuel Type</th>
-      <th>CO2 Emissions</th>
-      <th>Fuel Consumption</th>
-      <th>Shipment Start</th>
-      <th>Shipment End</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @shipments.each do |shipment| %>
-      <tr>
-        <td><%= shipment.product_name %></td>
-        <td><%= shipment.city %></td>
-        <td><%= shipment.distance_traveled %></td>
-        <td><%= shipment.vehicle_type %></td>
-        <td><%= shipment.fuel_type %></td>
-        <td><%= shipment.co2_emissions %></td>
-        <td><%= shipment.fuel_consumption %></td>
-        <td><%= shipment.shipment_start %></td>
-        <td><%= shipment.shipment_end %></td>
-        <td>
-          <%= link_to 'Show', shipment_path(shipment) %>
-          <%= link_to 'Edit', edit_shipment_path(shipment) %>
-          <%= link_to 'Delete', shipment_path(shipment), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to 'Add New Shipment', new_shipment_path %>

@@ -1,4 +1,6 @@
 class ShipmentsController < ApplicationController
+  include DistanceHelper
+
   def index
     if params[:query].present?
       @shipments = Shipment.search(params[:query])
@@ -18,19 +20,24 @@ class ShipmentsController < ApplicationController
     @shipment.user = current_user
     authorize @shipment
 
-    @shipment.save! # This triggers validation and geocoding
-
-    # Check if geocoding was successful
-    if @shipment.start_latitude && @shipment.start_longitude && @shipment.end_latitude && @shipment.end_longitude
-      start_coordinates = [@shipment.start_latitude, @shipment.start_longitude]
-      end_coordinates = [@shipment.end_latitude, @shipment.end_longitude]
-      distance = Geocoder::Calculations.distance_between(start_coordinates, end_coordinates, :units => :km)
+    # Calculate the distance traveled using haversine method from the helper
+    if @shipment.start_latitude.present? && @shipment.start_longitude.present? && @shipment.end_latitude.present? && @shipment.end_longitude.present?
+      @shipment.distance_traveled = haversine_distance(
+        @shipment.start_latitude,
+        @shipment.start_longitude,
+        @shipment.end_latitude,
+        @shipment.end_longitude
+      ).round(2)
     else
-      @shipment.distance_traveled = 0 # or some other default value
+      @shipment.distance_traveled = 0
     end
 
-    @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
-    @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
+    # Initialize EmissionCalculatorService
+    emission_service = EmissionCalculatorService.new
+
+    # Calculate CO2 emissions and fuel consumption
+    @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(shipment_params[:vehicle_type])
+    @shipment.co2_emissions = emission_service.call(shipment_params)
 
     if @shipment.save
       redirect_to shipments_path, notice: "A shipment was successfully created."
@@ -53,13 +60,29 @@ class ShipmentsController < ApplicationController
   end
 
   def update
-
     @shipment = Shipment.find(params[:id])
-
     authorize @shipment
 
     if @shipment.update(shipment_params)
-      redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
+      # Calculate distance if latitudes and longitudes are their
+      if @shipment.start_latitude.present? && @shipment.start_longitude.present? && @shipment.end_latitude.present? && @shipment.end_longitude.present?
+        calculated_distance = haversine_distance(@shipment.start_latitude, @shipment.start_longitude, @shipment.end_latitude, @shipment.end_longitude).round(2)
+        @shipment.update(distance_traveled: calculated_distance)
+      else
+        @shipment.update(distance_traveled: 0)
+      end
+
+      # Recalculate fuel consumption and CO2 emissions
+      emission_service = EmissionCalculatorService.new
+      @shipment.fuel_consumption = emission_service.calculate_fuel_consumption(@shipment.vehicle_type)
+      @shipment.co2_emissions = emission_service.call(shipment_params)
+
+      # Save
+      if @shipment.save
+        redirect_to shipments_path, notice: "Shipment was successfully updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
       render :edit, status: :unprocessable_entity
     end

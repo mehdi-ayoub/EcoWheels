@@ -1,7 +1,7 @@
 class EmissionCalculatorService < ApplicationService
   attr_accessor :vehicle_type, :fuel_type, :distance_traveled
 
-  def intialize
+  def initialize
   end
 
   def call(params)
