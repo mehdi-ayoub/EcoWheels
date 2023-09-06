@@ -1,10 +1,16 @@
 class ShipmentsController < ApplicationController
   def index
-    if params[:query].present?
-      @shipments = Shipment.search(params[:query])
-    else
-      @shipments = Shipment.all
+    @shipments = current_user.shipments
+    @shipments = filter_shipments(@shipments)
+  
+    if params[:sort_by]
+      @shipments = sort_shipments(@shipments)
     end
+  
+    if params[:query].present?
+      @shipments = @shipments.search(params[:query])
+    end
+    
     @shipments = policy_scope(@shipments)
   end
 
@@ -54,18 +60,17 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
+    authorize @shipment
     @shipment = Shipment.find(params[:id])
 
-    authorize @shipment
-    # Ensure that only the owner can update the planet
     if current_user == @shipment.user
       if @shipment.destroy!
-        redirect_to shipments_path, notice: "Planet was successfully deleted."
+        redirect_to shipments_path, notice: "The shipment was successfully deleted."
       else
         render :index
       end
     else
-      redirect_to shipments_path, alert: "You are not authorized to delete this planet."
+      redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
     end
   end
 
@@ -74,5 +79,20 @@ class ShipmentsController < ApplicationController
   def shipment_params
     params.require(:shipment).permit(:city, :distance_traveled, :vehicle_type, :fuel_type, :fuel_consumption,
                                      :product_name, :shipment_start, :shipment_end, :co2_emissions)
+  end
+
+  def sort_shipments(shipments)
+    shipments.order(params[:sort_by])
+  end
+
+  def filter_shipments(shipments)
+    shipments = shipments.where(city: params[:city]) if params[:city].present?
+    shipments = shipments.where(vehicle_type: params[:vehicle_type]) if params[:vehicle_type].present?
+    shipments = shipments.where(fuel_type: params[:fuel_type]) if params[:fuel_type].present?
+    shipments = shipments.where(product_name: params[:product_name]) if params[:product_name].present?
+    shipments = shipments.where("shipment_start >= ?", params[:shipment_start]) if params[:shipment_start].present?
+    shipments = shipments.where("shipment_end <= ?", params[:shipment_end]) if params[:shipment_end].present?
+    shipments = shipments.where(co2_emissions: params[:co2_emissions]) if params[:co2_emissions].present?
+    shipments
   end
 end
