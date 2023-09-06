@@ -58,7 +58,7 @@ class ShipmentsController < ApplicationController
   end
 
   def destroy
-    authorize @shipment
+    # authorize @shipment
     @shipment = Shipment.find(params[:id])
 
     authorize @shipment
