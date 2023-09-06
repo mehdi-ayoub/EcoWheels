@@ -1,13 +1,11 @@
 # restaurant user email
 <h1>Show <%= @shipment.product_name %></h1>
-<h1>Show <%= @shipment.product_name %></h1>
-<h1>Show <%= @shipment.product_name %></h1>
 
 
 
 <%# ------------------------map-------------------------------- %>
 
-<div style="width: 100%; height: 600px;"
+<div style="width: 700px; height: 600px;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
