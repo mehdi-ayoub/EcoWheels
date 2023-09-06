@@ -16,6 +16,8 @@ class ShipmentsController < ApplicationController
     @shipments = policy_scope(@shipments)
   end
 
+  #comment
+
   def new
     @shipment = Shipment.new
     authorize @shipment
@@ -73,7 +75,7 @@ class ShipmentsController < ApplicationController
         redirect_to shipments_path, alert: "Error deleting shipment."
       end
     else
-      redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
+      redirect_to shipments_path, alert: "You are not authorized to delete this Shipment."
     end
   end
 
