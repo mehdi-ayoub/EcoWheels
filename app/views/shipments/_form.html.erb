@@ -7,7 +7,7 @@
   <% end %>
   <%= simple_form_for @shipment, html: { id: "new_shipment" } do |f| %>
     <%= f.input :product_name %>
-    <%= f.input :city %>
+    <%# <%= f.input :city %>
     <%= f.input :shipment_start %>
     <%= f.input :shipment_end %>
     <%= f.input :vehicle_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'] %>
