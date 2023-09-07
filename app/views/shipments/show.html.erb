@@ -1,7 +1,15 @@
-
+<div class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container-fluid">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to "Back to Shipments", shipments_path, class: "nav-link" %>
+        </li>
+      </ul>
+  </div>
+</div>
 <h1>Show <%= @shipment.product_name %></h1>
 <% @shipment.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 250, width: 100, crop: :fill, class: "card-img-top image-index" %>
+  <%= image_tag url_for(photo), height: 250, width: 250%>
 <% end %>
 <p><%= @shipment.city %></p>
 <p><%= @shipment.distance_traveled %></p>
@@ -14,6 +22,9 @@
 <p><%= @shipment.user_id %></p>
 <p><%= @shipment.created_at %></p>
 <p><%= @shipment.updated_at %></p>
+<%= link_to edit_shipment_path(@shipment) do %>
+  <i class="fa-solid fa-pencil"></i>
+<% end %>
 
 
 
