@@ -25,14 +25,14 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th><%= link_to "City", shipments_path(sort_by: 'city') %></th>
+                        <th><%= link_to "Destination", shipments_path(sort_by: 'city') %></th>
                         <th><%= link_to "Vehicle Type", shipments_path(sort_by: 'vehicle_type') %></th>
                         <th><%= link_to "Fuel Type", shipments_path(sort_by: 'fuel_type') %></th>
                         <th><%= link_to "Product Name", shipments_path(sort_by: 'product_name') %></th>
                         <th><%= link_to "Shipment Start", shipments_path(sort_by: 'shipment_start') %></th>
                         <th><%= link_to "Shipment End", shipments_path(sort_by: 'shipment_end') %></th>
                         <th><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
-                        <th>Actions</th>
+                        <th><%= link_to "Distance Traveled", shipments_path(sort_by: 'distance_traveled') %></th>
                     </tr>
                 </thead>
                 <tbody>
