@@ -9,7 +9,7 @@
 </div>
 <h1>Show <%= @shipment.product_name %></h1>
 <% @shipment.photos.each do |photo| %>
-  <%= image_tag url_for(photo), height: 250, width: 250%>
+  <%= cl_image_tag url_for(photo), height: 250, width: 250%>
 <% end %>
 <p><%= @shipment.city %></p>
 <p><%= @shipment.distance_traveled %></p>
