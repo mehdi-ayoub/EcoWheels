@@ -14,6 +14,7 @@
     <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type' %>
     <%= f.input :start_location %>
     <%= f.input :end_location %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%# Only show for update %>
     <% if @shipment.persisted? %>
       <%= f.hidden_field :distance_traveled, id: 'distance_traveled' %>
