@@ -88,3 +88,5 @@ gem 'psych', '~> 5.1'
 gem 'chartkick'
 
 gem 'groupdate'
+
+gem 'cloudinary'
