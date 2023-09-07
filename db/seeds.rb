@@ -25,39 +25,48 @@ puts "Creating Seed data!"
 # Create Shipments for hai
 Shipment.create!(
   city: 'Los Angeles',
-  distance_traveled: 120.5,
-  vehicle_type: 'Truck',
+  vehicle_type: 'Heavy Truck',
   fuel_type: 'Diesel',
   fuel_consumption: 12.5,
   product_name: 'Electronics',
   shipment_start: Date.today - 10,
   shipment_end: Date.today - 5,
+  start_latitude: 34.0549,
+  start_longitude: 118.2426,
+  end_latitude: 32.7157,
+  end_longitude: 17.1611,
   co2_emissions: 120.4,
   user: hai
 )
 
 Shipment.create!(
   city: 'New York',
-  distance_traveled: 240.7,
-  vehicle_type: 'Airplane',
-  fuel_type: 'Jet Fuel',
+  vehicle_type: 'Medium Truck',
+  fuel_type: 'Diesel',
   fuel_consumption: 500.0,
   product_name: 'Furniture',
   shipment_start: Date.today - 20,
   shipment_end: Date.today - 10,
+  start_latitude: 34.0549,
+  start_longitude: 118.2426,
+  end_latitude: 32.7157,
+  end_longitude: 17.1611,
   co2_emissions: 540.3,
   user: hai
 )
 
 Shipment.create!(
   city: 'Chicago',
-  distance_traveled: 80.2,
-  vehicle_type: 'Train',
-  fuel_type: 'Electric',
+  vehicle_type: 'Medium Truck',
+  fuel_type: 'Gasoline',
   fuel_consumption: 0.5,
   product_name: 'Automobile Parts',
   shipment_start: Date.today - 7,
   shipment_end: Date.today - 2,
+  start_latitude: 34.0549,
+  start_longitude: 118.2426,
+  end_latitude: 32.7157,
+  end_longitude: 17.1611,
   co2_emissions: 0.2,
   user: hai
 )
@@ -65,54 +74,68 @@ Shipment.create!(
 # Creating shipments for john_doe
 Shipment.create!(
   city: "Boston",
-  distance_traveled: 150.5,
-  vehicle_type: "Truck",
-  fuel_type: "Diesel",
+  vehicle_type: "8 Cylinder",
+  fuel_type: "Gasoline",
   fuel_consumption: 10.5,
   product_name: "Electronics",
   shipment_start: "2023-08-10",
   shipment_end: "2023-08-15",
+  start_latitude: 34.0549,
+  start_longitude: 118.2426,
+  end_latitude: 32.7157,
+  end_longitude: 17.1611,
   co2_emissions: 100.4,
   user: john_doe
 )
 
 Shipment.create!(
   city: "Washington DC",
-  distance_traveled: 300.0,
-  vehicle_type: "Plane",
-  fuel_type: "Jet Fuel",
+  vehicle_type: "8 Cylinder",
+  fuel_type: "Diesel",
   fuel_consumption: 500.0,
   product_name: "Furniture",
   shipment_start: "2023-09-05",
   shipment_end: "2023-09-10",
+  start_latitude: 34.0549,
+  start_longitude: 118.2426,
+  end_latitude: 32.7157,
+  end_longitude: 17.1611,
   co2_emissions: 1500.0,
   user: john_doe
 )
 
 Shipment.create!(
   city: "Alberta",
-  distance_traveled: 50.0,
-  vehicle_type: "Van",
+  vehicle_type: "Heavy Truck",
   fuel_type: "Gasoline",
   fuel_consumption: 8.0,
   product_name: "Books",
   shipment_start: "2023-07-20",
   shipment_end: "2023-07-22",
+  start_latitude: 34.0549,
+  start_longitude: 118.2426,
+  end_latitude: 32.7157,
+  end_longitude: 17.1611,
   co2_emissions: 60.0,
   user: john_doe
 )
 
 Shipment.create!(
   city: 'Denver',
-  distance_traveled: 180.2,
-  vehicle_type: 'Hyperloop',
-  fuel_type: 'Electric',
+  vehicle_type: '4 Cylinder',
+  fuel_type: 'Diesel',
   fuel_consumption: 0,
   product_name: 'Consumer goods',
   shipment_start: Date.today - 10,
   shipment_end: Date.today - 5,
+  start_latitude: 34.0549,
+  start_longitude: 118.2426,
+  end_latitude: 32.7157,
+  end_longitude: 17.1611,
   co2_emissions: 0.2,
   user: hai
 )
 
 puts "Seed data created successfully!"
+
+

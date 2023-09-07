@@ -1,18 +1,22 @@
 class ShipmentsController < ApplicationController
+  include DistanceHelper
+
   def index
     @shipments = current_user.shipments
     @shipments = filter_shipments(@shipments)
-  
+
     if params[:sort_by]
       @shipments = sort_shipments(@shipments)
     end
-  
+
     if params[:query].present?
       @shipments = @shipments.search(params[:query])
     end
-    
+
     @shipments = policy_scope(@shipments)
   end
+
+  #comment
 
   def new
     @shipment = Shipment.new
@@ -21,10 +25,7 @@ class ShipmentsController < ApplicationController
 
   def create
     @shipment = Shipment.new(shipment_params)
-    @shipment.co2_emissions = EmissionCalculatorService.new.call(shipment_params)
-    @shipment.fuel_consumption = EmissionCalculatorService.new.calculate_fuel_consumption(shipment_params[:vehicle_type])
     @shipment.user = current_user
-
     authorize @shipment
 
     if @shipment.save
@@ -34,51 +35,55 @@ class ShipmentsController < ApplicationController
     end
   end
 
+
   def show
     @shipment = Shipment.find(params[:id])
     authorize @shipment
+
+    @markers = [
+      { lat: @shipment.start_latitude, lng: @shipment.start_longitude, popup: 'Start Location' },
+      { lat: @shipment.end_latitude, lng: @shipment.end_longitude, popup: 'End Location' },
+    ]
   end
 
   def edit
     @shipment = Shipment.find(params[:id])
-
     authorize @shipment
-    redirect_to shipments_path, notice: "Shipment successfully edited."
   end
 
   def update
-
     @shipment = Shipment.find(params[:id])
-
+    @shipment.update(shipment_params)
     authorize @shipment
 
-    if @shipment.update(shipment_params)
-      redirect_to shipment_path(@shipment), notice: "Shipment successfully updated."
+    if @shipment.save
+      redirect_to shipments_path, notice: "Shipment was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    authorize @shipment
     @shipment = Shipment.find(params[:id])
-
+    
+    authorize @shipment
+    
     if current_user == @shipment.user
-      if @shipment.destroy!
+      if @shipment.destroy
         redirect_to shipments_path, notice: "The shipment was successfully deleted."
       else
-        render :index
+        redirect_to shipments_path, alert: "Error deleting shipment."
       end
     else
-      redirect_to shipments_path, alert: "You are not authorized to delete this shipment."
+      redirect_to shipments_path, alert: "You are not authorized to delete this Shipment."
     end
   end
+
 
   private
 
   def shipment_params
-    params.require(:shipment).permit(:city, :distance_traveled, :vehicle_type, :fuel_type, :fuel_consumption,
-                                     :product_name, :shipment_start, :shipment_end, :co2_emissions)
+    params.require(:shipment).permit(:product_name, :city, :shipment_start, :shipment_end, :vehicle_type, :fuel_type, :start_location, :end_location, :distance_traveled)
   end
 
   def sort_shipments(shipments)
