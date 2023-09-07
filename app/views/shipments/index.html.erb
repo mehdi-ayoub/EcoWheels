@@ -1,5 +1,6 @@
-<%= render 'shipments/navbar' %>
-<div class="collapse mb-4" id="filterForm">
+  <%= render "shipments/navbar_shipment" %>
+
+   <div class="collapse mb-4" id="filterForm">
   <%= form_with url: shipments_path, method: :get, local: true do |form| %>
     <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control mb-2' %>
     <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control mb-2' %>
