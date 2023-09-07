@@ -41,8 +41,16 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     @markers = [
-      { lat: @shipment.start_latitude, lng: @shipment.start_longitude, popup: 'Start Location' },
-      { lat: @shipment.end_latitude, lng: @shipment.end_longitude, popup: 'End Location' },
+      { lat: @shipment.start_latitude, lng: @shipment.start_longitude, popup: 'Start Location',
+
+        info_window_html: render_to_string(partial: "info_window", locals: {shipment: @shipment, location: @shipment.start_location})
+
+      },
+
+      {lat: @shipment.end_latitude, lng: @shipment.end_longitude, popup: 'End Location',
+
+      info_window_html: render_to_string(partial: "info_window", locals: {shipment: @shipment, location: @shipment.end_location})
+      },
     ]
   end
 
@@ -65,9 +73,9 @@ class ShipmentsController < ApplicationController
 
   def destroy
     @shipment = Shipment.find(params[:id])
-    
+
     authorize @shipment
-    
+
     if current_user == @shipment.user
       if @shipment.destroy
         redirect_to shipments_path, notice: "The shipment was successfully deleted."
