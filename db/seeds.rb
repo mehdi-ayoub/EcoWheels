@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+# Coding this method on the class
+User.destroy_all
+Shipment.destroy_all
 
 
 puts "Cleaning the database"
