@@ -1,5 +1,13 @@
- <%= render "shared/navbar" %>
-
+<%= render "shared/navbar" %>
+<div class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container-fluid">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to "Back to Shipments", shipments_path, class: "nav-link" %>
+        </li>
+      </ul>
+  </div>
+</div>
  <section class="section">
   <div class="container">
     <nav class="level">
@@ -21,6 +29,9 @@
               <li><%= @shipment.created_at %></li>
               <li><%= @shipment.updated_at %></li>
             </ul>
+          <%= link_to edit_shipment_path(@shipment) do %>
+            <i class="fa-solid fa-pencil"></i>
+          <% end %>
         </p>
       </div>
     </nav>

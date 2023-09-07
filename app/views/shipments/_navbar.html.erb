@@ -1,0 +1,35 @@
+<div class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container-fluid">
+  
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#shipmentsNavbar" aria-controls="shipmentsNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="shipmentsNavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "My Shipments", shipments_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'New Shipment', new_shipment_path, class: 'nav-link' %>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
+            Toggle Filter
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
+            <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment" %>
+            <%= f.submit "Search", class: "btn btn-primary" %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

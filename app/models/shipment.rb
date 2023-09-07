@@ -7,6 +7,7 @@ class Shipment < ApplicationRecord
   before_validation :calculate_emissions
 
   belongs_to :user
+  has_many_attached :photos
 
   validates_presence_of :distance_traveled, :vehicle_type, :fuel_type,
                       :fuel_consumption, :product_name, :shipment_start,
