@@ -1,5 +1,91 @@
 <h2>Dashboard</h2>
 
+<p>Date Selector</p>
+
+<div class="container-totals">
+  <h4>Total CO-2 emissions</h4>
+   <p> <%= @shipments.sum(:co2_emissions).round(2) %> CO-2 Emissions (kg) </p>
+
+  <h4>Total distance traveled</h4>
+  <p> <%= @shipments.sum(:distance_traveled).round(2) %> km</p>
+
+  <h4>Total fuel consumption </h4>
+ <%#  <%= @shipments.sum(EmissionCalculatorService.fuel_consumption).round(2) %>
+
+</div>
+
+<div class="container-product">
+  <h4>Total Co2 emissions per product</h4>
+  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "CO-2 Emissions", ytitle: "Product", download: true, thousands: ","  %>
+
+  <h4>Product shipment frequency</h4>
+  <%= line_chart Shipment.group(:product_name).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
+
+  <h4>Total distance traveled per product </h4>
+   <%= bar_chart Shipment.group(:product_name).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Product", download: true, thousands: "," %>
+
+  <h4>Vehicle type per product</h4>
+  <%= pie_chart Shipment.pluck(:product_name, :vehicle_type), download: true %>
+
+  <h4>Fuel type per product</h4>
+
+  <h4>Most frequent destination per product</h4>
+  <%= scatter_chart Shipment.pluck([:product_name].count, :city), xtitle: "Destination", ytitle: "Product" %>
+</div>
+
+<div class="container-vehicle">
+  <h4>Total Co2 emissions per vehicle</h4>
+  <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "CO-2 Emissions", ytitle: "Vehicle", download: true, thousands: "," %>
+
+  <h4>Vehicle usage frequency</h4>
+  <%= line_chart Shipment.group(:vehicle_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
+
+  <h4>Distance traveled per vehicle </h4>
+  <%= bar_chart Shipment.group(:vehicle_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Vehicle", download: true, thousands: "," %>
+
+  <h4>Total fuel consumption per Vehicle </h4>
+
+  <h4>Fuel type per vehicle</h4>
+
+  <h4>Most frequent destination per vehicle</h4>
+</div>
+
+<div class="container-fuel">
+  <h4>Total Co2 emissions per Fuel type</h4>
+  <%= column_chart Shipment.group(:fuel_type).sum(:co2_emissions), xtitle: "CO-2 Emissions", ytitle: "Fuel Type", download: true, thousands: "," %>
+
+  <h4>Fuel type usage frequency</h4>
+  <%= line_chart Shipment.group(:fuel_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
+
+  <h4>Distance traveled per fuel type </h4>
+  <%= bar_chart Shipment.group(:fuel_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Fuel Type", download: true, thousands: "," %>
+
+  <h4>Total fuel consumption per fuel type </h4>
+
+  <h4>Most frequent destination per fuel type</h4>
+</div>
+
+<div class="container-destination">
+  <h4>Total Co2 emissions per Delivery Destination / City</h4>
+  <%= column_chart Shipment.group(:city).sum(:co2_emissions), xtitle: "CO-2 Emissions", ytitle: "Destination", download: true, thousands: "," %>
+
+  <h4>City as destination frequency</h4>
+  <%= line_chart Shipment.group(:city).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
+
+  <h4>Distance traveled per city </h4>
+  <%= bar_chart Shipment.group(:city).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Destination", download: true, thousands: "," %>
+
+  <h4>Total fuel consumption used for delivery to city </h4>
+</div>
+
+<div class="container-tasks-stats">
+
+  <h4>Task List</h4>
+
+  <h4>Shipment Statistics</h4>
+
+</div>
+
 <%= line_chart Shipment.group_by_day(:shipment_start, range: 1.month.ago.midnight..Time.now).sum(:co2_emissions), download: true %>
 <%= pie_chart Shipment.group(:product_name).count, download: true %>
 <%= column_chart Shipment.group_by_day_of_week(:shipment_start, format: "%a").count, download: true %>
