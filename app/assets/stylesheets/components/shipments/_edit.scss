@@ -1,0 +1,17 @@
+body.shipments.edit {
+  background-image: asset-url('trees_background.jpg');
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-edit-form {
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+h1 {
+  font-family: "Manrope";
+}

@@ -1,16 +1,15 @@
- <div class="container">
-  <div class="title-page" style="margin-top: 7rem ; margin-left: 2rem;"><h1>Edit your shipment</h1></div>
+ <div class="container-edit">
+     <div class="card-edit-form" style="width: 30rem; margin: 0 auto; margin-top: 3rem; margin-bottom: 3rem; padding: 1rem">
+      <div class="col-xs-12 col-sm4 col-sm-offset-4 col-md-12 col-lg-12">
+       <%= render "shared/navbar" %>
+  <div class="container">
+   <div class="card-edit" style=" margin: 0 auto;">
+    <div class="title-page" style="margin-top: 1rem ; margin-bottom: 1rem ; margin-left: 2rem;"><h1>Edit your shipment</h1></div>
   </div>
+   </div>
 </div>
-  <div class="container-edit">
-    <div class="bg-image"
-     style="background-image: url('trees_background.jpg');
-            height: auto">
-
-<div class="container-edit">
-  <%= render 'shared/navbar_home' %>
-
   <%= render "form", shipment: @shipment %>
  </div>
- </div>
   </div>
+  <div class="banner">
+    </div>
