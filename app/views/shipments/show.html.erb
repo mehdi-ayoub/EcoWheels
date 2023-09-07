@@ -16,6 +16,9 @@
         <p class="level-item">
           <strong><h2>Shipment<%= @shipment.product_name %></h2></strong>
             <ul style="list-style-type:none;">
+              <% @shipment.photos.each do |photo| %>
+                <%= cl_image_tag url_for(photo), height: 250, width: 200, crop: :fill%>
+              <% end %>
               <li><%= @shipment.city %></li>
               <li><%= @shipment.distance_traveled %></li>
               <li><%= @shipment.vehicle_type %></li>
