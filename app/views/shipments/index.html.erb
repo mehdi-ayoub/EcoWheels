@@ -34,12 +34,13 @@
                         <th><%= link_to "Shipment End", shipments_path(sort_by: 'shipment_end') %></th>
                         <th><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
                         <th><%= link_to "Distance Traveled", shipments_path(sort_by: 'distance_traveled') %></th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% @shipments.each do |shipment| %>
                         <tr>
-                            <td><%= shipment.city %></td>
+                            <td><%= link_to shipment.city, shipment_path(shipment) %></td>
                             <td><%= shipment.vehicle_type %></td>
                             <td><%= shipment.fuel_type %></td>
                             <td><%= shipment.product_name %></td>
