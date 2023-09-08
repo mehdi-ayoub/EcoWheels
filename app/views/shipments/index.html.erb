@@ -15,16 +15,23 @@
 <div class="container-index mt-5">
     <div class="row">
         <div class="col">
-            <h4 class="mb-1">Your Shipments</h4>
-            <p> A list of all your current shipments </p>
-
+          <div class="d-flex justify-content-between align-items-center">
+            <div class= "title-index">
+              <h4 class="mb-1">Your Shipments</h4>
+              <p> A list of all your current shipments </p>
+            </div>
+            <div class="mb-2">
+              <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
+            </div>
+          </div>
+        </div>
             <% if flash[:notice] %>
                 <div class="alert alert-success">
                     <%= flash[:notice] %>
                 </div>
             <% end %>
-
-            <table class="table table-bordered table-hover text-center">
+          <div class="table-container mt-3">
+            <table class="table table-bordered table-hover text-center custom-table">
                 <thead class="thead-dark">
                     <tr class="table-row">
                         <th class="align-middle"><%= link_to "Destination", shipments_path(sort_by: 'city') %></th>
@@ -41,14 +48,14 @@
                 <tbody class="tbody-index">
                     <% @shipments.each do |shipment| %>
                         <tr>
-                            <td class="align-middle"><%= link_to shipment.city, shipment_path(shipment) %></td>
+                            <td class="align-middle" style="border-right: none;"><%= link_to shipment.city, shipment_path(shipment) %></td>
                             <%# <td class="align-middle"><%= shipment.vehicle_type %>
                             <%# <td class="align-middle"><%= shipment.fuel_type %>
-                            <td class="align-middle"><%= shipment.product_name %></td>
-                            <td class="align-middle"><%= shipment.shipment_start %></td>
-                            <td class="align-middle"><%= shipment.shipment_end %></td>
-                            <td class="align-middle"><%= shipment.co2_emissions %></td>
-                            <td class="align-middle">
+                            <td class="align-middle" style="border-right: none;"><%= shipment.product_name %></td>
+                            <td class="align-middle" style="border-right: none;"><%= shipment.shipment_start %></td>
+                            <td class="align-middle" style="border-right: none;"><%= shipment.shipment_end %></td>
+                            <td class="align-middle" style="border-right: none;"><%= shipment.co2_emissions %></td>
+                            <td class="align-middle" style="border-right: none;">
                               <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
                                   <%= shipment.distance_traveled.round(2) %> km
                               <% else %>
@@ -67,6 +74,7 @@
                     <% end %>
                 </tbody>
             </table>
+          </div>
         </div>
     </div>
 </div>
