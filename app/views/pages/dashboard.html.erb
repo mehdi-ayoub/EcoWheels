@@ -1,123 +1,357 @@
+
 <%= render "shared/master_navbar" %>
-<h2>Dashboard</h2>
 
-<p>Date Selector</p>
+<div class="container-dashboard p-3" >
 
-<div class="container-totals d-flex justify-content-around">
-  <div>
-    <h4>Total CO-2 emissions</h4>
-    <p> <%= @shipments.sum(:co2_emissions).round(2) %> kg </p>
+  <div class="container-title mt-4" >
+    <h2 class="text-center">Dashboard</h2>
+
+    <a href= "/shipments" class="btn btn-primary">Return</a>
+
+    <%# <p>Date Selector</p> %>
   </div>
 
-  <div>
-    <h4>Total distance traveled</h4>
-    <p> <%= @shipments.sum(:distance_traveled).round(2) %> km</p>
+  <div class="container-totals d-flex justify-content-around">
+
+      <div class="card border-light mb-3" style="max-width: 18rem;">
+        <div class="card-header"> <strong> Total CO-2 emissions </strong> </div>
+        <div class="card-body text-dark">
+          <p class="card-text text-center"> <%= @shipments.sum(:co2_emissions).round(2) %> kg </p>
+        </div>
+      </div>
+
+      <div class="card border-light mb-3" style="max-width: 18rem;">
+        <div class="card-header"> <strong> Total distance traveled </strong> </div>
+        <div class="card-body text-dark">
+          <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(2) %> km </p>
+        </div>
+      </div>
+
+      <div class="card border-light mb-3" style="max-width: 18rem;">
+        <div class="card-header"> <strong> Total fuel consumption</strong> </div>
+        <div class="card-body text-dark">
+          <p class="card-text text-center"> <%= @shipments.sum(:fuel_consumption).round(2) %> L </p>
+        </div>
+      </div>
+
   </div>
 
-  <div>
-    <h4>Total fuel consumption </h4>
-    <p> <%= @shipments.sum(:fuel_consumption).round(2) %> L </p>
   </div>
 
+  <h4 class="text-center">Product Metrics</h4>
+
+  <div class="container-product m-2 p-3">
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Total Co2 emissions per product </strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Product shipment frequency </strong> </h5>
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Total distance traveled per product </strong> </h5>
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">   <%= bar_chart Shipment.group(:product_name).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Product", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Vehicle type per product </strong> </h5>
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">  <%= bar_chart Shipment.group(:product_name, :vehicle_type).count, xtitle: "Product Count", ytitle: "Vehicle Type", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Most frequent destination per product </strong> </h5>
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">  <%= line_chart Shipment.group(:city, :product_name).count, xtitle: "Product",   ytitle:  "Destination Frequency" , download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  </div>
+
+  <h4 class="text-center">Vehicle Metrics</h4>
+
+  <div class="container-vehicle m-2 p-3">
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Total Co2 emissions per vehicle</strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">  <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicle", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+        <div class="card-header">
+          <h5 class="card-title"> <strong> Vehicle usage frequency</strong> </h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">   <%= line_chart Shipment.group(:vehicle_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
+          </p>
+            <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+    </div>
+
+    <div class="card text-center mt-3">
+        <div class="card-header">
+          <h5 class="card-title"> <strong> Distance traveled per vehicle</strong> </h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">    <%= bar_chart Shipment.group(:vehicle_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Vehicle", download: true, thousands: "," %>
+          </p>
+            <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+    </div>
+
+    <div class="card text-center mt-3">
+        <div class="card-header">
+          <h5 class="card-title"> <strong> Total fuel consumption per Vehicle </strong> </h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">   <%= bar_chart Shipment.group(:vehicle_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Vehicle Type", download: true, thousands: "," %>
+          </p>
+            <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Fuel type per vehicle </strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">    <%= bar_chart Shipment.group(:vehicle_type, :fuel_type).count, xtitle: "Number of Vehicle Type", ytitle: "Fuel Type", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong> Most frequent destination per vehicle</strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">    <%= line_chart Shipment.group(:city, :vehicle_type).count, xtitle: "Vehicle", ytitle: "Destination Frequency", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  </div>
+
+  <h4 class="text-center">Fuel Metrics</h4>
+
+  <div class="container-fuel m-2 p-3">
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Total Co2 emissions per Fuel type</strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">     <%= column_chart Shipment.group(:fuel_type).sum(:co2_emissions), xtitle: "Fuel Type", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Fuel type usage frequency</strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">     <%= line_chart Shipment.group(:fuel_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+      <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Distance traveled per fuel type</strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">      <%= bar_chart Shipment.group(:fuel_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Fuel Type", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Total fuel consumption per fuel type </strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">       <%= bar_chart Shipment.group(:fuel_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Fuel Type", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Most frequent destination per fuel type </strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">       <%= bar_chart Shipment.group(:city, :fuel_type).count, xtitle: "Destination Frequency", ytitle: "Fuel Type", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  </div>
+
+  <h4 class="text-center">Destination Metrics</h4>
+
+  <div class="container-destination m-2 p-3">
+
+  <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Total Co2 emissions per Delivery Destination / City </strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">       <%= column_chart Shipment.group(:city).sum(:co2_emissions), xtitle: "Destination", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>City as destination frequency </strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">       <%= line_chart Shipment.group(:city).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Distance traveled per city </strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">       <%= bar_chart Shipment.group(:city).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Destination", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  <div class="card text-center mt-3">
+      <div class="card-header">
+        <h5 class="card-title"> <strong>Total fuel consumption used for delivery to city</strong> </h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">     <%= bar_chart Shipment.group(:city).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Destination", download: true, thousands: "," %>
+        </p>
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+      </div>
+      <div class="card-footer text-muted">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container-tasks-stats m-2 p-3">
+
+  <%#  <h4>Task List</h4>
+
+    <h4>Shipment Statistics</h4> %>
+
+  </div>
 </div>
+  <%# <%# <%= line_chart Shipment.group_by_day(:shipment_start, range: 1.month.ago.midnight..Time.now).sum(:co2_emissions), download: true %>
+  <%# <%= pie_chart Shipment.group(:product_name).count, download: true %>
+  <%# <%= column_chart Shipment.group_by_day_of_week(:shipment_start, format: "%a").count, download: true %>
+  <%# <%= bar_chart Shipment.group(:vehicle_type).sum(:id), download: true %>
 
-<div class="container-product">
-  <h4>Total Co2 emissions per product</h4>
-  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
-
-  <h4>Product shipment frequency</h4>
-  <%= line_chart Shipment.group(:product_name).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
-
-  <h4>Total distance traveled per product </h4>
-   <%= bar_chart Shipment.group(:product_name).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Product", download: true, thousands: "," %>
-
-  <h4>Vehicle type per product</h4>
-  <%= bar_chart Shipment.group(:product_name, :vehicle_type).count, xtitle: "Product Count", ytitle: "Vehicle Type", download: true, thousands: "," %>
-
-  <h4>Fuel type per product</h4>
-  <%= bar_chart Shipment.group(:product_name, :fuel_type).count, xtitle: "Product Count", ytitle: "Fuel Type", download: true, thousands: "," %>
-
-  <h4>Most frequent destination per product</h4>
-  <%= line_chart Shipment.group(:city, :product_name).count, xtitle: "Product", ytitle: "Destination Frequency", download: true, thousands: "," %>
-</div>
-
-<div class="container-vehicle">
-  <h4>Total Co2 emissions per vehicle</h4>
-  <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicle", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
-
-  <h4>Vehicle usage frequency</h4>
-  <%= line_chart Shipment.group(:vehicle_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
-
-  <h4>Distance traveled per vehicle </h4>
-  <%= bar_chart Shipment.group(:vehicle_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Vehicle", download: true, thousands: "," %>
-
-  <h4>Total fuel consumption per Vehicle </h4>
-  <%= bar_chart Shipment.group(:vehicle_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Vehicle Type", download: true, thousands: "," %>
-
-  <h4>Fuel type per vehicle</h4>
-  <%= bar_chart Shipment.group(:vehicle_type, :fuel_type).count, xtitle: "Number of Vehicle Type", ytitle: "Fuel Type", download: true, thousands: "," %>
-
-  <h4>Most frequent destination per vehicle</h4>
-  <%= line_chart Shipment.group(:city, :vehicle_type).count, xtitle: "Vehicle", ytitle: "Destination Frequency", download: true, thousands: "," %>
-</div>
-
-<div class="container-fuel">
-  <h4>Total Co2 emissions per Fuel type</h4>
-  <%= column_chart Shipment.group(:fuel_type).sum(:co2_emissions), xtitle: "Fuel Type", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
-
-  <h4>Fuel type usage frequency</h4>
-  <%= line_chart Shipment.group(:fuel_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
-
-  <h4>Distance traveled per fuel type </h4>
-  <%= bar_chart Shipment.group(:fuel_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Fuel Type", download: true, thousands: "," %>
-
-  <h4>Total fuel consumption per fuel type </h4>
-   <%= bar_chart Shipment.group(:fuel_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Fuel Type", download: true, thousands: "," %>
-
-  <h4>Most frequent destination per fuel type</h4>
-  <%= line_chart Shipment.group(:city, :fuel_type).count, xtitle: "Fuel Type", ytitle: "Destination Frequency", download: true, thousands: "," %>
-</div>
-
-<div class="container-destination">
-  <h4>Total Co2 emissions per Delivery Destination / City</h4>
-  <%= column_chart Shipment.group(:city).sum(:co2_emissions), xtitle: "Destination", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
-
-  <h4>City as destination frequency</h4>
-  <%= line_chart Shipment.group(:city).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
-
-  <h4>Distance traveled per city </h4>
-  <%= bar_chart Shipment.group(:city).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Destination", download: true, thousands: "," %>
-
-  <h4>Total fuel consumption used for delivery to city </h4>
-  <%= bar_chart Shipment.group(:city).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Destination", download: true, thousands: "," %>
-</div>
-
-<div class="container-tasks-stats">
-
-  <h4>Task List</h4>
-
-  <h4>Shipment Statistics</h4>
-
-</div>
-
-<%# <%# <%= line_chart Shipment.group_by_day(:shipment_start, range: 1.month.ago.midnight..Time.now).sum(:co2_emissions), download: true %>
-<%# <%= pie_chart Shipment.group(:product_name).count, download: true %>
-<%# <%= column_chart Shipment.group_by_day_of_week(:shipment_start, format: "%a").count, download: true %>
-<%# <%= bar_chart Shipment.group(:vehicle_type).sum(:id), download: true %>
-
-<%# <% @shipments.each do |shipment| %>
-  <%#   <tr>
-    <td><%= shipment.city %></td>
-   <%#  <td><%= shipment.vehicle_type %></td>
-   <%#  <td><%= shipment.fuel_type %></td>
-    <%# <td><%= shipment.product_name %></td>
-    <%# <td><%= shipment.shipment_start %></td>
-    <%# <td><%= shipment.shipment_end %></td>
-    <%# <td><%= shipment.co2_emissions %></td>
-  <%#   <td> %>
-<%#   <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
-     <%#  <%= shipment.distance_traveled.round(2) %> <%# km %>
- <%#  <% else %>
-   <%#    N/A
-  <% end %>
-<%# <% end %>
+  <%# <% @shipments.each do |shipment| %>
+    <%#   <tr>
+      <td><%= shipment.city %></td>
+    <%#  <td><%= shipment.vehicle_type %></td>
+    <%#  <td><%= shipment.fuel_type %></td>
+      <%# <td><%= shipment.product_name %></td>
+      <%# <td><%= shipment.shipment_start %></td>
+      <%# <td><%= shipment.shipment_end %></td>
+      <%# <td><%= shipment.co2_emissions %></td>
+    <%#   <td> %>
+  <%#   <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
+      <%#  <%= shipment.distance_traveled.round(2) %> <%# km %>
+  <%#  <% else %>
+    <%#    N/A
+    <% end %>
+  <%# <% end %>
