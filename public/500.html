@@ -3,64 +3,283 @@
 <head>
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
-
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+.hero {
+  min-height: 300px;
+  width: 100%;
+  overflow: hidden;
+  background: url(https://s-media-cache-ak0.pinimg.com/originals/11/4a/ae/114aae7aedae0793d141c1864aa31952.jpg);
+  background-size: cover;
+}
+body {
+  margin: 0px;
+  color: #585E62;
+  font-family: Arial;
+}
+h1 {
+  padding: 10px;
+  margin: 20px 30px 5px 30px;
+  font-size: 40px;
+}
+h2 {
+  padding: 10px;
+  margin: 0px 30px;
+  font-size: 25px;
+}
+p {
+  padding: 10px;
+  margin: 0px 30px;
+  font-size: 15px;
+}
+a {
+  color : #4466FF;
+  text-decoration: none;
+}
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
+  <glitch>
+    <div class="hero">
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+    <h1>500?!</h1>
+      <h2>Sometimes you take the road less travelled &hellip;</h2>
+      <p>
+        We're not sure how you got here, but you should head <input type="button" onclick="location.href='http://[::1]:3000/';" value="Go to Home" /></p>
+     <p>
+        It's probably our fault that you're here; but if you're having trouble with the site just shoot us an <a href="mailto:user@admin.com">email</a>.
+     </p>
+    <!-- Extra spacing! -->
+    <br />
+    <br />
+    <br />
+    <br />
+
+</glitch>
+
+<script>
+
+// Glitch Line Vars
+var glitch_lines = 15,
+    glitch_line_duration_min = 100,
+    glitch_line_duration_max = 500,
+    glitch_line_timer_min = 100,
+    glitch_line_timer_max = 5000,
+    glitch_line_wait_min = 100,
+    glitch_line_wait_max = 3000,
+    glitch_line_height_min = 5,
+    glitch_line_height_max = 50;
+
+// Glitch Move Vars
+var glitch_move_color_1 = '#08FFF2',
+    glitch_move_color_2 = '#FC0DFF',
+    glitch_move_original_color = '#585E62',
+    glitch_move_opacity = 0.2,
+    glitch_move_duration_min = 1000,
+    glitch_move_duration_max = 300,
+    glitch_move_timer_min = 500,
+    glitch_move_timer_max = 1500,
+    glitch_move_wait_min = 1000,
+    glitch_move_wait_max = 2000,
+    glitch_move_amount_min = -10,
+    glitch_move_amount_max = 10;
+
+// Do you want to autostart on page load?
+var glitch_autostart = 1;
+
+// Start Glitch on page load.
+window.onload = function () {
+    if (glitch_autostart) {
+        var glitchInstance = new Glitch();
+        glitchInstance.init();
+    }
+};
+
+// Random integer function (Will correctly work w/ negative numbers)
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// Glitch functionality
+function Glitch() {
+    // Initialize the glitches
+    // - Create divs
+    // - Load divs from <glitch> element
+    // - Set body to not scroll on x-axis
+    // - Starts glitch animations
+    this.init = function () {
+        var pageContent = document.querySelector('glitch').innerHTML;
+        document.body.style.overflowX = 'hidden';
+
+        // Glitch Lines
+        for (var lineCount = 0; lineCount < glitch_lines; lineCount++) {
+            var glitchLineDiv = document.createElement('div');
+            glitchLineDiv.className = 'glitch-line-' + lineCount;
+            glitchLineDiv.innerHTML = pageContent;
+            document.body.appendChild(glitchLineDiv);
+
+            glitchLineDiv.style.cssText = `
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            `;
+            glitchLineDiv.style.display = 'none';
+
+            this.glitchLine('.glitch-line-' + lineCount, lineCount);
+        }
+
+        // Glitch Move
+        var glitchDiv1 = document.createElement('div');
+        glitchDiv1.className = 'glitch-div-1';
+        glitchDiv1.innerHTML = pageContent;
+        document.body.appendChild(glitchDiv1);
+
+        var glitchDiv2 = document.createElement('div');
+        glitchDiv2.className = 'glitch-div-2';
+        glitchDiv2.innerHTML = pageContent;
+        document.body.appendChild(glitchDiv2);
+
+        var glitchDivs = document.querySelectorAll('.glitch-div-1, .glitch-div-2');
+        glitchDivs.forEach(function (glitchDiv) {
+            glitchDiv.style.cssText = `
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            `;
+        });
+
+        this.glitchMove();
+    };
+
+    this.glitchLine = function (div, id) {
+        // Store an array of glitchlines
+        this.glitchlines = this.glitchlines || [];
+        this.glitchlines[id] = new GlitchLine();
+        this.glitchlines[id].start(div);
+    };
+
+    this.glitchMove = function () {
+        var selfMove = this;
+        setInterval(function () {
+            setTimeout(function () {
+                selfMove.move();
+            }, randomInt(glitch_move_wait_min, glitch_move_wait_max));
+        }, randomInt(glitch_move_timer_min, glitch_move_timer_max));
+    };
+
+    this.move = function () {
+        document.querySelector('.glitch-div-1').style.cssText = `
+            left: ${randomInt(glitch_move_amount_min, glitch_move_amount_max)}px;
+            top: ${randomInt(glitch_move_amount_min, glitch_move_amount_max)}px;
+            opacity: ${glitch_move_opacity};
+            color: ${glitch_move_color_1};
+        `;
+        document.querySelector('.glitch-div-2').style.cssText = `
+            left: ${randomInt(glitch_move_amount_min, glitch_move_amount_max)}px;
+            top: ${randomInt(glitch_move_amount_min, glitch_move_amount_max)}px;
+            opacity: ${glitch_move_opacity};
+            color: ${glitch_move_color_2};
+        `;
+        this.moveback();
+    };
+
+    this.moveback = function () {
+        setTimeout(function () {
+            var glitchDivs = document.querySelectorAll('.glitch-div-1, .glitch-div-2');
+            glitchDivs.forEach(function (glitchDiv) {
+                glitchDiv.style.cssText = `
+                    left: 0px;
+                    top: 0px;
+                    color: ${glitch_move_original_color};
+                    opacity: 1;
+                `;
+            });
+        }, randomInt(glitch_move_duration_min, glitch_move_duration_max));
+    };
+}
+
+// Glitch Move Animation
+function GlitchMove() {
+    this.start = function () {
+        var selfMove = this;
+        setInterval(function () {
+            setTimeout(function () {
+                selfMove.move();
+            }, randomInt(glitch_move_wait_min, glitch_move_wait_max));
+        }, randomInt(glitch_move_timer_min, glitch_move_timer_max));
+    };
+
+    this.move = function () {
+        var glitchDivs = document.querySelectorAll('.glitch-div-1, .glitch-div-2');
+        glitchDivs.forEach(function (glitchDiv) {
+            glitchDiv.style.cssText = `
+                left: ${randomInt(glitch_move_amount_min, glitch_move_amount_max)}px;
+                top: ${randomInt(glitch_move_amount_min, glitch_move_amount_max)}px;
+                opacity: ${glitch_move_opacity};
+                color: ${glitch_move_color_1};
+            `;
+        });
+        this.moveback();
+    };
+
+    this.moveback = function () {
+        setTimeout(function () {
+            var glitchDivs = document.querySelectorAll('.glitch-div-1, .glitch-div-2');
+            glitchDivs.forEach(function (glitchDiv) {
+                glitchDiv.style.cssText = `
+                    left: 0px;
+                    top: 0px;
+                    color: ${glitch_move_original_color};
+                    opacity: 1;
+                `;
+            });
+        }, randomInt(glitch_move_duration_min, glitch_move_duration_max));
+    };
+}
+
+function GlitchLine() {
+    this.start = function (div) {
+        var selfLine = this;
+        this.timeouts = [];
+
+        setInterval(function () {
+            setTimeout(function () {
+                selfLine.add(div);
+            }, randomInt(glitch_line_wait_min, glitch_line_wait_max));
+        }, randomInt(glitch_line_timer_min, glitch_line_timer_max));
+    };
+
+    this.add = function (div) {
+        var glitchDiv = document.querySelector(div);
+        glitchDiv.style.cssText = `
+            height: ${randomInt(glitch_line_height_min, glitch_line_height_max)}px;
+            width: ${randomInt(window.innerWidth / 2, window.innerWidth)}px;
+            top: ${randomInt(0, window.innerHeight)}px;
+            left: ${randomInt(0, window.innerWidth / 2)}px;
+            position: fixed;
+            overflow: hidden;
+            display: block;
+            background: #FFF;
+        `;
+        glitchDiv.scrollTop = randomInt(0, window.innerHeight);
+        glitchDiv.scrollLeft = randomInt(0, 100);
+
+        this.remove(div);
+    };
+
+    this.remove = function (div) {
+        this.timeouts[div] = setTimeout(function () {
+            document.querySelector(div).style.display = 'none';
+        }, randomInt(glitch_line_duration_min, glitch_line_duration_max));
+    };
+}
+
+  </script>
 </body>
 </html>

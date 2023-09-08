@@ -17,13 +17,6 @@
           </a>
         </li>
 
-        <li class="nav-item search-box">
-          <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-            <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment" %>
-            <%= f.submit "Search", class: "button-search" %>
-          <% end %>
-        </li>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
@@ -37,7 +30,7 @@
             <%= link_to "My Shipments", shipments_path, class: "nav-link" %>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "avatar.png", class: "avatar", alt: "dropdown menu" %>
+            <%= image_tag "china_landscape.jpg", class: "avatar", alt: "dropdown menu" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Add a Shipment", new_shipment_path, class: "dropdown-item" %>
