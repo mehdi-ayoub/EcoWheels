@@ -14,24 +14,28 @@
       <!-- Left side -->
       <div class="level-left">
         <p class="level-item">
-          <strong><h2>Shipment<%= @shipment.product_name %></h2></strong>
+          <strong><h2 style="color: green">The shipment of a <%= @shipment.product_name %></h2></strong>
+          <br>
             <ul style="list-style-type:none;">
               <% @shipment.photos.each do |photo| %>
                 <%= cl_image_tag url_for(photo), height: 250, width: 200, crop: :fill%>
               <% end %>
-              <li><%= @shipment.city %></li>
-              <li><%= @shipment.distance_traveled %></li>
-              <li><%= @shipment.vehicle_type %></li>
-              <li><%= @shipment.fuel_type %></li>
-              <li><%= @shipment.fuel_consumption %></li>
-              <li><%= @shipment.shipment_start %></li>
-              <li><%= @shipment.shipment_end %></li>
-              <li><%= @shipment.co2_emissions %></li>
-              <li><%= @shipment.co2_emissions %></li>
-              <li><%= @shipment.user_id %></li>
-              <li><%= @shipment.created_at %></li>
-              <li><%= @shipment.updated_at %></li>
+              <li> City: <%= @shipment.city %></li>
+              <li> Distance traveled: <%= @shipment.distance_traveled %></li>
+              <li> Vehicle type: <%= @shipment.vehicle_type %></li>
+              <li> Fuel type: <%= @shipment.fuel_type %></li>
+              <li> Fuel consumption: <%= @shipment.fuel_consumption %></li>
+              <li> Shipment start: <%= @shipment.shipment_start %></li>
+              <li> Shipment end: <%= @shipment.shipment_end %></li>
+              <li> CO2 emissions: <%= @shipment.co2_emissions %></li>
+              <li> User ID: <%= @shipment.user_id %></li>
+              <li> Created at: <%= @shipment.created_at %></li>
+              <li> Updated at: <%= @shipment.updated_at %></li>
+              <small class="opacity-50 text-nowrap">Last updated <%= time_ago_in_words @shipment.updated_at %></small>
             </ul>
+          <%= link_to shipments_path(@shipment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
           <%= link_to edit_shipment_path(@shipment) do %>
             <i class="fa-solid fa-pencil"></i>
           <% end %>
@@ -41,14 +45,27 @@
   </div>
 </section>
 
-<%# ------------------------map-------------------------------- %>
+<section class="section">
+  <div class="container">
+    <nav class="level">
+  <div class="d-flex gap-3 py-3">
+  <%= link_to "Return to the previous page", shipments_path, class: "btn btn-outline-secondary" %>
+</div>
+  </nav>
+</div>
+</section>
 
+<section class="section">
+  <div class="container">
+    <nav class="level-right">
+<%# ------------------------map-------------------------------- %>
 <div class= "map-container"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 
 </div>
-
-
 <%# ------------------------end of map---------------------------- %>
+    </nav>
+  </div>
+</section>
