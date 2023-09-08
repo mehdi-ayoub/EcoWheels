@@ -72,6 +72,12 @@
                             </td>
                         </tr>
                     <% end %>
+                            <div class="nav-item search-box">
+          <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
+            <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment", style: " align-items: center" %>
+            <%= f.submit "Search", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
+          <% end %>
+        </div>
                 </tbody>
             </table>
           </div>
