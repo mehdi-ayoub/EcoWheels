@@ -1,9 +1,11 @@
 <% if (controller_name == 'pages' && action_name == 'home') || (controller_name == 'pages' && action_name == 'dashboard') %>
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
   <div class="container-fluid">
-   <div class="title-page" style="d-flex justify-content-lg-center;"><h1>EcoWheels</h1></div>
+   <div class="title-page" style="d-flex justify-content-lg-center;"><h1>EcoWheels
+   <%= image_tag "earth_logo.png", class: "logo", style: 'height: 50px;'%>
     <%= link_to "#", class: "navbar-brand" do %>
     <% end %>
+    </h1></div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
