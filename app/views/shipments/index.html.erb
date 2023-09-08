@@ -1,5 +1,6 @@
-<%= render 'shipments/navbar' %>
-<div class="collapse mb-4" id="filterForm">
+  <%= render "shipments/navbar_shipment" %>
+
+   <div class="collapse mb-4" id="filterForm">
   <%= form_with url: shipments_path, method: :get, local: true do |form| %>
     <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control mb-2' %>
     <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control mb-2' %>
@@ -33,12 +34,13 @@
                         <th><%= link_to "Shipment End", shipments_path(sort_by: 'shipment_end') %></th>
                         <th><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
                         <th><%= link_to "Distance Traveled", shipments_path(sort_by: 'distance_traveled') %></th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% @shipments.each do |shipment| %>
                         <tr>
-                            <td><%= shipment.city %></td>
+                            <td><%= link_to shipment.city, shipment_path(shipment) %></td>
                             <td><%= shipment.vehicle_type %></td>
                             <td><%= shipment.fuel_type %></td>
                             <td><%= shipment.product_name %></td>
