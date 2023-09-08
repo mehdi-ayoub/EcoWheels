@@ -12,49 +12,57 @@
     <%= form.submit 'Filter', class: 'btn btn-primary mt-2' %>
   <% end %>
 </div>
-<div class="container mt-5">
+<div class="container-index mt-5">
     <div class="row">
         <div class="col">
-            <h1 class="mb-4">Your Shipments</h1>
-
+          <div class="d-flex justify-content-between align-items-center">
+            <div class= "title-index">
+              <h4 class="mb-1">Your Shipments</h4>
+              <p> A list of all your current shipments </p>
+            </div>
+            <div class="mb-2">
+              <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
+            </div>
+          </div>
+        </div>
             <% if flash[:notice] %>
                 <div class="alert alert-success">
                     <%= flash[:notice] %>
                 </div>
             <% end %>
-
-            <table class="table table-bordered table-hover">
+          <div class="table-container mt-3">
+            <table class="table table-bordered table-hover text-center custom-table">
                 <thead class="thead-dark">
-                    <tr>
-                        <th><%= link_to "Destination", shipments_path(sort_by: 'city') %></th>
-                        <th><%= link_to "Vehicle Type", shipments_path(sort_by: 'vehicle_type') %></th>
-                        <th><%= link_to "Fuel Type", shipments_path(sort_by: 'fuel_type') %></th>
-                        <th><%= link_to "Product Name", shipments_path(sort_by: 'product_name') %></th>
-                        <th><%= link_to "Shipment Start", shipments_path(sort_by: 'shipment_start') %></th>
-                        <th><%= link_to "Shipment End", shipments_path(sort_by: 'shipment_end') %></th>
-                        <th><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
-                        <th><%= link_to "Distance Traveled", shipments_path(sort_by: 'distance_traveled') %></th>
-                        <th>Actions</th>
+                    <tr class="table-row">
+                        <th class="align-middle"><%= link_to "Destination", shipments_path(sort_by: 'city') %></th>
+                        <%# <th class="align-middle"><%= link_to "Vehicle Type", shipments_path(sort_by: 'vehicle_type') %>
+                        <%# <th class="align-middle"><%= link_to "Fuel Type", shipments_path(sort_by: 'fuel_type') %>
+                        <th class="align-middle"><%= link_to "Items", shipments_path(sort_by: 'product_name') %></th>
+                        <th class="align-middle"><%= link_to "Pickup Date", shipments_path(sort_by: 'shipment_start') %></th>
+                        <th class="align-middle"><%= link_to "Delivery Date", shipments_path(sort_by: 'shipment_end') %></th>
+                        <th class="align-middle"><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
+                        <th class="align-middle"><%= link_to "Distance Traveled", shipments_path(sort_by: 'distance_traveled') %></th>
+                        <th class="align-middle"></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbody-index">
                     <% @shipments.each do |shipment| %>
                         <tr>
-                            <td><%= link_to shipment.city, shipment_path(shipment) %></td>
-                            <td><%= shipment.vehicle_type %></td>
-                            <td><%= shipment.fuel_type %></td>
-                            <td><%= shipment.product_name %></td>
-                            <td><%= shipment.shipment_start %></td>
-                            <td><%= shipment.shipment_end %></td>
-                            <td><%= shipment.co2_emissions %></td>
-                            <td>
+                            <td class="align-middle" style="border-right: none;"><%= link_to shipment.city, shipment_path(shipment) %></td>
+                            <%# <td class="align-middle"><%= shipment.vehicle_type %>
+                            <%# <td class="align-middle"><%= shipment.fuel_type %>
+                            <td class="align-middle" style="border-right: none;"><%= shipment.product_name %></td>
+                            <td class="align-middle" style="border-right: none;"><%= shipment.shipment_start %></td>
+                            <td class="align-middle" style="border-right: none;"><%= shipment.shipment_end %></td>
+                            <td class="align-middle" style="border-right: none;"><%= shipment.co2_emissions %></td>
+                            <td class="align-middle" style="border-right: none;">
                               <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
                                   <%= shipment.distance_traveled.round(2) %> km
                               <% else %>
                                   N/A
                               <% end %>
                             </td>
-                            <td>
+                            <td class="align-middle">
                                 <%= link_to shipment_path(shipment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' do %>
                                   <i class="fa-solid fa-trash"></i>
                                 <% end %>
@@ -72,6 +80,7 @@
         </div>
                 </tbody>
             </table>
+          </div>
         </div>
     </div>
 </div>

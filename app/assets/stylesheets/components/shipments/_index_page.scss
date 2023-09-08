@@ -1,0 +1,72 @@
+/* Style the table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.title-index h4 p {
+  font-family: "Times New Roman", Times, serif;
+}
+/* Style table header */
+.thead-dark th {
+  background-color: #e0f2f1;
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+  }
+}
+
+.tbody-index td{
+  background-color: white;
+  a {
+    text-decoration: none;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+  }
+}
+
+
+/* Style table header on hover */
+.thead-dark th:hover {
+  background-color: #d9edf7;;
+
+}
+
+/* Style table rows on hover */
+.table tbody tr:hover {
+  background-color: #d9edf7;
+}
+
+/* Style the container */
+.container-index {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* adding margin to the add shipment  */
+
+.custom-bg-blue {
+  margin-top: 8px;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.3s ease;
+  font-family: "Times New Roman", Times, serif;
+
+}
+
+.custom-bg-blue:hover {
+  background-color: #2980b9;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.custom-table {
+  border-radius: 10px;
+}
