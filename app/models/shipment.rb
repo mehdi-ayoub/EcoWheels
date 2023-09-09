@@ -27,7 +27,7 @@ class Shipment < ApplicationRecord
                     tsearch: { prefix: true }
                   }
 
-  enum status: { scheduled: 0, completed: 1, canceled: 2 }
+  enum status: { "scheduled" => "scheduled", "completed" => "completed", "canceled" => "canceled" }
 
   private
 

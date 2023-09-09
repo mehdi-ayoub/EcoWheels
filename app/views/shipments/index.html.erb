@@ -64,6 +64,7 @@
                 </td>
                 <td class="align-middle">
                   <%= form_for(shipment, url: shipment_path(shipment), method: :patch) do |f| %>
+                    <%= hidden_field_tag :_method, 'patch' %>
                     <%= f.select :status, Shipment.statuses.keys, {},
                         class: 'form-control',
                         data: {
