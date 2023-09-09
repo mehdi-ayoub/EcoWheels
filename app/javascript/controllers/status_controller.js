@@ -5,8 +5,6 @@ export default class extends Controller {
   static targets = ["select"];
 
   connect() {
-    console.log("Stimulus controller connected!");
-    console.log(this.selectTarget)
   }
 
   updateStatus() {

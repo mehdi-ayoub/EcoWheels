@@ -13,6 +13,10 @@ class ShipmentsController < ApplicationController
       @shipments = @shipments.search(params[:query])
     end
 
+    if params[:status].present?
+      @shipments = @shipments.where(status: params[:status])
+    end
+
     @shipments = policy_scope(@shipments)
   end
 
