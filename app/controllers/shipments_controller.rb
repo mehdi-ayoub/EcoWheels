@@ -29,7 +29,7 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     if @shipment.save
-      redirect_to shipments_path, notice: "A shipment was successfully created."
+      redirect_to shipments_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -64,10 +64,14 @@ class ShipmentsController < ApplicationController
     @shipment.update(shipment_params)
     authorize @shipment
 
-    if @shipment.save
-      redirect_to shipments_path, notice: "Shipment was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @shipment.save
+        format.html { redirect_to shipments_path}
+        format.json { render json: { status: "success"} }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: { status: "error", message: "Failed to update shipment." }, status: :unprocessable_entity }
+      end
     end
   end
 
