@@ -1,86 +1,98 @@
-  <%= render "shipments/navbar_shipment" %>
+<%= render "shipments/navbar_shipment" %>
 
-   <div class="collapse mb-4" id="filterForm">
+<div class="collapse mb-4" id="filterForm">
   <%= form_with url: shipments_path, method: :get, local: true do |form| %>
-    <%= form.text_field :city, value: params[:city], placeholder: 'City', class: 'form-control mb-2' %>
+    <%= form.text_field :city, value: params[:city], placeholder: 'Destination', class: 'form-control mb-2' %>
     <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control mb-2' %>
     <%= form.text_field :fuel_type, value: params[:fuel_type], placeholder: 'Fuel Type', class: 'form-control mb-2' %>
-    <%= form.text_field :product_name, value: params[:product_name], placeholder: 'Product Name', class: 'form-control mb-2' %>
-    <%= form.date_field :shipment_start, value: params[:shipment_start], placeholder: 'Shipment Start', class: 'form-control mb-2' %>
-    <%= form.date_field :shipment_end, value: params[:shipment_end], placeholder: 'Shipment End', class: 'form-control mb-2' %>
+    <%= form.text_field :product_name, value: params[:product_name], placeholder: 'Items', class: 'form-control mb-2' %>
+    <%= form.date_field :shipment_start, value: params[:shipment_start], placeholder: 'Order Date', class: 'form-control mb-2' %>
+    <%= form.date_field :shipment_end, value: params[:shipment_end], placeholder: 'Delivery Date End', class: 'form-control mb-2' %>
     <%= form.number_field :co2_emissions, value: params[:co2_emissions], placeholder: 'CO2 Emissions', class: 'form-control mb-2' %>
     <%= form.submit 'Filter', class: 'btn btn-primary mt-2' %>
   <% end %>
 </div>
+
 <div class="container-index mt-5">
-    <div class="row">
-        <div class="col">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class= "title-index">
-              <h4 class="mb-1">Your Shipments</h4>
-              <p> A list of all your current shipments </p>
-            </div>
-            <div class="mb-2">
-              <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
-            </div>
-          </div>
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="title-index">
+          <h4 class="mb-1">Your Shipments</h4>
+          <p>A list of all your current shipments</p>
         </div>
-            <% if flash[:notice] %>
-                <div class="alert alert-success">
-                    <%= flash[:notice] %>
-                </div>
+        <div class="mb-2">
+          <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
+        </div>
+      </div>
+
+      <% if flash[:notice] %>
+        <div class="alert alert-success">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <div class="table-container mt-3">
+        <table class="table table-bordered table-hover text-center custom-table">
+          <thead class="thead-dark">
+            <tr class="table-row">
+              <th class="align-middle"><%= link_to "Shipment No.", shipments_path(sort_by: 'shipment_id') %></th>
+              <th class="align-middle"><%= link_to "Destination", shipments_path(sort_by: 'city') %></th>
+              <th class="align-middle"><%= link_to "Items", shipments_path(sort_by: 'product_name') %></th>
+              <th class="align-middle"><%= link_to "Order Date", shipments_path(sort_by: 'shipment_start') %></th>
+              <th class="align-middle"><%= link_to "Delivery Date", shipments_path(sort_by: 'shipment_end') %></th>
+              <th class="align-middle"><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
+              <th class="align-middle"><%= link_to "Distance Traveled", shipments_path(sort_by: 'distance_traveled') %></th>
+              <th class="align-middle"><%= link_to "Shipment Status", shipments_path(sort_by: 'status') %></th>
+            </tr>
+          </thead>
+          <tbody class="tbody-index">
+            <% @shipments.each do |shipment| %>
+              <tr>
+                <td class="align-middle"><%= link_to shipment.id, shipment_path(shipment) %></td>
+                <td class="align-middle" style="border-right: none;"><%= link_to shipment.city, shipment_path(shipment) %></td>
+                <td class="align-middle" style="border-right: none;"><%= shipment.product_name %></td>
+                <td class="align-middle" style="border-right: none;"><%= shipment.shipment_start %></td>
+                <td class="align-middle" style="border-right: none;"><%= shipment.shipment_end %></td>
+                <td class="align-middle" style="border-right: none;"><%= shipment.co2_emissions %></td>
+                <td class="align-middle" style="border-right: none;">
+                  <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
+                    <%= shipment.distance_traveled.round(2) %> km
+                  <% else %>
+                    N/A
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  <%= form_for(shipment, url: shipment_path(shipment), method: :patch, remote: true) do |f| %>
+                    <%= f.select :status, Shipment.statuses.keys, {}, class: 'form-control', onchange: 'this.form.submit()' %>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          <div class="table-container mt-3">
-            <table class="table table-bordered table-hover text-center custom-table">
-                <thead class="thead-dark">
-                    <tr class="table-row">
-                        <th class="align-middle"><%= link_to "Destination", shipments_path(sort_by: 'city') %></th>
-                        <%# <th class="align-middle"><%= link_to "Vehicle Type", shipments_path(sort_by: 'vehicle_type') %>
-                        <%# <th class="align-middle"><%= link_to "Fuel Type", shipments_path(sort_by: 'fuel_type') %>
-                        <th class="align-middle"><%= link_to "Items", shipments_path(sort_by: 'product_name') %></th>
-                        <th class="align-middle"><%= link_to "Pickup Date", shipments_path(sort_by: 'shipment_start') %></th>
-                        <th class="align-middle"><%= link_to "Delivery Date", shipments_path(sort_by: 'shipment_end') %></th>
-                        <th class="align-middle"><%= link_to "CO2 Emissions", shipments_path(sort_by: 'co2_emissions') %></th>
-                        <th class="align-middle"><%= link_to "Distance Traveled", shipments_path(sort_by: 'distance_traveled') %></th>
-                        <th class="align-middle"></th>
-                    </tr>
-                </thead>
-                <tbody class="tbody-index">
-                    <% @shipments.each do |shipment| %>
-                        <tr>
-                            <td class="align-middle" style="border-right: none;"><%= link_to shipment.city, shipment_path(shipment) %></td>
-                            <%# <td class="align-middle"><%= shipment.vehicle_type %>
-                            <%# <td class="align-middle"><%= shipment.fuel_type %>
-                            <td class="align-middle" style="border-right: none;"><%= shipment.product_name %></td>
-                            <td class="align-middle" style="border-right: none;"><%= shipment.shipment_start %></td>
-                            <td class="align-middle" style="border-right: none;"><%= shipment.shipment_end %></td>
-                            <td class="align-middle" style="border-right: none;"><%= shipment.co2_emissions %></td>
-                            <td class="align-middle" style="border-right: none;">
-                              <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
-                                  <%= shipment.distance_traveled.round(2) %> km
-                              <% else %>
-                                  N/A
-                              <% end %>
-                            </td>
-                            <td class="align-middle">
-                                <%= link_to shipment_path(shipment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' do %>
-                                  <i class="fa-solid fa-trash"></i>
-                                <% end %>
-                                <%= link_to edit_shipment_path(shipment) do %>
-                                  <i class="fa-solid fa-pencil"></i>
-                                <% end %>
-                            </td>
-                        </tr>
-                    <% end %>
-                            <div class="nav-item search-box">
-          <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-            <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment", style: " align-items: center" %>
-            <%= f.submit "Search", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
-          <% end %>
-        </div>
-                </tbody>
-            </table>
-          </div>
-        </div>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>
+
+<%# to be added in the tr below the others - remove the if false and the end below if you want the edit and delete to present %>
+<% if false  %>
+  <td class="align-middle">
+    <%= link_to shipment_path(shipment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' do %>
+      <i class="fa-solid fa-trash"></i>
+    <% end %>
+    <%= link_to edit_shipment_path(shipment) do %>
+      <i class="fa-solid fa-pencil"></i>
+    <% end %>
+  </td>
+<% end %>
+
+<% if false  %>
+  <div class="nav-item search-box">
+    <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
+      <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment", style: " align-items: center" %>
+      <%= f.submit "Search", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
+    <% end %>
+  </div>
+<% end %>
