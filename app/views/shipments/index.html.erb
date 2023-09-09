@@ -63,8 +63,14 @@
                   <% end %>
                 </td>
                 <td class="align-middle">
-                  <%= form_for(shipment, url: shipment_path(shipment), method: :patch, remote: true) do |f| %>
-                    <%= f.select :status, Shipment.statuses.keys, {}, class: 'form-control', onchange: 'this.form.submit()' %>
+                  <%= form_for(shipment, url: shipment_path(shipment), method: :patch) do |f| %>
+                    <%= f.select :status, Shipment.statuses.keys, {},
+                        class: 'form-control',
+                        data: {
+                          controller: "status",
+                          target: "status.select",
+                          action: "change->status#updateStatus"
+                        } %>
                   <% end %>
                 </td>
               </tr>
