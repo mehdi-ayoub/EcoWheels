@@ -15,11 +15,17 @@
 
 <div class="container-index mt-5">
   <div class="row">
-    <div class="col">
+    <div class="col" data-controller="filter">
       <div class="d-flex justify-content-between align-items-center">
         <div class="title-index">
           <h4 class="mb-1">Your Shipments</h4>
           <p>A list of all your current shipments</p>
+          <div class="status-buttons">
+            <%= link_to "Completed", shipments_path(status: "completed"), class: "btn btn-light #{'active' if params[:status] == 'completed'}", data: { action: "click->filter#filterByStatus" } %>
+            <%= link_to "Scheduled", shipments_path(status: "scheduled"), class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
+            <%= link_to "Canceled", shipments_path(status: "canceled"), class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
+            <%= link_to "All", shipments_path, class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
+          </div>
         </div>
         <div class="mb-2">
           <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
@@ -48,7 +54,7 @@
           </thead>
           <tbody class="tbody-index">
             <% @shipments.each do |shipment| %>
-              <tr>
+              <tr id="shipment-<%= shipment.id %>" data-shipment-id="<%= shipment.id %>">
                 <td class="align-middle"><%= link_to shipment.id, shipment_path(shipment) %></td>
                 <td class="align-middle" style="border-right: none;"><%= link_to shipment.city, shipment_path(shipment) %></td>
                 <td class="align-middle" style="border-right: none;"><%= shipment.product_name %></td>
@@ -62,13 +68,12 @@
                     N/A
                   <% end %>
                 </td>
-                <td class="align-middle">
+                <td class="align-middle" data-controller="status">
                   <%= form_for(shipment, url: shipment_path(shipment), method: :patch) do |f| %>
                     <%= hidden_field_tag :_method, 'patch' %>
                     <%= f.select :status, Shipment.statuses.keys, {},
                         class: 'form-control',
                         data: {
-                          controller: "status",
                           target: "status.select",
                           action: "change->status#updateStatus"
                         } %>
