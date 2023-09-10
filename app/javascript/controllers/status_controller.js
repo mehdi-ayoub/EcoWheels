@@ -1,47 +1,51 @@
 // app/javascript/controllers/status_controller.js
 import { Controller } from "@hotwired/stimulus";
 
+const getMetaValue = (name) =>
+  document.head.querySelector(`meta[name="${name}"]`)?.getAttribute("content") ?? null;
+
+
 export default class extends Controller {
   static targets = ["select"];
 
   connect() {
+    console.log('Status Controller is connected')
   }
 
-  updateStatus() {
-    // Fetch the form elements
-    const form = this.selectTarget.form;
-    const actionURL = form.action;
-    const methodType = form.method;
+  updateStatus(event) {
+    const statusValue = event.target.value;
+    const shipmentId = event.target.closest('tr').dataset.shipmentId;
 
-    // Create FormData object from the form element
-    const formData = new FormData(form);
+    console.log("Captured shipmentId:", shipmentId);
+    console.log("statusValue:", statusValue);
 
-    // Use Fetch API to make an AJAX request
-    fetch(actionURL, {
-      method: 'Post', // typically this will be 'POST' or 'PUT'
-      body: formData,
+    fetch(`/shipments/${shipmentId}`, {
+      method: 'PATCH',
       headers: {
-        "Accept": "application/json",             // Expecting JSON response
-        "X-Requested-With": "XMLHttpRequest",     // Indicate the request is AJAX
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getMetaValue("csrf-token"),
+        'Accept': 'application/json'  // Make sure to add this
       },
+      body: JSON.stringify({ shipment: { status: statusValue } })
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-      // Handle the response here
       if (data.status === "success") {
-        // You can update UI or show a success message
+        const shipmentRow = document.getElementById(`shipment-${shipmentId}`);
+        console.log("Selected Row:", shipmentRow);
+
+        if (shipmentRow) {
+          shipmentRow.remove();
+          console.log("Shipment row removed.");
+        } else {
+          console.log("Shipment row NOT found.");
+        }
       } else {
-        // Handle error, maybe show an error message
+        console.log("Failed to update shipment status.");
       }
     })
     .catch(error => {
-      console.error("There was a problem with the fetch operation:", error.message);
-      // Handle error, maybe show an error message
+      console.error("There was an error:", error);
     });
   }
 }
