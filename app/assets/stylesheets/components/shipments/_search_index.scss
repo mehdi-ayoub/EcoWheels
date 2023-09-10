@@ -2,10 +2,33 @@
   margin-left: 20px;
 }
 
+// date - time - username styling
+
+.user-details {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  #currentDateTime {
+    color: rgb(86, 85, 85);
+  }
+
+
+  .name-index {
+    color: rgb(86, 85, 85);
+    margin: 14px 10px 0px 25px;
+  }
+
+}
+
+
+
+
 .search-index {
   display: flex;
   align-items: center;
 }
+
 
 .search-box {
   display: flex;
@@ -24,6 +47,7 @@
   border: none;
   background: transparent;
   box-shadow: none;
+
 }
 
 .search-input .button-search {
