@@ -13,13 +13,58 @@
   <% end %>
 </div>
 
+<%# home icon and search option %>
+
+<div class="search-index">
+
+  <div class="icon-index">
+    <i class="fa-solid fa-house fa-2xl" style="color: #08912a;"></i>
+  </div>
+
+  <div class="nav-item search-box">
+    <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
+      <div class="search-input">
+        <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Track your shipment" %>
+        <%= f.submit "", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+
+<%# account summary div %>
+
+<div class="account-summary">
+  <div>
+    <h3> Account Summary </h3>
+  </div>
+
+  <div class="icons-index">
+    <div class="account-calculations">
+      <%= image_tag('https://static.thenounproject.com/png/1003828-200.png', alt: 'Root image - idex', class: 'root-image-index') %>
+
+      <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(2) %> km </p>
+    </div>
+
+    <div class="emission-calculations">
+      <%= image_tag('https://media.istockphoto.com/id/1323550608/vector/co2-reduction-cloud-eco-vector-icon.jpg?s=612x612&w=0&k=20&c=jO3OZfYAg9gB8TWvzH8BR64Lq3pFrfHcOvxpSgB-cjA=', class: 'emission-image-index') %>
+
+      <p class="card-text text-center"> <%= @shipments.sum(:co2_emissions).round(2) %> kg </p>
+
+    </div>
+  </div>
+
+
+</div>
+
+
 <div class="container-index mt-5">
   <div class="row">
     <div class="col" data-controller="filter">
       <div class="d-flex justify-content-between align-items-center">
         <div class="title-index">
-          <h4 class="mb-1">Your Shipments</h4>
-          <p>A list of all your current shipments</p>
+          <h4 class="mb-1">Shipments Status</h4>
           <div class="status-buttons">
             <%= link_to "Completed", shipments_path(status: "completed"), class: "btn btn-light #{'active' if params[:status] == 'completed'}", data: { action: "click->filter#filterByStatus" } %>
             <%= link_to "Scheduled", shipments_path(status: "scheduled"), class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
@@ -98,13 +143,4 @@
       <i class="fa-solid fa-pencil"></i>
     <% end %>
   </td>
-<% end %>
-
-<% if false  %>
-  <div class="nav-item search-box">
-    <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-      <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment", style: " align-items: center" %>
-      <%= f.submit "Search", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
-    <% end %>
-  </div>
 <% end %>
