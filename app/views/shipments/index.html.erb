@@ -13,6 +13,21 @@
   <% end %>
 </div>
 
+<div class="user-details">
+
+  <div id="currentDateTime"></div>
+
+  <div class="name-index">
+    <% if user_signed_in? %>
+      <%= current_user.first_name %> <%= current_user.last_name %>!</p>
+    <% end %>
+  </div>
+
+</div>
+
+
+
+
 <%# home icon and search option %>
 
 <div class="search-index">
@@ -53,6 +68,20 @@
       <p class="card-text text-center"> <%= @shipments.sum(:co2_emissions).round(2) %> kg </p>
 
     </div>
+
+    <div class="fuel-consumption">
+      <%= image_tag('gas-station.png', class: 'gas-image-index') %>
+      <p class="card-text text-center"> <%= @shipments.sum(:fuel_consumption).round(2) %> L </p>
+    </div>
+
+    <div class="co2-emission-per-product">
+      <div class="chart-container">
+
+        <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicles", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
+
+      </div>
+    </div>
+
   </div>
 
 
@@ -144,3 +173,27 @@
     <% end %>
   </td>
 <% end %>
+
+<script>
+  // Function to update the current date and time
+  function updateDateTime() {
+    const currentDateTimeElement = document.getElementById('currentDateTime');
+    const now = new Date();
+    const options = {
+      month: 'short', // Short month name (e.g., "Sep" for September)
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true, // Use 12-hour format (AM/PM)
+    };
+    const formattedDateTime = now.toLocaleDateString('en-US', options);
+    currentDateTimeElement.textContent = formattedDateTime;
+  }
+
+  // Update the current date and time initially
+  updateDateTime();
+
+  // Set up a timer to update the date and time every second (1000 milliseconds)
+  setInterval(updateDateTime, 1000);
+</script>
