@@ -1,10 +1,14 @@
 <div class="navbar navbar-expand-lg navbar-light mb-2">
   <div class="container-fluid">
-     <div class="title-page" style="d-flex justify-content-lg-center;"><h1>EcoWheels
-   <%= image_tag "earth_logo.png", class: "logo", style: 'height: 50px;'%>
+     <div class="title-page" style="d-flex justify-content-lg-center;">
+     <%= link_to(root_path) do %>
+      <h1>EcoWheels
+    <%= image_tag "earth_logo.png",  class: "logo", style: 'height: 50px;'%>
     <%= link_to "#", class: "navbar-brand" do %>
     <% end %>
-    </h1></div>
+    </h1>
+    <% end %>
+    </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#shipmentsNavbar" aria-controls="shipmentsNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -18,7 +22,7 @@
 
         <li class="nav-item">
           <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
-            Toggle Filter
+            Filter
           </a>
         </li>
 

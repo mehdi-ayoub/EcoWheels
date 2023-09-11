@@ -1,0 +1,36 @@
+Arguments: 
+  /home/pastatimes/.nvm/versions/node/v16.15.1/bin/node /home/pastatimes/.nvm/versions/node/v16.15.1/bin/yarn add flatpicker
+
+PATH: 
+  ./bin:./node_modules/.bin:/home/pastatimes/.nvm/versions/node/v16.15.1/bin:/home/pastatimes/.rbenv/shims:/home/pastatimes/.rbenv/bin:/home/pastatimes/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Python39/Scripts/:/mnt/c/Python39/:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Intel/WiFi/bin/:/mnt/c/Program Files/Common Files/Intel/WirelessCommon/:/mnt/c/Program Files (x86)/QuickTime/QTSystem/:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Git/cmd:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/nodejs/:/mnt/c/Users/kvanr/Anaconda3:/mnt/c/Users/kvanr/Anaconda3/Library/mingw-w64/bin:/mnt/c/Users/kvanr/Anaconda3/Library/usr/bin:/mnt/c/Users/kvanr/Anaconda3/Library/bin:/mnt/c/Users/kvanr/Anaconda3/Scripts:/mnt/c/Users/kvanr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/kvanr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/kvanr/AppData/Local/atom/bin:/mnt/c/Users/kvanr/AppData/Roaming/npm:/mnt/c/Users/kvanr/AppData/Local/gitkraken/bin:/mnt/c/Users/kvanr/AppData/Local/Programs/Microsoft VS Code/bin:/usr/local/sbin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.15.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/flatpicker: Not found
+      at Request.params.callback [as _callback] (/home/pastatimes/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/home/pastatimes/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:527:28)
+      at Request.<anonymous> (/home/pastatimes/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:527:28)
+      at IncomingMessage.<anonymous> (/home/pastatimes/.nvm/versions/node/v16.15.1/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:641:28)
+      at IncomingMessage.emit (node:events:539:35)
+      at endReadableNT (node:internal/streams/readable:1345:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
