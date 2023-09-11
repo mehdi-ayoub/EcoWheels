@@ -1,6 +1,6 @@
 <% content_for :meta_title, "#{@shipment.city} is on #{DEFAULT_META["meta_name"]}" %>
 <% content_for :meta_description, @shipment.product_name %>
-<% content_for :meta_image, cl_image_path(@shipment.end_location) if @shipment.end_location %>
+<%# <% content_for :meta_image, cl_image_path(@shipment.end_location) if @shipment.end_location %>
 
 <%= render "shared/navbar" %>
           <div class="container-banner mt-5">
