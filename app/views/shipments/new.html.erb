@@ -5,7 +5,7 @@
 </div>
 
 
-  <section class="text-center py-5 mt-2 mb-2">
+  <%# <section class="text-center py-5 mt-2 mb-2">
     <div class="banner-new">
       <div class="container">
         <div class="title-page" style="margin-top: 1rem ; margin-left: 2rem;">
@@ -13,12 +13,18 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> %>
 </div>
 
-<div class="container-form">
-  <%= render "form" %>
-  <br>
-    <%= link_to "Go back to the shipment list without saving", shipments_path %>
-  <br>
+<div class="new-page-container">
+
+  <div class="header-new">
+    <h4> Add New Shipment</h4>
+  </div>
+
+  <div class="container-form">
+    <%= render "form_new" %>
+  </div>
+
+
 </div>
