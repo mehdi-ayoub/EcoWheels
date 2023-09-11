@@ -1,21 +1,14 @@
 <%= render "shared/master_navbar" %>
 
-<div class= "container-new">
-  <div class="container-banner">
-</div>
+<%# <div class= "container-new">
+  <div class="container-banner"> </div>
+</div> %>
 
+<div class="banner-new">
+  <%= image_tag("https://images.unsplash.com/photo-1452179535021-368bb0edc3a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80", alt: "Banner Image", class: 'new-image') %>
 
-</div>
-
-<div class="new-page-container">
-
-  <div class="header-new">
+  <div class="overlay-form">
     <h4> Add New Shipment</h4>
-  </div>
-
-  <div class="container-form">
     <%= render "form_new" %>
   </div>
-
-
 </div>
