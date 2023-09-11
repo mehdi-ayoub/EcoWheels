@@ -6,7 +6,7 @@
   <% end %>
   <%= simple_form_for @shipment, html: { id: "new_shipment" }, data: { controller: 'flatpickr' } do |f| %>
     <div class="form-field product-name">
-      <%= f.input :product_name %>
+      <%= f.input :product_name, input_html: { style: 'width: 600px;' } %>
     </div>
     <div class="form-field">
       <div class="date-field">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-field">
-      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true, style: 'width: 600px' } %>
     </div>
     <%# Only show for update %>
     <% if @shipment.persisted? %>
