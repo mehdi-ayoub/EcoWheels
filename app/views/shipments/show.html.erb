@@ -33,7 +33,7 @@
               <li> Updated at: <%= @shipment.updated_at %></li>
               <small class="opacity-50 text-nowrap">Last updated <%= time_ago_in_words @shipment.updated_at %></small>
             </ul>
-          <%= link_to shipments_path(@shipment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' do %>
+          <%= link_to shipment_path(@shipment), data: { turbo_method: :delete, turbo_confirm: 'Are you sure you want to delete this shipment?' }, class: 'btn btn-outline-danger' do %>
             <i class="fa-solid fa-trash"></i>
           <% end %>
           <%= link_to edit_shipment_path(@shipment) do %>
