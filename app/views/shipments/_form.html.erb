@@ -5,11 +5,11 @@
       <p style="color: red"><%= error %></p>
     <% end %>
   <% end %>
-  <%= simple_form_for @shipment, html: { id: "new_shipment" } do |f| %>
+  <%= simple_form_for @shipment, html: { id: "new_shipment" }, data: { controller: 'flatpickr' } do |f| %>
     <%= f.input :product_name %>
     <%# <%= f.input :city %>
-    <%= f.input :shipment_start %>
-    <%= f.input :shipment_end %>
+    <%= f.input :shipment_start, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+    <%= f.input :shipment_end, as: :string, input_html: { data: { flatpickr_target: "endTime" } } %>
     <%= f.input :vehicle_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'] %>
     <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type' %>
     <%= f.input :start_location %>
@@ -22,4 +22,5 @@
 
     <%= f.button :submit, 'Submit', class: 'btn btn-primary' %>
   <% end %>
+
 </div>
