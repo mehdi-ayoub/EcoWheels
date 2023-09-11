@@ -4,12 +4,12 @@
 
  <div class="container-banner lg mt-5">
 </div>
-<div class="container-dashboard p-3" >
+<div class="container-dashboard p-1" >
 
-  <div class="container-title mt-4" >
+  <div class="container-title" >
     <h2 class="text-center">Dashboard</h2>
 
-    <a href= "/shipments" class="btn btn-primary">Return</a>
+    <a href= "/shipments" class="btn btn-light custom-bg-blue">Return</a>
 
     <%# <p>Date Selector</p> %>
   </div>
@@ -41,9 +41,48 @@
 
   </div>
 
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#product" type="button" role="tab" aria-controls="product" aria-selected="false">Product Metrics</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#vehicle" type="button" role="tab" aria-controls="vehicle" aria-selected="false">Vehicle Metrics</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#fuel" type="button" role="tab" aria-controls="fuel" aria-selected="false">Fuel Metrics</button>
+    </li>
+     <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#distance" type="button" role="tab" aria-controls="distance" aria-selected="false">Distance Metrics</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+    <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">... </div>
+    <div class="tab-pane fade" id="vehicle" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    <div class="tab-pane fade" id="fuel" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    <div class="tab-pane fade" id="distance" role="tabpanel" aria-labelledby="contact-tab">...</div>
+  </div>
+
+
   <h4 class="text-center">Product Metrics</h4>
 
   <div class="container-product m-2 p-3">
+
+      <div class="wrapper">
+      <div class="item"> <span class="close"></span>
+        <div class="graphic">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %> </div>
+        <div class="brief">
+          <div class="typo"><span>Total Co2 emissions per product</span></div>
+        </div>
+        <div class="sub">
+          <p class="header">XXX</p>
+          <p class="story">XXX</p>
+        </div>
+      </div>
+    </div>
 
     <div class="card text-center mt-3">
       <div class="card-header">
