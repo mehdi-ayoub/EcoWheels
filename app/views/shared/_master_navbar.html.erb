@@ -1,5 +1,5 @@
 <% if (controller_name == 'pages' && action_name == 'home') || (controller_name == 'pages' && action_name == 'dashboard') %>
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <div class="title-page" style="d-flex justify-content-lg-center;">
       <%= link_to root_path, class: "navbar-brand" do %>
@@ -82,7 +82,7 @@
             </li>
             <li class="nav-item dropdown">
               <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag "avatar.png", class: "avatar", alt: "dropdown menu" %>
+                <%= image_tag "burger.png", class: "avatar", alt: "dropdown menu" %>
               </a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Add a Shipment", new_shipment_path, class: "dropdown-item" %>
