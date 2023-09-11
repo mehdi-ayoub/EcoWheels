@@ -4,17 +4,17 @@
 
  <div class="container-banner lg mt-5">
 </div>
-<div class="container-dashboard p-1" >
+<div class="container-dashboard" >
 
-  <div class="container-title" >
-    <h2 class="text-center">Dashboard</h2>
+  <div class="container-title " >
+    <h2 class="text-center mb-5">Overview</h2>
 
-    <a href= "/shipments" class="btn btn-light custom-bg-blue">Return</a>
+    <%# <a href= "/shipments" class="btn btn-light custom-bg-blue">Return</a> %>
 
     <%# <p>Date Selector</p> %>
   </div>
 
-  <div class="container-totals d-flex justify-content-around">
+  <div class="container-totals d-flex justify-content-around ">
 
       <div class="card border-light mb-3" style="max-width: 18rem;">
         <div class="card-header"> <strong> Total CO-2 emissions </strong> </div>
@@ -43,9 +43,6 @@
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
-    </li>
-    <li class="nav-item" role="presentation">
       <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#product" type="button" role="tab" aria-controls="product" aria-selected="false">Product Metrics</button>
     </li>
     <li class="nav-item" role="presentation">
@@ -59,7 +56,6 @@
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
     <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">... </div>
     <div class="tab-pane fade" id="vehicle" role="tabpanel" aria-labelledby="contact-tab">...</div>
     <div class="tab-pane fade" id="fuel" role="tabpanel" aria-labelledby="contact-tab">...</div>
