@@ -1,4 +1,11 @@
 /* Style the table */
+// color of the index page  (the color of the container-ndex is down)
+// you have to change down as well to have similar color
+// #F5F5F5
+.index-page {
+  background-color: white;
+}
+
 
 
 .table {
@@ -8,9 +15,7 @@
   border-radius: 10px;
 }
 
-.title-index h4 p {
-  font-family: "Times New Roman", Times, serif;
-}
+
 /* Style table header */
 .thead-dark th {
   background-color: #e0f2f1;
@@ -46,7 +51,7 @@
 /* Style the container */
 .container-index {
   margin-top: 20px;
-  background-color: #fff;
+  background-color: white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -71,4 +76,22 @@
 
 .custom-table {
   border-radius: 10px;
+}
+
+.align-middle {
+  border-right: 0 !important;
+}
+
+// to remove the border of the table
+
+.tbody-index {
+  td {
+    border-width: 0;
+  }
+}
+
+.thead-dark {
+  th {
+    border-width: 0;
+  }
 }
