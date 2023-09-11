@@ -1,5 +1,8 @@
 <%= render "shipments/navbar_shipment" %>
 
+<div class="container-banner lg">
+</div>
+
 <div class="collapse mb-4" id="filterForm">
   <%= form_with url: shipments_path, method: :get, local: true do |form| %>
     <%= form.text_field :city, value: params[:city], placeholder: 'Destination', class: 'form-control mb-2' %>
@@ -34,6 +37,9 @@
           <%= f.submit "", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
         </div>
       <% end %>
+      <div class="search-icon">
+       <i class="fa-solid fa-magnifying-glass"></i>
+       </div>
     </div>
 
   </div>
@@ -52,7 +58,7 @@
 
       <div class="name-index">
         <% if user_signed_in? %>
-          <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></p>
+          <%= current_user.first_name %> <%= current_user.last_name %></p>
         <% end %>
       </div>
 
