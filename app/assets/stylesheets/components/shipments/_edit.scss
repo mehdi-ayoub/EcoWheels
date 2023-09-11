@@ -4,10 +4,45 @@
   border-radius: 10px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-left: 8rem;
+}
+
+.container-edit-f {
+  margin-top: 36rem;
+}
+
+.container-edit-image {
+  background-image: url('eco_truck.jpeg');
+  display: block;
+  // background-size: cover;
+  // background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.container-bottom-edit {
+  display: block;
+  margin-top: 7rem;
+  margin-left: 6rem;
+  margin-right: auto;
+  width: 70%;
+  background-color: rgb(215, 232, 207);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.container-bottom-edit-2 {
+  background-image: url('trees_background.jpg');
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-right: 3.5rem;
 }
 
 h1 {
   font-family: "Manrope";
+  margin-top: 2rem;
 a {
   text-decoration: none;
   color: black
