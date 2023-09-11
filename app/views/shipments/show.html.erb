@@ -1,3 +1,7 @@
+<% content_for :meta_title, "#{@shipment.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @shipment.description %>
+<% content_for :meta_image, cl_image_path(@shipment.photo.key) if @shipment.photo.attached? %>
+
 <%= render "shared/navbar" %>
 <div class="navbar navbar-expand-lg navbar-light bg-light mb-4">
   <div class="container-fluid">
