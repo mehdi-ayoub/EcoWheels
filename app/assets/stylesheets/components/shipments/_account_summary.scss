@@ -1,12 +1,3 @@
-.icons-index {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #ccc;
-  margin-right: 20px;
-  background-color: white;
-  border-radius: 5px;
-
-}
 
 .account-summary {
   display: flex;
@@ -16,20 +7,31 @@
 
 }
 
+.icons-index {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ccc;
+  margin-right: 25px;
+  background-color: white;
+  border-radius: 5px;
+
+}
+
+
 // distance traveled calculations
 .account-calculations {
   display: flex;
   flex-direction:row; // for the elements to be in one row
   justify-content: flex-start; /* Align content to the left */
   align-items: center;
-  margin: 15px 21px 15px 0px;
+  margin: 15px 25px 15px 0px;
   // border: 1px solid #ccc;
   padding: 80px 20px;
 
 
   .root-image-index {
-    height: 80px;
-    width: 80px;
+    height: 90px;
+    width: 90px;
     margin-right: 10px;
     margin-left: 30px;
   }
@@ -41,18 +43,18 @@
 }
 
 
-
+// emission calculation styling
 .emission-calculations {
 
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-right: 30px;
+  margin-right: 35px;
 
   .emission-image-index {
-    height: 80px;
-    width: 80px;
+    height: 90px;
+    width: 90px;
     margin-right: 10px;
     margin-left: 30px;
   }
@@ -63,4 +65,32 @@
 
 }
 
-// emission calculation calculations
+
+// fuel consumption styling
+.fuel-consumption {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 100px;
+
+  .gas-image-index {
+    height: 90px;
+    width: 90px;
+    margin-right: 10px;
+    margin-left: 30px;
+  }
+
+}
+
+
+// co2 emission graph styling
+
+.co2-emission-per-product .chart-container {
+  text-align: left;
+  width: 500px !important;
+  // margin-right: 5px;
+  background: linear-gradient(to bottom, #007bff, #ffffff);
+  border-radius: 5px;
+  margin-left: 100px;
+}
