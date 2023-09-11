@@ -27,13 +27,6 @@
             Toggle Filter
           </a>
         </li>
-
-        <li class="nav-item">
-          <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-            <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment" %>
-            <%= f.submit "Search", class: "btn btn-primary" %>
-          <% end %>
-        </li>
       </ul>
     </div>
   </div>

@@ -58,12 +58,6 @@
             <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">Toggle Filter</a>
           </li>
 
-          <div class="nav-item search-box">
-            <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-              <%= f.text_field_tag :query, value: params[:query], class: "form-control", placeholder: "Find a shipment" %>
-              <%= f.submit_tag "Search", class: "button-search" %>
-            <% end %>
-          </div>
           <% if user_signed_in? %>
             <li class="nav-item active">
               <%= link_to "Home", root_path, class: "nav-link" %>

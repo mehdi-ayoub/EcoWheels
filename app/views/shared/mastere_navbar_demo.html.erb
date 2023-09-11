@@ -46,12 +46,6 @@
           </li>
         <% end %>
 
-        <li class="nav-item search-box">
-          <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-            <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find a shipment" %>
-            <%= f.submit "Search", class: "button-search" %>
-          <% end %>
-        </li>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
