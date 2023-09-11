@@ -122,7 +122,7 @@
         <h5 class="card-title"> <strong> Total Co2 emissions per vehicle</strong> </h5>
       </div>
       <div class="card-body">
-        <p class="card-text">  <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicle", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
+        <p class="card-text">  <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicle", ytitle: "CO-2 Emissions", download: true, thousands: ","%>
         </p>
           <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
       </div>
