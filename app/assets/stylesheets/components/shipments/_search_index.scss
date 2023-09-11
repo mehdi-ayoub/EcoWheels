@@ -1,9 +1,15 @@
-.icon-index {
-  margin-left: 20px;
+
+// designing in the index page - the elements on the top page of the page
+// the search bar - icons - date and time - bell - user name 
+
+.search-index {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-// date - time - username styling
 
+// design the user signed in - bell - date and time
 .user-details {
   display: flex;
   justify-content: flex-end;
@@ -19,14 +25,20 @@
     margin: 14px 10px 0px 25px;
   }
 
+  .bell {
+    margin-left: 25px;
+
+  }
+
 }
 
-
-
-
-.search-index {
+.index-left {
   display: flex;
   align-items: center;
+
+}
+.icon-index {
+  margin-left: 20px;
 }
 
 
