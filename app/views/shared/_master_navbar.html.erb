@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<% elsif controller_name == 'shipments' && action_name == 'index' %>
+<% elsif (controller_name == 'shipments' && action_name == 'index') || (controller_name == 'shipments' && action_name == 'edit') || (controller_name == 'shipments' && action_name == 'new') %>
   <div class="navbar navbar-expand-lg navbar-light bg-light mb-4">
     <div class="container-fluid">
       <div class="title-page" style="d-flex justify-content-lg-center;">
