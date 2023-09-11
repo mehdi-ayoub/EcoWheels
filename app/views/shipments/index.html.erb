@@ -144,12 +144,12 @@
             <% @shipments.each do |shipment| %>
               <tr id="shipment-<%= shipment.id %>" data-shipment-id="<%= shipment.id %>">
                 <td class="align-middle"><%= link_to shipment.id, shipment_path(shipment) %></td>
-                <td class="align-middle" style="border-right: none;"><%= link_to shipment.city, shipment_path(shipment) %></td>
-                <td class="align-middle" style="border-right: none;"><%= shipment.product_name %></td>
-                <td class="align-middle" style="border-right: none;"><%= shipment.shipment_start %></td>
-                <td class="align-middle" style="border-right: none;"><%= shipment.shipment_end %></td>
-                <td class="align-middle" style="border-right: none;"><%= shipment.co2_emissions %></td>
-                <td class="align-middle" style="border-right: none;">
+                <td class="align-middle"><%= link_to shipment.city, shipment_path(shipment) %></td>
+                <td class="align-middle"><%= shipment.product_name %></td>
+                <td class="align-middle"><%= shipment.shipment_start %></td>
+                <td class="align-middle"><%= shipment.shipment_end %></td>
+                <td class="align-middle"><%= shipment.co2_emissions %></td>
+                <td class="align-middle">
                   <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
                     <%= shipment.distance_traveled.round(2) %> km
                   <% else %>

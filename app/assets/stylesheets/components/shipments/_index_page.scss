@@ -77,3 +77,21 @@
 .custom-table {
   border-radius: 10px;
 }
+
+.align-middle {
+  border-right: 0 !important;
+}
+
+// to remove the border of the table
+
+.tbody-index {
+  td {
+    border-width: 0;
+  }
+}
+
+.thead-dark {
+  th {
+    border-width: 0;
+  }
+}
