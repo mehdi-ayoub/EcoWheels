@@ -15,7 +15,9 @@
   border-radius: 10px;
 }
 
-
+.title-index h4 p {
+  font-family: "Manrope";
+}
 /* Style table header */
 .thead-dark th {
   background-color: #e0f2f1;
@@ -23,7 +25,7 @@
   a {
     text-decoration: none;
     color: black;
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Manrope";
   }
 }
 
@@ -32,7 +34,7 @@
   a {
     text-decoration: none;
     color: black;
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Manrope";
   }
 }
 
@@ -64,24 +66,32 @@
   background-color: #3498db;
   color: white;
   transition: background-color 0.3s ease;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Manrope";
 
 }
 
 .custom-bg-blue:hover {
   background-color: #2980b9;
   color: white;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Manrope";
 }
 
 .custom-table {
   border-radius: 10px;
 }
 
-.align-middle {
-  border-right: 0 !important;
-}
+.container-banner {
+  background-image: url('green_landscape.jpeg');
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  padding: 80px 0px;
+  margin-bottom: 2rem;
 
+  .align-middle {
+  border-right: 0 !important;
+ }
+}
 // to remove the border of the table
 
 .tbody-index {
