@@ -1,0 +1,5 @@
+meta_name: "Ecowheels"
+meta_title: "Ecowheels - Bring transparency to your carbon emissions"
+meta_description: "Bring transparency to your carbon emissions, track your shipments & analyze your data with this applicaiton"
+meta_image: "trees_background.jpg" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
