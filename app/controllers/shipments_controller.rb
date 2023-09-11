@@ -13,6 +13,10 @@ class ShipmentsController < ApplicationController
       @shipments = @shipments.search(params[:query])
     end
 
+    if params[:status].present?
+      @shipments = @shipments.where(status: params[:status])
+    end
+
     @shipments = policy_scope(@shipments)
   end
 
@@ -29,7 +33,7 @@ class ShipmentsController < ApplicationController
     authorize @shipment
 
     if @shipment.save
-      redirect_to shipments_path, notice: "A shipment was successfully created."
+      redirect_to shipments_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -64,10 +68,14 @@ class ShipmentsController < ApplicationController
     @shipment.update(shipment_params)
     authorize @shipment
 
-    if @shipment.save
-      redirect_to shipments_path, notice: "Shipment was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @shipment.save
+        format.html { redirect_to shipments_path}
+        format.json { render json: { status: "success"} }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: { status: "error", message: "Failed to update shipment." }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -91,7 +99,7 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:product_name, :city, :shipment_start, :shipment_end, :vehicle_type, :fuel_type, :start_location, :end_location, :distance_traveled, photos: [])
+    params.require(:shipment).permit(:product_name, :city, :shipment_start, :shipment_end, :vehicle_type, :fuel_type, :start_location, :end_location, :distance_traveled, :status, photos: [])
   end
 
   def sort_shipments(shipments)
