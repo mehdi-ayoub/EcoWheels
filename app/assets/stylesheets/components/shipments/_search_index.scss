@@ -1,6 +1,6 @@
 
 // designing in the index page - the elements on the top page of the page
-// the search bar - icons - date and time - bell - user name 
+// the search bar - icons - date and time - bell - user name
 
 .search-index {
   display: flex;
@@ -35,6 +35,10 @@
 .index-left {
   display: flex;
   align-items: center;
+}
+
+.index-right {
+  margin-right: 19px;
 
 }
 .icon-index {
