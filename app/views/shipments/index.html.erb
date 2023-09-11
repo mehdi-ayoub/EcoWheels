@@ -13,39 +13,55 @@
   <% end %>
 </div>
 
-<div class="user-details">
-
-  <div id="currentDateTime"></div>
-
-  <div class="name-index">
-    <% if user_signed_in? %>
-      <%= current_user.first_name %> <%= current_user.last_name %>!</p>
-    <% end %>
-  </div>
-
-</div>
 
 
-
-
-<%# home icon and search option %>
+<%# First container in The index page -  elements on the top page of the page %>
 
 <div class="search-index">
 
-  <div class="icon-index">
-    <i class="fa-solid fa-house fa-2xl" style="color: #08912a;"></i>
+  <%# Left side elements %>
+
+  <div class="index-left">
+
+    <div class="icon-index">
+      <i class="fa-solid fa-house fa-2xl" style="color: #08912a;"></i>
+    </div>
+
+    <div class="nav-item search-box">
+      <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
+        <div class="search-input">
+          <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Track your shipment" %>
+          <%= f.submit "", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 
-  <div class="nav-item search-box">
-    <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-      <div class="search-input">
-        <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Track your shipment" %>
-        <%= f.submit "", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
+  <%# right side elements onthe top of the page %>
+
+  <div class="index-right">
+
+    <div class="user-details">
+
+      <div id="currentDateTime"></div>
+
+      <div class= "bell">
+        <i class="fa-regular fa-bell fa-xl"></i>
       </div>
-    <% end %>
+
+      <div class="name-index">
+        <% if user_signed_in? %>
+          <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></p>
+        <% end %>
+      </div>
+
+    </div>
   </div>
 
 </div>
+
+<%# ------------ End of first container in the index page ---------- %>
 
 
 <%# account summary div %>
