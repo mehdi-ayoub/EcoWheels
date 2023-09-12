@@ -6,23 +6,23 @@
 // to style the text area of the elements except the vehicle type and the fuel type
 .form-control {
   text-align: left;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 1);
   width: 300px;
   margin-right: 5px;
-
 }
 
 // style the text area of vehicle type and fuel type
 .form-select {
   text-align: left;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 1);
   width: 300px;
   margin-right: 5px;
 }
 
-.product-name {
-  width: 300px;
-}
+// .product-name {
+//   padding-right: 600px;
+// }
+
 .form-field {
   margin-bottom: 20px; /* Adjust the spacing between form fields */
 }
