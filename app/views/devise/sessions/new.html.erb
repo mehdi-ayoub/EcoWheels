@@ -1,5 +1,5 @@
 <div class="login-page">
-  <div class="wrapper mt-5">
+  <div class="wrapper login-card mt-5">
       <h2 class="text-center mb-4">Log in</h2>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'text-white' }) do |f| %>
           <div class="form-inputs">
@@ -23,5 +23,6 @@
       <div class="register-link mt-3">
           <%= render "devise/shared/links" %>
       </div>
+      
   </div>
 </div>

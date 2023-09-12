@@ -1,14 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .login-page {
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('https://images.hdqwalls.com/wallpapers/abstract-green-gradient-bs.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
+
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background: url('https://images.hdqwalls.com/wallpapers/abstract-green-gradient-bs.jpg');
 
   .content-wrapper {
     flex: 1;
@@ -20,60 +26,61 @@
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: #fff;
+    color: black;
+    align-items: center;
     border-radius: 10px;
-    padding: 30px 40px;
+    padding: 40px 40px; // some changes
 
     .form-inputs {
-        margin-top: 20px;
-        
-        input.form-control {
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, .2);
-            border-radius: 40px;
-            color: #fff;
-            padding: 10px 20px;
-            
-            &::placeholder {
-                color: #fff;
-            }
-        }
+      margin-top: 20px;
 
-        label.form-label {
-            color: #fff;
+      input.form-control {
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 40px;
+        color: #fff;
+        padding: 10px 20px;
+
+        &::placeholder {
+          color: #fff;
         }
+      }
+
+      label.form-label {
+        color: #fff;
+      }
     }
 
     .form-actions {
       button.btn {
-          background: #fff;
-          border: none;
-          border-radius: 40px;
-          color: #fff;
-          font-weight: 700;
-          box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        background: #fff;
+        border: none;
+        border-radius: 40px;
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
       }
-      
+
       .btn {
-          color: #fff;
+        color: #fff;
       }
 
       .btn.btn-lg.btn-block:hover {
-          color: black;
+        color: black;
       }
-  }
+    }
 
     .register-link {
-        a {
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-            
-            &:hover {
-                color: black;
-                text-decoration: none;
-            }
+      a {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+          color: black;
+          text-decoration: none;
         }
+      }
     }
   }
 
@@ -81,7 +88,7 @@
     color: #fff;
 
     i {
-        margin: 0 5px;
+      margin: 0 5px;
     }
   }
 }
