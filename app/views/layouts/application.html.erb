@@ -39,8 +39,7 @@
 
   <body class="<%=params[:controller] %> <%= params[:action] %> <%= yield(:body_class) %>">
   <%= render "shared/flashes" %>
-    <%= yield %>
-    </div>
-      <%= render "shared/footer" %></div>
+    <div style="min-height: 90vh;"><%= yield %></div>
+    <div class="footer-page text-center"><%= render "shared/footer" %></div>
   </body>
 </html>

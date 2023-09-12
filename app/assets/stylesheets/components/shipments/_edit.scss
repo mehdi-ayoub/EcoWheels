@@ -4,7 +4,10 @@
   border-radius: 10px;
   background-color: white;
   box-shadow: rgba(6, 48, 32, 0.4) 0px 0px 0px 2px, rgba(16, 63, 10, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-  margin-left: 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 43rem;
 }
 
 .container-edit-f {
@@ -12,15 +15,15 @@
 }
 
 .title-page {
-  padding-bottom: 10px;
+  font-family: "Manrope";
 }
 
-.title-page-up {
-    margin: 45px auto;
-    text-align: center;
-    font-size: 300%;
-    text-shadow: 2px 2px;
-}
+// .title-page-up {
+//     margin: 45px auto;
+//     text-align: center;
+//     font-size: 300%;
+//     text-shadow: 2px 2px;
+// }
 
 .container-edit-image {
   background-image: url('eco_truck.jpeg');
@@ -30,20 +33,22 @@
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
+  // flex-direction: row;
+  justify-content: center;
+  // margin-left: 10rem;
+  border-radius: 10px;
+  width: 100%;
+  margin-left: 15rem;
 }
 
 .container-bottom-edit {
   display: block;
-  margin-top: 3rem;
-  margin-left: 5rem;
-  padding-top: 1rem;
-  margin-right: auto;
-  width: 70%;
   background-color: rgb(215, 232, 207);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-top: 7rem;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-between;
 }
 
 .container-bottom-edit-2 {
@@ -62,8 +67,4 @@ a {
   color: black
 }
 
-}
-
-.card-form-edit {
-  padding-bottom: 15px;
 }

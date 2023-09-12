@@ -1,11 +1,15 @@
-.container-fluid {
+
+
+.wrapper-footer {
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
-  background-color: rgb(178, 197, 167);
-  padding-top: 60px
+  margin-top: 60px
 }
 
-.footer {
-  background-color: rgb(178, 197, 167);
+.wrapper-footer {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  margin-top: 60px
 }
