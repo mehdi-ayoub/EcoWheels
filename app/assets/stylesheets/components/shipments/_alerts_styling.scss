@@ -1,0 +1,17 @@
+.custom-confirm-button-class {
+  background-color: #4CAF50 !important;
+  color: white !important;
+}
+
+
+.custom-cancel-button-class {
+  background-color: #f4a09a !important;
+  color: white !important;
+}
+
+
+// to style the container holding the pop up
+.swal2-container.swal2-center > .swal2-popup {
+  background-color: white;
+  border-radius: 15px;
+}

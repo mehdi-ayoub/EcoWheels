@@ -86,7 +86,7 @@ class ShipmentsController < ApplicationController
 
     if current_user == @shipment.user
       if @shipment.destroy
-        redirect_to shipments_path, notice: "The shipment was successfully deleted."
+        redirect_to shipments_path
       else
         redirect_to shipments_path, alert: "Error deleting shipment."
       end

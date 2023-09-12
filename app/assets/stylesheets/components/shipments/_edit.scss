@@ -3,7 +3,7 @@
 .container-card-edit {
   border-radius: 10px;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(6, 48, 32, 0.4) 0px 0px 0px 2px, rgba(16, 63, 10, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   margin-left: 8rem;
 }
 
@@ -13,6 +13,13 @@
 
 .title-page {
   padding-bottom: 10px;
+}
+
+.title-page-up {
+    margin: 45px auto;
+    text-align: center;
+    font-size: 300%;
+    text-shadow: 2px 2px;
 }
 
 .container-edit-image {
@@ -30,8 +37,9 @@
 
 .container-bottom-edit {
   display: block;
-  margin-top: 7rem;
-  margin-left: 6rem;
+  margin-top: 3rem;
+  margin-left: 5rem;
+  padding-top: 1rem;
   margin-right: auto;
   width: 70%;
   background-color: rgb(215, 232, 207);
@@ -41,12 +49,14 @@
 .container-bottom-edit-2 {
   background-image: url('trees_background.jpg');
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin-right: 3.5rem;
+  margin-right: 3rem;
 }
 
 h1 {
   font-family: "Manrope";
   margin-top: 2rem;
+  font-weight: bold;
+
 a {
   text-decoration: none;
   color: black
