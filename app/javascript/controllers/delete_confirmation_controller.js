@@ -1,47 +1,46 @@
-// import { Controller } from "@hotwired/stimulus";
-// import Swal from "sweetalert2";
+import { Controller } from "@hotwired/stimulus";
+import Swal from "sweetalert2";
 
-// export default class extends Controller {
-//   connect() {
-//     console.log("Delete confirmation controller connected!");
-//   }
+export default class extends Controller {
+  connect() {
+    console.log("Delete confirmation controller connected!");
+  }
 
-//   confirm(event) {
-//     event.preventDefault();
+  confirm(event) {
+    event.preventDefault();
 
-//     const deleteLink = event.currentTarget.href; // Store the href value here
+    const deleteLink = event.currentTarget.href;
 
-//     Swal.fire({
-//       title: 'Are you sure?',
-//       text: 'You are about to delete this shipment.',
-//       icon: 'warning',
-//       customClass: {
-//         confirmButton: 'custom-confirm-button-class',
-//         cancelButton: 'custom-cancel-button-class',
-//         title: 'custom-title-class',
-//         popup: 'custom-popup-class',
-//         // Add more classes as needed
-//       },
-//       showCancelButton: true,
-//       confirmButtonColor: '#d33',
-//       cancelButtonColor: '#3085d6',
-//       confirmButtonText: 'Yes, delete it!'
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         // If user confirms, then redirect to the delete link
-//         fetch(event.currentTarget.href, {
-//           method: 'DELETE',
-//           headers: {
-//             'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").content
-//           }
-//         }).then(response => {
-//           if (response.ok) {
-//             // Redirect or refresh the page after successful deletion
-//             window.location.href = '/desired_redirect_path';  // Replace with your desired path
-//           } else {
-//             console.error('Failed to delete shipment.');
-//           }
-//         });      }
-//     });
-//   }
-// }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this shipment!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn-danger',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'No, cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteItem(deleteLink);
+        Swal.fire('Deleted!', 'Your shimpent has been deleted.', 'success');
+      } else {
+        Swal.fire('Cancelled', 'Your shipment is safe :)', 'error');
+      }
+    });
+  }
+
+  deleteItem(deleteLink) {
+    fetch(deleteLink, {
+      method: 'DELETE',
+      headers: {
+        'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").content
+      }
+    }).then(response => {
+      if (!response.ok) {
+        console.error('Failed to delete item.');
+      }
+      window.location.href = '/shipments';
+    });
+  }
+}
