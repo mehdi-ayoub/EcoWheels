@@ -1,11 +1,13 @@
 <% if (controller_name == 'pages' && action_name == 'home') || (controller_name == 'pages' && action_name == 'dashboard') %>
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-   <div class="title-page" style="d-flex justify-content-lg-center;"><h1>EcoWheels
-   <%= image_tag "earth_logo.png", class: "logo", style: 'height: 50px;'%>
-    <%= link_to "#", class: "navbar-brand" do %>
-    <% end %>
-    </h1></div>
+    <div class="title-page" style="d-flex justify-content-lg-center;">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <h1>EcoWheels
+          <%= image_tag "eco_logo.png", class: "logo", style: 'height: 80px; width: auto; pl-2;' %>
+        </h1>
+      <% end %>
+    </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -41,29 +43,33 @@
   </div>
 </div>
 
-<% elsif controller_name == 'shipments' && action_name == 'index' %>
-  <div class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<% elsif (controller_name == 'shipments' && action_name == 'index') || (controller_name == 'shipments' && action_name == 'edit') || (controller_name == 'shipments' && action_name == 'new') || (controller_name == 'shipments' && action_name == 'show') %>
+  <div class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#shipmentsNavbar" aria-controls="shipmentsNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div class="title-page" style="d-flex justify-content-lg-center;">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <h1>EcoWheels
+            <%= image_tag "earth_logo.png", class: "logo", style: 'height: 50px; width: auto;' %>
+          </h1>
+        <% end %>
+      </div>
 
-      <div class="collapse navbar-collapse" id="shipmentsNavbar">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <%= link_to 'New Shipment', new_shipment_path, class: 'nav-link' %>
-          </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#shipmentsNavbar" aria-controls="shipmentsNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">Toggle Filter</a>
-          </li>
+        <div class="collapse navbar-collapse justify-content-end" id="shipmentsNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <%= link_to 'New Shipment', new_shipment_path, class: 'nav-link' %>
+                </li>
 
-          <div class="nav-item search-box">
-            <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
-              <%= f.text_field_tag :query, value: params[:query], class: "form-control", placeholder: "Find a shipment" %>
-              <%= f.submit_tag "Search", class: "button-search" %>
-            <% end %>
-          </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
+                        Toggle Filter
+                    </a>
+                </li>
+
           <% if user_signed_in? %>
             <li class="nav-item active">
               <%= link_to "Home", root_path, class: "nav-link" %>
@@ -76,7 +82,7 @@
             </li>
             <li class="nav-item dropdown">
               <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag "avatar.png", class: "avatar", alt: "dropdown menu" %>
+                <%= image_tag "burger.png", class: "avatar", alt: "dropdown menu" %>
               </a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <%= link_to "Add a Shipment", new_shipment_path, class: "dropdown-item" %>

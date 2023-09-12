@@ -1,18 +1,52 @@
-
- <div class="container-banner lg mt-5">
+<%= render "shared/master_navbar" %>
+<%# <div class="card-edit-form col-lg-3 d-flex flex-row" style="width: 30rem; margin: 0 auto; margin-top: 3rem; margin-bottom: 3rem; padding: 1rem"> %>
+<div class="container-banner">
 </div>
 
-<div class="card-edit-form align-items-right" style="width: 30rem; margin: 0 auto; margin-top: 3rem; margin-bottom: 3rem; padding: 1rem">
-  <div class="col-xs-12 col-sm4 col-sm-offset-4 col-md-12 col-lg-12">
-  <%= render "shared/navbar" %>
+<div class="container-edit-image d-flex justify-content-center">
+ <div class="row">
+  <div class="col-lg-7">
 
-<div class="container-card align-items-right">
-  <div class="card-edit" style=" margin: 0 auto; margin-top: 3rem ;">
-    <div class="title-page" style="margin-top: 1rem ; margin-bottom: 1rem ; margin-left: 2rem; text-center"><h1>Edit your shipment</h1></div>
-    <div class="card-form-edit" style="margin-top: 5rem; padding-top 20px">
-     <%= render "form", shipment: @shipment %>
+ <div class="container-edit-f">
+  <div class="row">
+   <div class="col-lg-5">
+    <div class="container-card-edit d-flex justify-content-center" style="width: 47rem; ml-4 ; mt-3; p-1 ;">
+      <div class="card-edit " style=" m-0 auto ; mt-3 ;">
+        <div class="title-page" style="mt-2 ; mb-1 ; ml-2 ; text-center"><h1>Edit your shipment</h1></div>
+        <div class="card-form-edit " style="mt-5 ; pt-20px ;">
+        <%= render "form_new" %>
+        </div>
+      </div>
+    </div>
    </div>
   </div>
+ </div>
+
+  </div>
+
+
+  <div class="row col-6">
+   <div class="container-bottom-edit d-flex justify-content-between">
+    <div class="card-bottom-edit">
+     <div class="text-page" style="text-center ;">
+     <h4>Here are 5 ways to reduce your carbon footprint significantly.
+
+     <h6>
+     <ul><li>Avoid Mass Market, Throw Away Fashion.</li></ul>
+     <ul><li> Reduce your Meat and Diary Consumption.</li></ul>
+     <ul><li>Refuse Single-Use Plastic.</li></ul>
+     <ul><li>Reduce and Rethink your Transportation.</li></ul>
+     <ul><li> Switch to Green Energy.</li></ul>
+     <ul><li>Fighting Climate Change through Rewilding.</li></ul>
+     </h6>
+     </h4>
+    </div>
+
+  </div>
+ </div>
 </div>
+  <div class="row col-6">
+   <div class="container-bottom-edit-2 d-flex justify-content-between mt-5">
  </div>
- </div>
+</div>
+</div>

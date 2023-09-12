@@ -1,3 +1,13 @@
-.body {
-  background-image: url("trees_background.jpg");
+
+.container-banner {
+  background-image: url('green_landscape.jpeg');
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  padding: 80px 0px;
+  margin-bottom: 2rem;
+
+  .align-middle {
+  border-right: 0 !important;
+ }
 }
