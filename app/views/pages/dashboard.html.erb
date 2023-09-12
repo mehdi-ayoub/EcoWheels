@@ -1,20 +1,16 @@
 
 <%= render "shared/master_navbar" %>
+<div class="container-banner"> </div>
 
+<div class="container-dashboard" data-controller="dashboard" >
 
- <div class="container-banner">
-</div>
-<div class="container-dashboard p-3" >
-
-  <div class="container-title mt-4" >
-    <h2 class="text-center">Dashboard</h2>
-
-    <a href= "/shipments" class="btn btn-primary">Return</a>
-
+  <div class="container-title " >
+    <h2 class="text-center mb-5">Overview</h2>
+    <%# <a href= "/shipments" class="btn btn-light custom-bg-blue">Return</a> %>
     <%# <p>Date Selector</p> %>
   </div>
 
-  <div class="container-totals d-flex justify-content-around">
+  <div class="container-totals d-flex justify-content-around ">
 
       <div class="card border-light mb-3" style="max-width: 18rem;">
         <div class="card-header"> <strong> Total CO-2 emissions </strong> </div>
@@ -39,295 +35,322 @@
 
   </div>
 
+  <div class="container text-center mt-5" >
+
+
+
   </div>
 
-  <h4 class="text-center">Product Metrics</h4>
+
+  </div>
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#product" type="button" role="tab" aria-controls="product" aria-selected="false">Product Metrics</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#vehicle" type="button" role="tab" aria-controls="vehicle" aria-selected="false">Vehicle Metrics</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#fuel" type="button" role="tab" aria-controls="fuel" aria-selected="false">Fuel Metrics</button>
+    </li>
+     <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#distance" type="button" role="tab" aria-controls="distance" aria-selected="false">Distance Metrics</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab" data-controller="dashboard">
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %> </div>
+          <div class="brief">
+            <div class="typo"><span>Total Co2 emissions per product</span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %> </div>
+            <div class="brief">
+            <div class="typo"><span> Product shipment frequency </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= bar_chart Shipment.group(:product_name).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Product", download: true, thousands: "," %> </div>
+            <div class="brief">
+            <div class="typo"><span> Total distance traveled per product </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= bar_chart Shipment.group(:product_name, :vehicle_type).count, xtitle: "Product Count", ytitle: "Vehicle Type", download: true, thousands: "," %> </div>
+            <div class="brief">
+            <div class="typo"><span> Vehicle type per product </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= line_chart Shipment.group(:city, :product_name).count, xtitle: "Product",   ytitle:  "Destination Frequency" , download: true, thousands: "," %> </div>
+            <div class="brief">
+            <div class="typo"><span> Most frequent destination per product </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="tab-pane fade" id="vehicle" role="tabpanel" aria-labelledby="contact-tab" data-controller="dashboard">
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicle", ytitle: "CO-2 Emissions", download: true, thousands: ","%> </div>
+          <div class="brief">
+            <div class="typo"><span>Total Co2 emissions per vehicle</span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">  <%= line_chart Shipment.group(:vehicle_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %> </div>
+          <div class="brief">
+            <div class="typo"><span>Vehicle usage frequency</span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">  <%= bar_chart Shipment.group(:vehicle_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Vehicle", download: true, thousands: "," %> </div>
+          <div class="brief">
+            <div class="typo"><span>Distance traveled per vehicle</span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">  <%= bar_chart Shipment.group(:vehicle_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Vehicle Type", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Total fuel consumption per Vehicle </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= bar_chart Shipment.group(:vehicle_type, :fuel_type).count, xtitle: "Number of Vehicle Type", ytitle: "Fuel Type", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Fuel type per vehicle  </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">    <%= line_chart Shipment.group(:city, :vehicle_type).count, xtitle: "Vehicle", ytitle: "Destination Frequency", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Most frequent destination per vehicle  </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="fuel" role="tabpanel" aria-labelledby="contact-tab" data-controller="dashboard">
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= column_chart Shipment.group(:fuel_type).sum(:co2_emissions), xtitle: "Fuel Type", ytitle: "CO-2 Emissions", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Total Co2 emissions per Fuel type </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">    <%= line_chart Shipment.group(:fuel_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Fuel type usage frequency </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">    <%= bar_chart Shipment.group(:fuel_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Fuel Type", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Distance traveled per fuel type </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">    <%= bar_chart Shipment.group(:fuel_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Fuel Type", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Total fuel consumption per fuel type </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">    <%= bar_chart Shipment.group(:city, :fuel_type).count, xtitle: "Destination Frequency", ytitle: "Fuel Type", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Most frequent destination per fuel type  </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tab-pane fade" id="distance" role="tabpanel" aria-labelledby="contact-tab" data-controller="dashboard">
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= column_chart Shipment.group(:city).sum(:co2_emissions), xtitle: "Destination", ytitle: "CO-2 Emissions", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Total Co2 emissions per Delivery Destination / City  </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">   <%= line_chart Shipment.group(:city).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>City as destination frequency </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">    <%= bar_chart Shipment.group(:city).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Destination", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Distance traveled per city  </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
+          <div class="graphic">    <%= bar_chart Shipment.group(:city).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Destination", download: true, thousands: "," %></div>
+          <div class="brief">
+            <div class="typo"><span>Total fuel consumption used for delivery to city  </span></div>
+          </div>
+          <div class="sub">
+            <%# <p class="header">XXX</p>
+            <p class="story">XXX</p> %>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
 
   <div class="container-product m-2 p-3">
 
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Total Co2 emissions per product </strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Product shipment frequency </strong> </h5>
-      </div>
-
-      <div class="card-body">
-        <p class="card-text">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Total distance traveled per product </strong> </h5>
-      </div>
-
-      <div class="card-body">
-        <p class="card-text">   <%= bar_chart Shipment.group(:product_name).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Product", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Vehicle type per product </strong> </h5>
-      </div>
-
-      <div class="card-body">
-        <p class="card-text">  <%= bar_chart Shipment.group(:product_name, :vehicle_type).count, xtitle: "Product Count", ytitle: "Vehicle Type", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Most frequent destination per product </strong> </h5>
-      </div>
-
-      <div class="card-body">
-        <p class="card-text">  <%= line_chart Shipment.group(:city, :product_name).count, xtitle: "Product",   ytitle:  "Destination Frequency" , download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
   </div>
 
-  <h4 class="text-center">Vehicle Metrics</h4>
 
   <div class="container-vehicle m-2 p-3">
 
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Total Co2 emissions per vehicle</strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">  <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicle", ytitle: "CO-2 Emissions", download: true, thousands: ","%>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-        <div class="card-header">
-          <h5 class="card-title"> <strong> Vehicle usage frequency</strong> </h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">   <%= line_chart Shipment.group(:vehicle_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
-          </p>
-            <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-        </div>
-        <div class="card-footer text-muted">
-        </div>
-    </div>
-
-    <div class="card text-center mt-3">
-        <div class="card-header">
-          <h5 class="card-title"> <strong> Distance traveled per vehicle</strong> </h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">    <%= bar_chart Shipment.group(:vehicle_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Vehicle", download: true, thousands: "," %>
-          </p>
-            <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-        </div>
-        <div class="card-footer text-muted">
-        </div>
-    </div>
-
-    <div class="card text-center mt-3">
-        <div class="card-header">
-          <h5 class="card-title"> <strong> Total fuel consumption per Vehicle </strong> </h5>
-        </div>
-        <div class="card-body">
-          <p class="card-text">   <%= bar_chart Shipment.group(:vehicle_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Vehicle Type", download: true, thousands: "," %>
-          </p>
-            <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-        </div>
-        <div class="card-footer text-muted">
-        </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Fuel type per vehicle </strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">    <%= bar_chart Shipment.group(:vehicle_type, :fuel_type).count, xtitle: "Number of Vehicle Type", ytitle: "Fuel Type", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong> Most frequent destination per vehicle</strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">    <%= line_chart Shipment.group(:city, :vehicle_type).count, xtitle: "Vehicle", ytitle: "Destination Frequency", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
   </div>
-
-  <h4 class="text-center">Fuel Metrics</h4>
 
   <div class="container-fuel m-2 p-3">
 
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Total Co2 emissions per Fuel type</strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">     <%= column_chart Shipment.group(:fuel_type).sum(:co2_emissions), xtitle: "Fuel Type", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Fuel type usage frequency</strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">     <%= line_chart Shipment.group(:fuel_type).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-      <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Distance traveled per fuel type</strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">      <%= bar_chart Shipment.group(:fuel_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Fuel Type", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-    <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Total fuel consumption per fuel type </strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">       <%= bar_chart Shipment.group(:fuel_type).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Fuel Type", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-  <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Most frequent destination per fuel type </strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">       <%= bar_chart Shipment.group(:city, :fuel_type).count, xtitle: "Destination Frequency", ytitle: "Fuel Type", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
   </div>
-
-  <h4 class="text-center">Destination Metrics</h4>
 
   <div class="container-destination m-2 p-3">
 
-  <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Total Co2 emissions per Delivery Destination / City </strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">       <%= column_chart Shipment.group(:city).sum(:co2_emissions), xtitle: "Destination", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-  <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>City as destination frequency </strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">       <%= line_chart Shipment.group(:city).group_by_week(:shipment_start).count, xtitle: "Date", ytitle: "Frequency", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-  <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Distance traveled per city </strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">       <%= bar_chart Shipment.group(:city).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Destination", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-  <div class="card text-center mt-3">
-      <div class="card-header">
-        <h5 class="card-title"> <strong>Total fuel consumption used for delivery to city</strong> </h5>
-      </div>
-      <div class="card-body">
-        <p class="card-text">     <%= bar_chart Shipment.group(:city).sum(:fuel_consumption), xtitle: "Fuel Consumption", ytitle: "Destination", download: true, thousands: "," %>
-        </p>
-          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
-      </div>
-      <div class="card-footer text-muted">
-      </div>
-    </div>
-
-  </div>
 
   <div class="container-tasks-stats m-2 p-3">
 
