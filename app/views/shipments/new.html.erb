@@ -4,11 +4,40 @@
   <div class="container-banner"> </div>
 </div> %>
 
-<div class="banner-new">
-  <%= image_tag("https://images.unsplash.com/photo-1452179535021-368bb0edc3a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80", alt: "Banner Image", class: 'new-image') %>
+<%= image_tag("https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fblueandgreentomorrow.com%2Fwp-content%2Fuploads%2F2021%2F06%2Fgreen-goods-transports-57536.jpg.webp", alt: "Banner Image", class: 'new-image') %>
 
-  <div class="overlay-form">
-    <h4> Add New Shipment</h4>
-    <%= render "form_new" %>
+<div class="banner-new">
+
+  <div class="text-new">
+    <div class="container1">
+
+      <div class="first-text">
+        <h5> Trust Us for Environmentally Friendly Cargo Delivery with a Twist! </h5>
+      </div>
+
+      <div class="first-logo">
+        <%= image_tag('newpage-image2', class: 'new-image2') %>
+      </div>
+
+    </div>
+
+    <h3>Your shipping is Safe and Ecofriendly! <br>
+      Create new shipment with us
+    </h3>
+
   </div>
+
+  <div class="new-page-container">
+
+    <div class="header-new">
+      <h4> Add New Shipment</h4>
+    </div>
+
+    <div class="container-form">
+      <%= render "form_new" %>
+    </div>
+
+  </div>
+
+
 </div>
