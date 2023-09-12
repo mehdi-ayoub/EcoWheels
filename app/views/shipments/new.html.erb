@@ -1,23 +1,59 @@
-<div class= "container-new">
-  <div class="container-banner lg mt-5">
-</div>
-    
-   <%= render "shared/navbar" %>
+<%= render "shared/master_navbar" %>
 
-  <section class="text-center py-5 mt-2 mb-2">
-    <div class="banner-new">
-      <div class="container">
-        <div class="title-page" style="margin-top: 1rem ; margin-left: 2rem;">
-          <h1 class="display-4">Add a new shipment </h1>
-        </div>
+<%# <div class= "container-new">
+  <div class="container-banner"> </div>
+</div> %>
+
+<%= image_tag('green_landscape.jpg', alt: "Banner Image", class: 'new-image') %>
+
+<div class="banner-new">
+
+  <div class="text-new">
+    <div class="container1">
+
+      <div class="first-text">
+        <h5> Trust Us for Environmentally Friendly Cargo Delivery with a Twist! </h5>
       </div>
-    </div>
-  </section>
-</div>
 
-<div class="container-form">
-  <%= render "form" %>
-  <br>
-    <%= link_to "Go back to the shipment list without saving", shipments_path %>
-  <br>
+      <div class="first-logo">
+        <%= image_tag('newpage-image2', class: 'new-image2') %>
+      </div>
+
+    </div>
+
+    <div class="second-text">
+
+      <div class="images3">
+
+        <%= image_tag('shipping-new/shipping1.jpg', alt: "Banner Image", class: 'images-shipping-logo') %>
+        <%= image_tag('shipping-new/shipping2.webp', alt: "Banner Image", class: 'images-shipping-logo') %>
+        <%= image_tag('shipping-new/shipping3.png', alt: "Banner Image", class: 'images-shipping-logo') %>
+
+      </div>
+
+      <div class= "text2">
+
+        <h3>Your shipping is Safe and Ecofriendly! <br>
+          Create new shipment with us
+        </h3>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="new-page-container">
+
+    <div class="header-new">
+      <h4> Add New Shipment</h4>
+    </div>
+
+    <div class="container-form">
+      <%= render "form_new" %>
+    </div>
+
+  </div>
+
+
 </div>
