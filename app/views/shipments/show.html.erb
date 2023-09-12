@@ -21,12 +21,14 @@
     <div class="showpage-card-container">
       <div class="showpage-card u-clearfix">
         <div class="showpage-card-body">
+          <span class="card-number card-circle subtle">01</span>
+          <span class="card-author subtle">The shipment product:</span>
           <%# <div class="row"> %>
 
           <!-- Left side -->
           <%# <div class="col-6"> %>
 
-          <strong><h2 class="showpage-card-title">The shipment of a <%= @shipment.product_name %></h2></strong>
+          <strong><h2 class="showpage-card-title"><%= @shipment.product_name %></h2></strong>
           <br>
           <span class="showpage-card-description subtle">
             <ul style="list-style-type:none;">
@@ -41,12 +43,14 @@
               <small class="opacity-50 text-nowrap">Last updated <%= time_ago_in_words @shipment.updated_at %></small>
             </ul>
             <%= link_to shipment_path(@shipment), data: { controller: "delete-confirmation", action: "click->delete-confirmation#confirm" }, class: 'btn btn-outline-danger' do %>
-              <i class="fa-solid fa-trash"></i>
+              <i class="fa fa-pencil fa-trash teal-color"></i>
             <% end %>
             <%= link_to edit_shipment_path(@shipment) do %>
-              <i class="fa-solid fa-pencil"></i>
+              <i class="fa fa-pencil teal-color"></i>
             <% end %>
           </span>
+          <div class="card-read">Details</div>
+            <span class="card-tag card-circle subtle">C</span>
 
           <%# </div> %>
 
