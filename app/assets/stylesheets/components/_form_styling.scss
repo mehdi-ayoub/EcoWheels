@@ -9,6 +9,7 @@
   background-color: rgba(255, 255, 255, 1);
   width: 300px;
   margin-right: 5px;
+  border-radius: 10px;
 }
 
 // style the text area of vehicle type and fuel type
@@ -17,6 +18,7 @@
   background-color: rgba(255, 255, 255, 1);
   width: 300px;
   margin-right: 5px;
+  border-radius: 10px;
 }
 
 // .product-name {
@@ -35,6 +37,10 @@
 
 .form-inputs {
   border-radius: 55px;
+}
+
+.btn {
+  border-radius: 10px;
 }
 
 /* Additional CSS styling for other form elements can be added here */
