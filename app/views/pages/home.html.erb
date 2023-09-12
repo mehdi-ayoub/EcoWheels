@@ -52,7 +52,7 @@
       <%= f.input :car_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], label: 'Car type'%>
       <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type'%>
       <%= f.input :distance_traveled, input_html: { step: 0.1 }, label: 'Distance (KM)'%>
-      <%= f.button :submit, 'Calculate CO2 Emissions', class: 'btn btn-primary' %>
+      <%= f.button :submit, 'Calculate CO2 Emissions', class: 'btn btn-light custom-bg-blue' %>
     <% end %>
   </div>
 
@@ -69,7 +69,7 @@
 
 
  <%# Carousel container %>
- 
+
 <div class="thirdcontainer">
 
   <div id="carouselExample" class="carousel slide">
