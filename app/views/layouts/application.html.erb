@@ -38,9 +38,19 @@
   </head>
 
   <body class="<%=params[:controller] %> <%= params[:action] %> <%= yield(:body_class) %>">
+<<<<<<< HEAD
   <%= render "shared/flashes" %>
     <%= yield %>
     <div class="footer-page text-center"><%= render "shared/footer" %></div>
+=======
+    <div class="content-wrapper">
+      <%= render "shared/flashes" %>
+      <%= yield %>
+    </div>
+    <div class="footer-container text-center">
+      <%= render "shared/footer" %>
+    </div>
+>>>>>>> master
   </body>
 </html>
 
