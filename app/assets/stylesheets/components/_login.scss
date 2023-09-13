@@ -5,7 +5,13 @@
 }
 
 .login-page {
+<<<<<<< HEAD
   background-color: red;
+=======
+
+  background-color: #3b6239;
+  background-image: linear-gradient(160deg, #3b6239 0%, #80d09a 100%);
+>>>>>>> master
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +19,7 @@
   min-height: 100vh;
   background-size: cover;
   background-position: center;
-  background: url('https://images.hdqwalls.com/wallpapers/abstract-green-gradient-bs.jpg');
+  // background: url('https://images.hdqwalls.com/wallpapers/abstract-green-gradient-bs.jpg');
 
   .content-wrapper {
     flex: 1;
@@ -29,6 +35,10 @@
     align-items: center;
     border-radius: 10px;
     padding: 40px 40px; // some changes
+
+    .text-center {
+      color: #fff;
+    }
 
     .form-inputs {
       margin-top: 20px;
