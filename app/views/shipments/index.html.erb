@@ -5,27 +5,6 @@
 
 <div class="container-banner">
 </div>
-<div class="collapse mb-4" id="filterForm">
-  <%= form_with url: shipments_path, method: :get, local: true do |form| %>
-    <%= form.text_field :city, value: params[:city], placeholder: 'Destination', class: 'form-control mb-2' %>
-    <%= form.select :vehicle_type, 
-                    ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], 
-                    { selected: params[:vehicle_type], include_blank: 'Vehicle Type' }, 
-                    class: 'form-control mb-2' %>
-
-    <%= form.select :fuel_type, 
-                    ['Gasoline', 'Diesel'], 
-                    { selected: params[:fuel_type], include_blank: 'Fuel Type' }, 
-                    class: 'form-control mb-2' %>
-    <%= form.text_field :product_name, value: params[:product_name], placeholder: 'Items', class: 'form-control mb-2' %>
-    <%= form.date_field :shipment_start, value: params[:shipment_start], placeholder: 'Order Date', class: 'form-control mb-2' %>
-    <%= form.date_field :shipment_end, value: params[:shipment_end], placeholder: 'Delivery Date End', class: 'form-control mb-2' %>
-    <%= form.number_field :co2_emissions, value: params[:co2_emissions], placeholder: 'CO2 Emissions', class: 'form-control mb-2' %>
-    <%= form.submit 'Submit', class: 'btn btn-primary mt-2' %>
-  <% end %>
-</div>
-
-
 
 <%# First container in The index page -  elements on the top page of the page %>
 
@@ -51,11 +30,7 @@
        </div>
     </div>
     
-    <div class="nav-item">
-        <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
-            Filter
-        </a>
-    </div>
+
 
   </div>
 
@@ -131,8 +106,15 @@
             <%= link_to "Scheduled", shipments_path(status: "scheduled"), class: 'btn btn-light filter-buttons-index', data: { action: "click->filter#filterByStatus" } %>
             <%# <%= link_to "Canceled", shipments_path(status: "canceled"), class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
             <%# <%= link_to "All", shipments_path, class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
+            
+          </div>
+          <div class="nav-item">
+            <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
+                Filter
+            </a>
           </div>
         </div>
+
 
 
         <div class="mb-2">
@@ -145,7 +127,61 @@
           <%= flash[:notice] %>
         </div>
       <% end %>
+      <div class="collapse mb-4 " id="filterForm">
+        <%= form_with url: shipments_path, method: :get, local: true do |form| %>
+        <div class="form-group">
+            <!-- First Row -->
+            <div class="row align-items-center">
+                <div class="col-12 col-sm-3 mb-2">
+                    <%= form.label :vehicle_type, 'Vehicle Type', class: 'col-form-label' %>
+                    <%= form.select :vehicle_type, 
+                                    ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], 
+                                    { selected: params[:vehicle_type], include_blank: 'Vehicle Type' }, 
+                                    class: 'form-control' %>
+                </div>
+                <div class="col-12 col-sm-3 mb-2">
+                    <%= form.label :fuel_type, 'Fuel Type', class: 'col-form-label' %>
+                    <%= form.select :fuel_type, 
+                                    ['Gasoline', 'Diesel'], 
+                                    { selected: params[:fuel_type], include_blank: 'Fuel Type' }, 
+                                    class: 'form-control' %>
+                </div>
+                <div class="col-12 col-sm-3 mb-2">
+                    <%= form.label :product_name, 'Items', class: 'col-form-label' %>
+                    <%= form.text_field :product_name, value: params[:product_name], class: 'form-control' %>
+                </div>
+            </div>
+            
+            <!-- Second Row -->
+            <div class="row align-items-center">
+                <div class="col-12 col-sm-3 mb-2">
+                    <%= form.label :shipment_start, 'Order Date', class: 'col-form-label' %>
+                    <%= form.date_field :shipment_start, value: params[:shipment_start], class: 'form-control' %>
+                </div>
+                <div class="col-12 col-sm-3 mb-2">
+                    <%= form.label :shipment_end, 'Delivery Date End', class: 'col-form-label' %>
+                    <%= form.date_field :shipment_end, value: params[:shipment_end], class: 'form-control' %>
+                </div>
+            </div>
+        </div>
 
+
+          <div class="form-group row">
+            <div class="col-md-3 mt-2">
+              <%= form.submit 'Submit', class: 'btn btn-primary' %>
+            </div>
+          </div>
+        <% end %>
+     </div>
+
+              <%# <div class="col-md-2"> %>
+                <%# <%= form.label :city, 'Destination', class: 'col-form-label' %>
+                <%# <%= form.text_field :city, value: params[:city], class: 'form-control' %>
+              <%# </div> %>
+              <%# <div class="col-md-3"> %>
+                <%# <%= form.label :co2_emissions, 'CO2 Emissions', class: 'col-form-label' %>
+                <%# <%= form.number_field :co2_emissions, value: params[:co2_emissions], class: 'form-control' %>
+              <%# </div> %>
       <div class="table-container mt-3">
         <table class="table table-bordered table-hover text-center custom-table">
           <thead class="thead-dark">
