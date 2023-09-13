@@ -72,43 +72,10 @@
 <%# ------------ End of first container in the index page ---------- %>
 
 
-<%# account summary  - the styling of this group is in shipments folder  _acount_summary.scss %>
 
-<div class="account-summary">
-  <div>
-    <h3> Account Summary </h3>
-  </div>
-
-  <div class="icons-index">
-
-    <div class="account-calculations">
-      <%= image_tag('https://static.thenounproject.com/png/1003828-200.png', alt: 'Root image - idex', class: 'root-image-index') %>
-      <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(2) %> km </p>
-    </div>
-
-    <div class="emission-calculations">
-      <%= image_tag('https://media.istockphoto.com/id/1323550608/vector/co2-reduction-cloud-eco-vector-icon.jpg?s=612x612&w=0&k=20&c=jO3OZfYAg9gB8TWvzH8BR64Lq3pFrfHcOvxpSgB-cjA=', class: 'emission-image-index') %>
-      <p class="card-text text-center"> <%= @shipments.sum(:co2_emissions).round(2) %> kg </p>
-    </div>
-
-    <div class="fuel-consumption">
-      <%= image_tag('gas-station.png', class: 'gas-image-index') %>
-      <p class="card-text text-center"> <%= @shipments.sum(:fuel_consumption).round(2) %> L </p>
-    </div>
-
-    <div class="co2-emission-per-product">
-      <div class="chart-container">
-        <%= column_chart Shipment.group(:vehicle_type).sum(:co2_emissions), xtitle: "Vehicles", ytitle: "CO-2 Emissions", download: true, thousands: "," %>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<%# ------------ End of second container in the index page ---------- %>
+<%# ------------ Starting of the box in the index page  ---------- %>
 
 <div class="container-index-new-1">
-
 
   <div class="image-in-index">
 
@@ -117,7 +84,7 @@
   <%# first box %>
 
   <div class="innerboxindex">
-  
+
     <div class="index-new-card-1">
 
       <div class="index-new-title-1">
@@ -141,7 +108,7 @@
       </div>
 
       <div class="emission-image-index">
-        <%= image_tag('https://media.istockphoto.com/id/1396972365/vector/carbon-dioxide-emission-reduction-pixel-perfect-editable-stroke-line-art-icon.jpg?s=612x612&w=0&k=20&c=s1pm9ZN-LE5CuVg3rwtN5RKWnFrwWQ_lPynx2B3X4C0=', class: 'emission-image-index') %>
+        <%= image_tag('https://www.svgrepo.com/show/214706/factory-pollution.svg', class: 'emission-image-index') %>
       </div>
 
     </div>
@@ -164,12 +131,12 @@
     <div class="index-new-card-1">
 
       <div class="index-new-title-1">
-        <h4> Total Distance Traveled </h4>
+        <h4> Total Shipments </h4>
         <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
       </div>
 
       <div class="emission-image-index">
-        <%= image_tag('https://static.thenounproject.com/png/1003828-200.png', alt: 'Root image - idex', class: 'root-image-index') %>
+        <%= image_tag('https://cdn-icons-png.flaticon.com/512/5952/5952766.png', alt: 'Root image - idex', class: 'root-image-index') %>
       </div>
 
     </div>
