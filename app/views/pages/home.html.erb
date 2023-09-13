@@ -2,7 +2,7 @@
 <div class= "container-home">
   <section class="hero bg-color text-white text-center py-5 mt-2 mb-2">
     <div class="banner-home">
-      <div class="container">
+      <div class="container-home1">
         <div class="title-page" style="margin-top: 1rem ; margin-left: 2rem;">
           <h1 class="display-4">Discover the beauty of our planet </h1>
           <p class="lead">join us on a journey to preserve nature's wonders while reducing CO2 emissions for a sustainable future.</p>
@@ -63,40 +63,33 @@
 
 <%# <%= image_tag 'home-page-animal.jpg', alt: 'Home Page', class: 'card-img2' %>
 
-  <div class="thirdphoto">
+  <%# <div class="thirdphoto">
 
-  </div>
+  </div> %>
 
 
  <%# Carousel container %>
 
 <div class="thirdcontainer">
+	   <div class="column">
+       <%= image_tag 'avatar1.png', alt: '', class: 'dashboard-icon' %>
+	   </div>
+	   <div class="column">
+	     <%= image_tag 'avatar2.png', alt: '', class: 'dashboard-icon' %>
+	   </div>
+	   <div class="column">
+	     <%= image_tag 'avatar3.png', alt: '', class: 'dashboard-icon' %>
+	   </div>
+     <div class="column">
+	     <%= image_tag 'avatar4.png', alt: '', class: 'dashboard-icon' %>
+	   </div>
+     <div class="column">
+	     <%= image_tag 'avatar5.png', alt: '', class: 'dashboard-icon' %>
+	   </div>
 
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <%= image_tag 'home-page-animal.jpeg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
-      </div>
-      <div class="carousel-item">
-        <%= image_tag 'forest-sky.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
-      </div>
-      <div class="carousel-item">
-        <%= image_tag 'homepageimage.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-  <div class="thirdtext">
+    <%# <div class="thirdtext">
     <h1> The Power Of Nature </h1>
     <h2> Photos Can Save The World </h2>
-  </div>
+  </div> %>
 
 </div>
