@@ -1,87 +1,70 @@
-.icons-index {
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #ccc;
-  margin-right: 25px;
+.area1 { grid-area: header; }
+.area2 { grid-area: main; }
+.area3 { grid-area: right; }
+.area4 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  gap: 10px;
   background-color: white;
-  border-radius: 5px;
-
+  padding: 10px;
 }
 
-
-// distance traveled calculations
-.account-calculations {
-  display: flex;
-  flex-direction:row; // for the elements to be in one row
-  justify-content: flex-start; /* Align content to the left */
-  align-items: center;
-  margin: 15px 25px 15px 0px;
-  // border: 1px solid #ccc;
-  padding: 80px 20px;
-
-
-  .root-image-index {
-    height: 90px;
-    width: 90px;
-    margin-right: 10px;
-    margin-left: 30px;
-  }
-
-
-  p {
-    padding-top: 17px; /* Make the paragraph expand to fill available horizontal space */
-  }
+.grid-container > div {
+  text-align: center;
+  padding: 20px 10px;
 }
 
-
-// emission calculation styling
-.emission-calculations {
-
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-right: 35px;
-
-  .emission-image-index {
-    height: 90px;
-    width: 90px;
-    margin-right: 10px;
-    margin-left: 30px;
-  }
-
-  p {
-    padding-top: 17px; /* Make the paragraph expand to fill available horizontal space */
-  }
-
-}
-
-
-// fuel consumption styling
-.fuel-consumption {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-right: 100px;
-
-  .gas-image-index {
-    height: 90px;
-    width: 90px;
-    margin-right: 10px;
-    margin-left: 30px;
-  }
-
-}
 
 .card-header {
-  background: linear-gradient(to right, #6BA25F, #d7e8cf);
+  background-color: linear-gradient(to right, #6BA25F, #d7e8cf);
+}
+
+.container-totals {
+  background-color: #d7e8cf;
+  padding: 10px 0;
+}
+
+.area3 {
+  background-color: #d7e8cf;
+  width: 400px;
+}
+
+.text-page {
+  background-color: #d7e8cf;
+}
+
+.insights {
+    margin-top: 55px;
+    top: 50%;
+    left: 50%;
+    padding: 10px;
+  }
+
+.card-border-light {
+
+}
+
+.area2 {
+  width: 1300px;
+  height: 100%;
+}
+
+.dashboard-icon {
+  width: 30px;
+  height: 100%;
+  margin: 2px;
+  padding: 5px 0;
 }
 
 
 /* Card animation */
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+/* @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800"); */
 * {
   padding: 0;
   margin: 0;
@@ -89,11 +72,11 @@
 }
 
 body,
-html {
+/* html {
   font-family: "Montserrat", sans-serif;
   width: 100%;
   height: 100%;
-}
+} */
 
 .wrapper {
  /*  width: 80%; */
