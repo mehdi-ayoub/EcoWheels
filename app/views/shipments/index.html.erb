@@ -29,7 +29,7 @@
        <i class="fa-solid fa-magnifying-glass"></i>
        </div>
     </div>
-    
+
 
 
   </div>
@@ -140,11 +140,11 @@
         <div class="title-index">
           <div class="status-buttons">
             <h4 class="mb-1">Shipments Status</h4>
-            <%= link_to "Completed", shipments_path(status: "completed"), class: "btn btn-light filter-buttons-index #{'active' if params[:status] == 'completed'}", data: { action: "click->filter#filterByStatus" } %>
-            <%= link_to "Scheduled", shipments_path(status: "scheduled"), class: 'btn btn-light filter-buttons-index', data: { action: "click->filter#filterByStatus" } %>
+            <%= link_to "Completed", shipments_path(status: "completed"), class: "btn btn-light filter-buttons-index-green #{'active' if params[:status] == 'completed'}", data: { action: "click->filter#filterByStatus" } %>
+            <%= link_to "Scheduled", shipments_path(status: "scheduled"), class: "btn btn-light filter-buttons-index-yellow #{'btn-yellow' if params[:status] == 'scheduled'}", data: { action: "click->filter#filterByStatus" } %>
             <%# <%= link_to "Canceled", shipments_path(status: "canceled"), class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
             <%# <%= link_to "All", shipments_path, class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
-            
+
           </div>
           <div class="nav-item">
             <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
@@ -172,16 +172,16 @@
             <div class="row align-items-center">
                 <div class="col-12 col-sm-3 mb-2">
                     <%= form.label :vehicle_type, 'Vehicle Type', class: 'col-form-label' %>
-                    <%= form.select :vehicle_type, 
-                                    ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], 
-                                    { selected: params[:vehicle_type], include_blank: 'Vehicle Type' }, 
+                    <%= form.select :vehicle_type,
+                                    ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'],
+                                    { selected: params[:vehicle_type], include_blank: 'Vehicle Type' },
                                     class: 'form-control' %>
                 </div>
                 <div class="col-12 col-sm-3 mb-2">
                     <%= form.label :fuel_type, 'Fuel Type', class: 'col-form-label' %>
-                    <%= form.select :fuel_type, 
-                                    ['Gasoline', 'Diesel'], 
-                                    { selected: params[:fuel_type], include_blank: 'Fuel Type' }, 
+                    <%= form.select :fuel_type,
+                                    ['Gasoline', 'Diesel'],
+                                    { selected: params[:fuel_type], include_blank: 'Fuel Type' },
                                     class: 'form-control' %>
                 </div>
                 <div class="col-12 col-sm-3 mb-2">
@@ -189,7 +189,7 @@
                     <%= form.text_field :product_name, value: params[:product_name], class: 'form-control' %>
                 </div>
             </div>
-            
+
             <!-- Second Row -->
             <div class="row align-items-center">
                 <div class="col-12 col-sm-3 mb-2">
