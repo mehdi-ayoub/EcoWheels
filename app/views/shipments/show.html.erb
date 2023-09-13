@@ -3,8 +3,8 @@
 <%# <% content_for :meta_image, cl_image_path(@shipment.end_location) if @shipment.end_location %>
 
 <%= render "shared/master_navbar" %>
-          <div class="container-banner">
-          </div>
+<div class="container-banner">
+  </div>
 <div class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
       <ul class="navbar-nav me-auto">
@@ -14,64 +14,66 @@
       </ul>
   </div>
 </div>
- <section class="section">
-  <div class="container">
-    <nav class="level">
-      <!-- Left side -->
-      <div class="level-left">
-        <p class="level-item">
-          <strong><h2 style="color: green">Shipment of the <%= @shipment.product_name %></h2></strong>
+
+<div class="container">
+
+  <div class="row">
+    <div class="showpage-card-container">
+      <div class="showpage-card u-clearfix">
+        <div class="showpage-card-body">
+          <span class="card-number card-circle subtle">01</span>
+          <span class="card-author subtle">The shipment product</span>
+          <%# <div class="row"> %>
+
+          <!-- Left side -->
+          <%# <div class="col-6"> %>
+
+          <strong><h2 class="showpage-card-title"><%= @shipment.product_name %></h2></strong>
           <br>
+          <span class="showpage-card-description card-author subtle">
             <ul style="list-style-type:none;">
-              <% @shipment.photos.each do |photo| %>
-                <%= cl_image_tag url_for(photo), height: 250, width: 200, crop: :fill%>
-              <% end %>
-              <li> City: <%= @shipment.city %></li>
-              <li> Distance traveled: <%= @shipment.distance_traveled %></li>
-              <li> Vehicle type: <%= @shipment.vehicle_type %></li>
-              <li> Fuel type: <%= @shipment.fuel_type %></li>
-              <li> Fuel consumption: <%= @shipment.fuel_consumption %></li>
-              <li> Shipment start: <%= @shipment.shipment_start %></li>
-              <li> Shipment end: <%= @shipment.shipment_end %></li>
-              <li> CO2 emissions: <%= @shipment.co2_emissions %></li>
-              <li> User ID: <%= @shipment.user_id %></li>
-              <li> Created at: <%= @shipment.created_at %></li>
-              <li> Updated at: <%= @shipment.updated_at %></li>
+              <li> City:<p> <%=@shipment.city %></p></li>
+              <li> Distance traveled: <p><%= @shipment.distance_traveled %> </p></li>
+              <li> Vehicle type: <p> <%= @shipment.vehicle_type %> </p></li>
+              <li> Fuel type: <p> <%= @shipment.fuel_type %> </p></li>
+              <li> Fuel consumption: <p> <%= @shipment.fuel_consumption %></p></li>
+              <li> Shipment start: <p> <%= @shipment.shipment_start %></p></li>
+              <li> Shipment end: <p><%= @shipment.shipment_end %></p></li>
+              <li> CO2 emissions: <p><%= @shipment.co2_emissions %></p></li>
               <small class="opacity-50 text-nowrap">Last updated <%= time_ago_in_words @shipment.updated_at %></small>
             </ul>
-          <%= link_to shipment_path(@shipment), data: { controller: "delete-confirmation", action: "click->delete-confirmation#confirm" }, class: 'btn btn-outline-danger' do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-          <%= link_to edit_shipment_path(@shipment) do %>
-            <i class="fa-solid fa-pencil"></i>
-          <% end %>
-        </p>
+            <%= link_to shipment_path(@shipment), data: { controller: "delete-confirmation", action: "click->delete-confirmation#confirm" }, class: 'btn btn-outline-danger' do %>
+              <i class="fa fa-pencil fa-trash teal-color"></i>
+            <% end %>
+            <%= link_to edit_shipment_path(@shipment) do %>
+              <i class="fa fa-pencil teal-color"></i>
+            <% end %>
+          </span>
+          <div class="card-read"></div>
+            <span class="card-tag card-circle subtle">C</span>
+
+          </div>
+        <%# <% @shipment.photos.each do |photo| %>
+          <%= cl_image_tag url_for(@shipment.photos.sample), height: 450, width: 400, crop: :fill, class: 'd-block mx-auto', class: "card-media" %>
+        <%# <% end %>
+        </div>
+        <div class="showpage-card-shadow"></div>
       </div>
-    </nav>
   </div>
-</section>
 
-<section class="section">
-  <div class="container">
-    <nav class="level">
-  <div class="d-flex gap-3 py-3">
-  <%= link_to "Return to the previous page", shipments_path, class: "btn btn-outline-secondary" %>
-</div>
-  </nav>
-</div>
-</section>
 
-<section class="section">
-  <div class="container">
-    <nav class="level-right">
-<%# ------------------------map-------------------------------- %>
-<div class= "map-container"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-
-</div>
-<%# ------------------------end of map---------------------------- %>
-    </nav>
+  <div class="card-container2">
+    <div class="row">
+      <div class="col-12 my-4">
+        <div class= "map-container"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+        <div class="showpage-card-shadow"></div>
+        <%# <%= link_to "Return to the previous page", shipments_path, class: "btn btn-outline-secondary my-3" %>
+      </div>
+    </div>
   </div>
-</section>
+
+</div>
