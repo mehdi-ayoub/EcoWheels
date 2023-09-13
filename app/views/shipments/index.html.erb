@@ -107,6 +107,77 @@
 
 <%# ------------ End of second container in the index page ---------- %>
 
+<div class="container-index-new-1">
+
+
+  <div class="image-in-index">
+
+    <%= image_tag('https://t4.ftcdn.net/jpg/04/90/04/55/360_F_490045515_Yad58zVeAXoxmDTrpW9w2FhY1JNzIoGh.jpg', class: 'new-image-index-2') %>
+  </div>
+  <%# first box %>
+
+  <div class="innerboxindex">
+  
+    <div class="index-new-card-1">
+
+      <div class="index-new-title-1">
+        <h4> Distance Traveled </h4>
+        <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
+      </div>
+
+      <div class="emission-image-index">
+        <%= image_tag('https://static.thenounproject.com/png/1003828-200.png', alt: 'Root image - idex', class: 'root-image-index') %>
+      </div>
+
+    </div>
+
+    <%# second box %>
+
+    <div class="index-new-card-1">
+
+      <div class="index-new-title-1">
+        <h4> Co2 Emissions </h4>
+        <p class="card-text text-center"> <%= @shipments.sum(:co2_emissions).round(1) %> kg </p>
+      </div>
+
+      <div class="emission-image-index">
+        <%= image_tag('https://media.istockphoto.com/id/1396972365/vector/carbon-dioxide-emission-reduction-pixel-perfect-editable-stroke-line-art-icon.jpg?s=612x612&w=0&k=20&c=s1pm9ZN-LE5CuVg3rwtN5RKWnFrwWQ_lPynx2B3X4C0=', class: 'emission-image-index') %>
+      </div>
+
+    </div>
+
+    <%# third box %>
+    <div class="index-new-card-1">
+
+      <div class="index-new-title-1">
+        <h4> Fuel Consumption </h4>
+        <p class="card-text text-center"> <%= @shipments.sum(:fuel_consumption).round(1) %> L </p>
+      </div>
+
+      <div class="emission-image-index">
+        <%= image_tag('gas-station.png', class: 'gas-image-index') %>
+      </div>
+
+    </div>
+
+    <%# forth box  %>
+    <div class="index-new-card-1">
+
+      <div class="index-new-title-1">
+        <h4> Total Distance Traveled </h4>
+        <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
+      </div>
+
+      <div class="emission-image-index">
+        <%= image_tag('https://static.thenounproject.com/png/1003828-200.png', alt: 'Root image - idex', class: 'root-image-index') %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%# ------------ start of third container in the index page ---------- %>
+
 <div class="container-index mt-5">
   <div class="row">
     <div class="col" data-controller="filter">
