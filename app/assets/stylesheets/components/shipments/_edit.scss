@@ -34,11 +34,11 @@
   display: flex;
   justify-content: center;
   // flex-direction: row;
-  justify-content: center;
   // margin-left: 10rem;
   border-radius: 10px;
-  width: 100%;
-  margin-left: 15rem;
+  height: 200px;
+  width: 103%;
+  margin-left: 1rem;
 }
 
 .container-bottom-edit {
@@ -46,15 +46,18 @@
   background-color: rgb(215, 232, 207);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-top: 7rem;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: space-between;
+  width: 50%;
+  margin-left: 2rem;
 }
 
 .container-bottom-edit-2 {
   background-image: url('trees_background.jpg');
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin-right: 3rem;
+  width: 45%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-content: center;
 }
 
 h1 {
