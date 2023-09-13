@@ -38,7 +38,7 @@
   width: 640px;
   height: 620px;
   border: 1px solid rgb(222, 221, 221);
-  background-color: #6BA25F;
+  background-color: #6ba25f;
   color: white;
   font-size: large;
   border-top-right-radius: 20px;
@@ -58,7 +58,7 @@
     flex-direction: column;
     width: 640px;
     height: 620px;
-    border: 2px solid green;
+    border: 2px solid #6ba25f;
     border-right: none;
 
     .new-image2 {
@@ -68,7 +68,7 @@
 
     h3 {
       font-size: 25px;
-      margin: 10px 25px 20px 110px;
+      margin: 10px 25px 20px 55px;
     }
   }
 
