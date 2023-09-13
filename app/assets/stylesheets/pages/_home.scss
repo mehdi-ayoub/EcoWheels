@@ -6,7 +6,7 @@
 
 // the container holding the navbar and the background pic
 .container-home {
-  background-image: url('homepageimage.jpg');
+  background-image: url('top-green-landscape.jpeg');
   background-size: cover;
   background-position: center;
   margin: auto;
@@ -56,7 +56,9 @@
 
 /* You can adjust this value between element */
 .nav-item {
+  font-family: "Playfair Display";
   margin-right: 10px;
+  color: black;
 }
 
 /* ----- navbar styling finished ------- */
@@ -93,6 +95,7 @@
 
 .form h2 {
   font-size: 24px; /* Adjust font size as needed */
+  font-family: "Playfair Display";
 }
 
 /* Styles for the result section */
@@ -101,7 +104,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #6ba25f;
+  background-color: #3B6239;
   color: white;
   border-right: 1px solid #292929;
   border-radius: 0 5px 5px 0;
@@ -112,11 +115,13 @@
 
   h3 p {
     margin: 50px;
+
   }
 
   p {
     font-size: 4rem;
     font-weight: 600;
+    font-family: "Work Sans";
   }
 }
 
@@ -142,16 +147,19 @@
   height: 400px;
   padding: 20px;
   text-align: left;
+  font-family: "Work Sans";
 }
 
 .homepage-text h2 {
   font-size: 3.57rem;
   font-weight: 700;
   margin-bottom: 20px;
+  font-family: "Playfair Display";
 }
 
 .homepage-text p {
   font-size: 20px;
+  font-family: "Work Sans";
 }
 
 /* Style for the image container */
@@ -175,7 +183,13 @@
   color: transparent; /* Make the text transparent */
 }
 
+.lead {
+  font-family: "Work Sans";
+}
 
+.btn {
+  font-family: "Playfair Display";
+}
 /* -------------------------  styling Done ----------------------------- */
 
 .thirdcontainer {
@@ -196,7 +210,7 @@
 .carousel-image {
   width: 100%;
   height: 100%;
-  object-fit: cover
+  object-fit: cover;
 }
 
 
