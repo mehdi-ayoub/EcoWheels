@@ -74,12 +74,12 @@
   align-items: center;
   margin-right: 100px;
 
-  .gas-image-index {
-    height: 90px;
-    width: 90px;
-    margin-right: 10px;
-    margin-left: 30px;
-  }
+  // .gas-image-index {
+  //   height: 90px;
+  //   width: 90px;
+  //   margin-right: 10px;
+  //   margin-left: 30px;
+  // }
 
 }
 
@@ -94,3 +94,111 @@
   border-radius: 5px;
   margin-left: 100px;
 }
+
+
+// Styling the second container in the index page where we have the calculations
+
+.container-index-new-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // background: linear-gradient(to bottom, #e7fae5, #f0f0f0);
+  margin: 10px;
+  border-radius: 5px;
+}
+.innerboxindex {
+  display: flex;
+  flex-direction: row;
+  // background-color: rgb(222, 245, 222);
+  // margin-top: 70px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 270px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.index-new-card-1 {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  height: 200px;
+  width: 323px;
+  // box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #c5f77f, rgb(237, 248, 229));
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.index-new-title-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // background-color: white;
+
+}
+
+.emission-image-index {
+
+  align-items: center;
+
+  .root-image-index {
+    height: 90px;
+    width: 90px;
+    margin-right: 10px;
+    margin-left: 30px;
+  }
+
+  .emission-image-index {
+    height: 90px;
+    width: 90px;
+    margin-right: 10px;
+    margin-left: 30px;
+  }
+
+
+  .gas-image-index {
+    height: 90px;
+    width: 90px;
+    margin-right: 10px;
+    margin-left: 30px;
+  }
+}
+
+
+.new-image-index-2 {
+  height: 206px;
+  margin-top: 10px;
+}
+
+
+.index-new-card-1:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+// .container-index-new-1 {
+//   animation: backgroundAnimation 10s linear infinite; /* Example animation */
+//   /* Add other container styles */
+// }
+
+// @keyframes backgroundAnimation {
+//   20% {
+//     background-color: white;
+//   }
+//   70% {
+//     background-color: #e7facc;
+//   }
+//   100% {
+//     background-color: white;
+//   }
+// }

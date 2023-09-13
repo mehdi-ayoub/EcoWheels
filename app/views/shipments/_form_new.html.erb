@@ -6,7 +6,7 @@
   <% end %>
   <%= simple_form_for @shipment, html: { id: "new_shipment" }, data: { controller: 'flatpickr sweet-alert' } do |f| %>
     <div class="form-field product-name">
-      <%= f.input :product_name, input_html: { style: 'width: 600px;' } %>
+      <%= f.input :product_name, input_html: { style: 'width: 600px; text-align: left;' } %>
     </div>
     <div class="form-field">
       <div class="date-field">
