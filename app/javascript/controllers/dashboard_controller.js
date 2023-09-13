@@ -27,4 +27,5 @@ export default class extends Controller {
     event.currentTarget.classList.toggle("animate")
 
   }
+
 }
