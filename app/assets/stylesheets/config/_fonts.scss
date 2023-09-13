@@ -1,13 +1,12 @@
 // Import Google fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Arimo&family=Bebas+Neue&family=Rubik:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Arimo&family=Bebas+Neue&family=Mukta:wght@300&family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;500&family=Mukta:wght@300&family=Playfair+Display&family=Rubik:wght@300&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Manrope";
-$headers-font: "Manrope";
-$font: "Manrope";
+$body-font: "Cormorant Garamond";
+$headers-font: "Playfair Display";
+$font: "Cormorant Garamond";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {

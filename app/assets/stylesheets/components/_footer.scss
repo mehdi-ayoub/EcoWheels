@@ -1,15 +1,12 @@
 
-
-.wrapper-footer {
+.footer-page {
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
-  margin-top: 60px
-}
+  margin-top: 60px;
+  font-family: "Playfair Display";
 
-.wrapper-footer {
-  display: grid;
-  min-height: 100vh;
-  grid-template-rows: auto 1fr auto;
-  margin-top: 60px
+  p {
+    font-family: "Playfair Display";
+  }
 }

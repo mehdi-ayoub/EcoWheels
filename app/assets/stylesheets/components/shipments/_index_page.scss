@@ -16,16 +16,16 @@
 }
 
 .title-index h4 p {
-  font-family: "Manrope";
+  font-family: "Playfair Display";
 }
 /* Style table header */
 .thead-dark th {
-  background-color: #e0f2f1;
+  background-color: #3B6239;
 
   a {
     text-decoration: none;
     color: white;
-    font-family: "Manrope";
+    font-family: "Playfair Display";
   }
 }
 
@@ -34,20 +34,20 @@
   a {
     text-decoration: none;
     color: black;
-    font-family: "Manrope";
+    font-family: "Work Sans";
   }
 }
 
 
 /* Style table header on hover */
 .thead-dark th:hover {
-  background-color: #579153;;
+  background-color: #316f3a;
 
 }
 
 /* Style table rows on hover */
 .table tbody tr:hover {
-  background-color: #3C7D45
+  background-color: #316f3a;
 }
 
 /* Style the container */
@@ -61,17 +61,24 @@
 
 /* adding margin to the add shipment  */
 
+.mb-2 {
+  font-family: "Work Sans";
+}
+
+.align-middle {
+  font-family: "Work Sans";
+}
+
 .custom-bg-blue {
   margin-top: 8px;
-  background-color: #65ba5b;
+  background-color: #3B6239;
   color: white;
   transition: background-color 0.3s ease;
-  font-family: "Manrope";
-
+  font-family: "Playfair Display";
 }
 
 .custom-bg-blue:hover {
-  background-color: #3c7d45;
+  background-color: #316f3a;
   color: white;
   font-family: "Manrope";
 }
@@ -102,7 +109,7 @@
 
 .thead-dark {
   th {
-    background-color: #65ba5b;
+    background-color: #8AA138;
     border-width: 0;
   }
 }
