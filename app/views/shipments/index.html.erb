@@ -8,8 +8,15 @@
 <div class="collapse mb-4" id="filterForm">
   <%= form_with url: shipments_path, method: :get, local: true do |form| %>
     <%= form.text_field :city, value: params[:city], placeholder: 'Destination', class: 'form-control mb-2' %>
-    <%= form.text_field :vehicle_type, value: params[:vehicle_type], placeholder: 'Vehicle Type', class: 'form-control mb-2' %>
-    <%= form.text_field :fuel_type, value: params[:fuel_type], placeholder: 'Fuel Type', class: 'form-control mb-2' %>
+    <%= form.select :vehicle_type, 
+                    ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], 
+                    { selected: params[:vehicle_type], include_blank: 'Vehicle Type' }, 
+                    class: 'form-control mb-2' %>
+
+    <%= form.select :fuel_type, 
+                    ['Gasoline', 'Diesel'], 
+                    { selected: params[:fuel_type], include_blank: 'Fuel Type' }, 
+                    class: 'form-control mb-2' %>
     <%= form.text_field :product_name, value: params[:product_name], placeholder: 'Items', class: 'form-control mb-2' %>
     <%= form.date_field :shipment_start, value: params[:shipment_start], placeholder: 'Order Date', class: 'form-control mb-2' %>
     <%= form.date_field :shipment_end, value: params[:shipment_end], placeholder: 'Delivery Date End', class: 'form-control mb-2' %>
