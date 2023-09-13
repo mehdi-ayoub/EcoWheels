@@ -7,9 +7,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 25rem;
+  margin-left: 30rem;
   padding-left: 1.25rem;
   padding-bottom: 1rem;
+  background: #3B6239;;
+
 }
 
 .container-edit-f {
@@ -17,7 +19,8 @@
 }
 
 .title-page {
-  font-family: "Manrope";
+  font-family: "Playfair Display";
+  color: white;
 }
 
 // .title-page-up {
@@ -27,51 +30,63 @@
 //     text-shadow: 2px 2px;
 // }
 
-.container-edit-image {
-  // background-image: url('eco_truck.jpeg');
-  display: block;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  // flex-direction: row;
-  // margin-left: 10rem;
-  border-radius: 10px;
-  // height: 200px;
-  // width: 60%;
-  // height: 60%;
-}
+// .container-edit-image {
+//   // background-image: url('eco_truck.jpeg');
+//   display: block;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   display: flex;
+//   justify-content: center;
+//   // flex-direction: row;
+//   border-radius: 10px;
+//   // height: 200px;
+//   // width: 60%;
+//   // height: 60%;
+//   background-color: #3B6239;
+//   border-radius: 10px;
+// }
 
-.container-bottom-edit {
-  display: block;
-  background-color: #3B6239;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin-top: 7rem;
-  width: 45%;
-  margin-left: 25em;
-  color: white;
-  text-align: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  margin-bottom: 5rem;
+// .container-bottom-edit {
+//   display: block;
+//   background-color: #3B6239;
+//   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+//   width: 70%;
+//   height: 73.95%;
+//   margin-left: 15em;
+//   color: white;
+//   text-align: center;
+//   padding-top: 2rem;
+//   padding-bottom: 2rem;
+//   padding-left: 2rem;
+//   padding-right: 2.5rem;
+//   margin-bottom: 5rem;
+//   display: grid;
+//   grid-template-columns: 2fr;
+//   font-weight: 60px;
 
-  h6 {
-    padding-top: 2rem;
-    color: white;
-    font-family: "Work Sans";
-    text-align: left;
-  }
-}
+//   h6 {
+//     padding-top: 2rem;
+//     color: white;
+//     font-family: "Work Sans";
+//     text-align: left;
+//     text-indent: 10px;
+//   }
+// }
 
 .container-bottom-edit-2 {
   background-image: url('trees_background.jpg');
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 45%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   justify-content: center;
+  display: grid;
+  grid-template-columns: 2fr;
+  height: 70vh;
+  width: 70%;
+  margin-bottom: 5rem;
+  margin-left: 20rem;
 }
 
 h1 {
