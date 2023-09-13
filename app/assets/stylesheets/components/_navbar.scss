@@ -1,17 +1,17 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  font-family: "Manrope";
+  font-family: "Playfair Display";
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  font-family: "Manrope";
+  font-family: "Playfair Display";
 }
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
-  font-family: "Manrope";
+  font-family: "Playfair Display";
 }
 
 .search-box {
@@ -19,5 +19,14 @@
 }
 
 .btn-primary {
-  background-color: green;
+  background-color: #3B6239
+}
+
+.nav-link {
+  font-family: "Playfair Display";
+}
+
+.nav-item {
+  font-family: "Playfair Display";
+  color: black;
 }
