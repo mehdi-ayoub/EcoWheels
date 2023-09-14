@@ -235,8 +235,13 @@
   // margin: 50px;
   // width: 1000px;
   // height: 500px;
-  display: flex;
+  width: 800px;
+  display: grid;
+  margin: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 35px;
 }
+  // d-flex justify-content-between align-items-center flex-wrap
 
 // .carousel-item {
 //   width: 600px;
@@ -263,10 +268,14 @@
 .column {
   float: left;
   width: 30%;
+  //flex: 30%;
   padding: 5px;
 }
-img {
-  width: 100%;
+
+.dashboard-icon2 {
+  width: 130px;
+  height: 100%;
+  //margin-left: 16px;
 }
 
 
