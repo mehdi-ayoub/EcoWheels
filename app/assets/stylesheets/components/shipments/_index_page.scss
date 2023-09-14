@@ -114,3 +114,42 @@
     border-width: 0;
   }
 }
+
+
+
+.status-index-button-new {
+  margin-top: 8px;
+  background-color: #3B6239;
+  color: white;
+  transition: background-color 0.3s ease;
+  font-family: "Playfair Display";
+  width: 200px;
+  padding: 5px;
+  appearance: none;
+}
+
+
+.btn-yellow {
+  background-color: #dbd565;
+  font-family: "Playfair Display";
+  color: black;
+
+  .btn-yellow:hover {
+    background-color: #dbd565 !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
+
+.btn-green {
+  background-color: #3B6239;
+  color: white;
+  font-family: "Playfair Display";
+
+  .btn-green:hover {
+  background-color: #3B6239;
+  box-shadow: none;
+  transform: none;
+  }
+
+}

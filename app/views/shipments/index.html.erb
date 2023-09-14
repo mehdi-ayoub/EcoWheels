@@ -21,7 +21,7 @@
     <div class="nav-item search-box">
       <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
         <div class="search-input">
-          <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Track your shipment" %>
+          <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find your shipment" %>
           <%= f.submit "", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
         </div>
       <% end %>
@@ -30,6 +30,11 @@
        </div>
     </div>
 
+    <div class="nav-item">
+        <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
+            Filter
+        </a>
+    </div>
 
 
   </div>
@@ -180,33 +185,28 @@
             </div>
 
     <!-------------This line code covers the ( Add Shipment) button section in the index page  ------------->
-
             <div data-controller="add-shipment" class="mb-2">
-                <%# <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue add-shipment-button-index' %> 
-                <!-- Add a button to open the popup form -->
-                <button class= 'btn btn-light custom-bg-blue' data-action="click->add-shipment#open">Add New Shipment</button>
+              <button class='btn btn-light custom-bg-blue add-shipment-button' data-action="click->add-shipment#open">Add New Shipment</button>
 
-                <!-- The modal containing the form, initially hidden -->
-                <div data-add-shipment-target="modal" class="modal-overlay">
-                    <div class="modal-content">
-                        <div class="col-lg-6">
-                            <div class="container-card-edit" style="width: 40rem; mt-4; pl-4; p-1;">
-                                <div class="card-edit" style="m-0 auto; mt-3;">
-                                    <div class="title-page" style="mt-2; mb-1; ml-2; text-center">
-                                        <h1>Add Your Shipment</h1>
-                                    </div>
-                                    <div class="card-form-edit" style="mt-5; ml-4; p-0 auto;">
-                                        <%= render 'form_modal', shipment: @shipment %>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add a button or element to close the modal -->
-                        <button class="close-button-index-form" data-action="click->add-shipment#close">
-                          <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
+              <div data-add-shipment-target="modal" class="modal-overlay">
+                  <div class="modal-content">
+                      <div class="new-container-holding-form">
+                          <div class="container-card-edit card-size">
+                              <div class="card-edit card-position">
+                                  <div class="title-pag title-style title-index-form-new">
+                                      <h1>Add Your Shipment</h1>
+                                  </div>
+                                  <div class="card-form-edit form-style">
+                                      <%= render 'form_modal', shipment: @shipment %>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <button class="close-button-index-form" data-action="click->add-shipment#close">
+                        <i class="fas fa-times"></i>
+                      </button>
+                  </div>
+              </div>
             </div>
 
     <!--------------------------------- End of the line code -------------------------------->
@@ -332,7 +332,7 @@
                   <%= form_for(shipment, url: shipment_path(shipment), method: :patch) do |f| %>
                     <%= hidden_field_tag :_method, 'patch' %>
                     <%= f.select :status, Shipment.statuses.keys, {},
-                        class: 'form-control',
+                        class: "btn btn-light status-index-button-new #{'btn-yellow' if shipment.status == 'scheduled'} #{'btn-green' if shipment.status == 'completed'}",
                         data: {
                           target: "status.select",
                           action: "change->status#updateStatus"

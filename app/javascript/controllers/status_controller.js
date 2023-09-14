@@ -4,12 +4,12 @@ import { Controller } from "@hotwired/stimulus";
 const getMetaValue = (name) =>
   document.head.querySelector(`meta[name="${name}"]`)?.getAttribute("content") ?? null;
 
-
 export default class extends Controller {
   static targets = ["select"];
 
   connect() {
-    console.log('Status Controller is connected')
+    console.log('Status Controller is connected');
+    this.updateButtonColor(); // Update the button color on connect
   }
 
   updateStatus(event) {
@@ -24,7 +24,7 @@ export default class extends Controller {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRF-Token': getMetaValue("csrf-token"),
-        'Accept': 'application/json'  // Make sure to add this
+        'Accept': 'application/json'
       },
       body: JSON.stringify({ shipment: { status: statusValue } })
     })
@@ -32,11 +32,9 @@ export default class extends Controller {
     .then(data => {
       if (data.status === "success") {
         const shipmentRow = document.getElementById(`shipment-${shipmentId}`);
-        console.log("Selected Row:", shipmentRow);
 
         if (shipmentRow) {
           shipmentRow.remove();
-          console.log("Shipment row removed.");
         } else {
           console.log("Shipment row NOT found.");
         }
@@ -47,5 +45,23 @@ export default class extends Controller {
     .catch(error => {
       console.error("There was an error:", error);
     });
+
+    this.updateButtonColor(); // Update the button color after changing status
+  }
+
+  updateButtonColor() {
+    const selectedStatus = this.selectTarget.value;
+    this.selectTarget.className = '';  // Reset all classes
+    this.selectTarget.classList.add('btn', 'btn-light', 'status-index-button-new');
+
+    switch (selectedStatus) {
+      case 'scheduled':
+        this.selectTarget.classList.add('btn-yellow');
+        break;
+      case 'completed':
+        this.selectTarget.classList.add('btn-green');
+        break;
+      // ... add other cases if needed
+    }
   }
 }
