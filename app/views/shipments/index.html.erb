@@ -76,8 +76,8 @@
     <div class="index-new-card-1">
 
       <div class="index-new-title-1">
-        <h4> Distance Traveled </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
+        <h4> Mileage </h4>
+        <p class="card-text-new"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
       </div>
 
       <div class="emission-image-index">
@@ -92,7 +92,7 @@
 
       <div class="index-new-title-1">
         <h4> Co2 Emissions </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:co2_emissions).round(1) %> kg </p>
+        <p class="card-text-new "> <%= @shipments.sum(:co2_emissions).round(1) %> kg </p>
       </div>
 
       <div class="emission-image-index">
@@ -105,8 +105,8 @@
     <div class="index-new-card-1">
 
       <div class="index-new-title-1">
-        <h4> Fuel Consumption </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:fuel_consumption).round(1) %> L </p>
+        <h4> Fuel efficiency </h4>
+        <p class="card-text-new "> <%= @shipments.sum(:fuel_consumption).round(1) %> L </p>
       </div>
 
       <div class="emission-image-index">
@@ -119,8 +119,8 @@
     <div class="index-new-card-1">
 
       <div class="index-new-title-1">
-        <h4> Total Shipments </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
+        <h4> Shipments </h4>
+        <p class="card-text-new "> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
       </div>
 
       <div class="emission-image-index">
@@ -242,10 +242,27 @@
                 <td class="align-middle"><%= shipment.product_name %></td>
                 <td class="align-middle"><%= shipment.shipment_start %></td>
                 <td class="align-middle"><%= shipment.shipment_end %></td>
-                <td class="align-middle"><%= shipment.co2_emissions %></td>
+
+                <td class="align-middle">
+                  <div class="emissions-container">
+                    <% if shipment.co2_emissions > 300 %>
+                      <i class="fas fa-arrow-up" style="color: red;"></i>
+                      <span style="color: red; font-weight: lighter;">
+                        <%= shipment.co2_emissions.round(1) %> Kg
+                      </span>
+                    <% else %>
+                      <i class="fas fa-arrow-down" style="color: green;"></i>
+                      <span style="color: green; font-weight: lighter;">
+                        <%= shipment.co2_emissions.round(1) %> Kg
+                      </span>
+                    <% end %>
+                  </div>
+                </td>
+
+
                 <td class="align-middle">
                   <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
-                    <%= shipment.distance_traveled.round(2) %> km
+                    <%= shipment.distance_traveled.round(1) %> km
                   <% else %>
                     N/A
                   <% end %>
