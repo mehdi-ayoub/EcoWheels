@@ -1,36 +1,137 @@
-.modal-overlay {
-  display: none;  /* Initially hidden */
+// .modal-overlay {
+//   display: none;  /* Initially hidden */
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   background: rgba(0, 0, 0, 0.7);  /* Semi-transparent black */
+//   z-index: 1000;  /* Ensures it sits on top of all other content */
+//   justify-content: center;
+//   align-items: center;  /* Flexbox for centering the modal content */
+
+// }
+
+// .modal-content {
+
+// }
+
+// .title-index-form-new {
+//   margin-top: 20px !important;
+//   color: white !important;
+// }
+
+// .card-position-index-new-1 {
+//   padding: 20px;
+// }
+
+// .close-button-index-form {
+//   display: inline-block;
+//   // background-color: #575656;
+//   // color: white;
+//   font-weight: bold;
+//   text-align: center;
+//   border: none;
+//   border-radius: 50%;
+//   width: 30px;
+//   height: 30px;
+//   line-height: 30px;
+//   cursor: pointer;
+//   position: absolute;
+//   right: 13px;
+//   top: 10px;
+//   padding: 0;
+// }
+
+// // .close-button-index-form:hover {
+// //   background-color: #e62117; /* Darker red on hover */
+// // }
+
+// .close-button-index-form i {
+//   line-height: 30px; /* Align the icon vertically in the center */
+// }
+
+
+// .new-container-holding-form {
+//   width: 151% !important;
+//   height: 151% !important;
+// }
+
+// .container-card-edit {
+//   width: 650px;
+// }
+
+
+
+//------------------ new css for the form inthe index page ----------------------------------------
+
+/*  container for the section holding the button and the modal */
+
+.shipment-container-final {
+  position: relative; /* To allow child elements with absolute positioning to use this as reference */
+  margin: 1rem 0; /* Spacing above and below the container */
+}
+
+/* Button that triggers the modal */
+.shipment-trigger-btn-final {
+  background-color: #3B6239; /* Blue color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.shipment-trigger-btn-final:hover {
+  background-color: #7faa63; /* Darker blue for hover effect */
+}
+
+/* Full page overlay for modal */
+.overlay-final {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);  /* Semi-transparent black */
-  z-index: 1000;  /* Ensures it sits on top of all other content */
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
   justify-content: center;
-  align-items: center;  /* Flexbox for centering the modal content */
-
+  align-items: center;
 }
 
-.modal-content {
+/* Main modal container */
+
+.modal-wrapper-final {
   padding: 20px;
   border-radius: 8px;
-  width: 47%;
-  height: 80%;
-  max-width: 100%;
-  max-height: 100%;
-  overflow-y: auto;
+  background-color: #3B6239;;
+  width: 70%;
+  max-width: 650px;
+  max-height: 90%;
+  overflow-y: auto; /* Allow scroll if content is more */
+  position: relative; /* To position the close button */
 }
 
-.title-index-form-new {
-  margin-top: 20px !important;
-  color: white !important;
+.modal-header-final {
+  text-align: center;
+  margin-bottom: 1rem;
+
+    h1 {
+      color: white;
+    }
 }
 
-.close-button-index-form {
+.form-container-final {
+
+}
+
+// the icon having the x to close the form
+
+.close-btn-final {
   display: inline-block;
-  // background-color: #575656;
-  // color: white;
+  background-color: #575656;
+  color: white;
   font-weight: bold;
   text-align: center;
   border: none;
@@ -40,25 +141,44 @@
   line-height: 30px;
   cursor: pointer;
   position: absolute;
-  right: 13px;
+  right: 10px; /* Positioned on the top-right */
   top: 10px;
   padding: 0;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-// .close-button-index-form:hover {
-//   background-color: #e62117; /* Darker red on hover */
-// }
+.close-btn-final:hover {
+  background-color: #e62117; /* Darker red for hover effect */
+}
 
-.close-button-index-form i {
+.close-btn-final i {
   line-height: 30px; /* Align the icon vertically in the center */
 }
 
 
-.new-container-holding-form {
-  width: 151% !important;
-  height: 151% !important;
+// changing the filter icon position
+
+.custom-bg-blue {
+  // margin-top: 8px;
+  background-color: #3B6239;
+  color: white;
+  transition: background-color 0.3s ease;
+  font-family: "Playfair Display";
+  padding: 9px 12px 8px 12px;
+  margin-top: 11px;
 }
 
-.container-card-edit {
-  width: 650px;
+// div carrying the filter int he index page
+
+.filter-button-index-final {
+  align-items: center;
+}
+
+
+
+.filter-and-add-shipment {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }

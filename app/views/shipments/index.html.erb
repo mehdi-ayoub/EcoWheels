@@ -30,11 +30,11 @@
        </div>
     </div>
 
-    <div class="nav-item">
+    <%# <div class="nav-item">
         <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
             Filter
         </a>
-    </div>
+    </div> %>
 
 
   </div>
@@ -167,7 +167,7 @@
 <div class="container-index mt-5">
   <div class="row">
     <div class="col" data-controller="filter">
-      <div class="d-flex justify-content-between">
+      <div>
         <div class="title-index">
           <div class="status-buttons">
             <h4 class="mb-1">Shipments Status</h4>
@@ -177,48 +177,49 @@
             <%# <%= link_to "All", shipments_path, class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
 
           </div>
+
           <div class="filter-and-add-shipment">
-            <div class="nav-item">
+
+            <div class="nav-item filter-button-index-final">
               <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
                   Filter
               </a>
             </div>
 
     <!-------------This line code covers the ( Add Shipment) button section in the index page  ------------->
-            <div data-controller="add-shipment" class="mb-2">
-              <button class='btn btn-light custom-bg-blue add-shipment-button' data-action="click->add-shipment#open">Add New Shipment</button>
 
-              <div data-add-shipment-target="modal" class="modal-overlay">
-                  <div class="modal-content">
-                      <div class="new-container-holding-form">
-                          <div class="container-card-edit card-size">
-                              <div class="card-edit card-position">
-                                  <div class="title-pag title-style title-index-form-new">
-                                      <h1>Add Your Shipment</h1>
-                                  </div>
-                                  <div class="card-form-edit form-style">
-                                      <%= render 'form_modal', shipment: @shipment %>
-                                  </div>
-                              </div>
-                          </div>
+            <div data-controller="add-shipment" class="shipment-container-final mb-2">
+              <!-- Trigger Modal Button -->
+              <button class='btn btn-light shipment-trigger-btn-final' data-action="click->add-shipment#open">Add New Shipment</button>
+
+              <!-- Modal Overlay -->
+              <div data-add-shipment-target="modal" class="overlay-final">
+                  <!-- Modal Content Wrapper -->
+                  <div class="modal-wrapper-final">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header-final">
+                          <h1>Add Your Shipment</h1>
                       </div>
-                      <button class="close-button-index-form" data-action="click->add-shipment#close">
-                        <i class="fas fa-times"></i>
+
+                      <!-- Form Section -->
+                      <div class="form-container-final">
+                          <%= render 'form_modal', shipment: @shipment %>
+                      </div>
+
+                      <!-- Modal Close Button -->
+                      <button class="close-btn-final" data-action="click->add-shipment#close">
+                          <i class="fas fa-times"></i>
                       </button>
                   </div>
               </div>
-            </div>
+          </div>
+
 
     <!--------------------------------- End of the line code -------------------------------->
 
           </div>
-
-
         </div>
-
-
-
-
       </div>
 
       <% if flash[:notice] %>

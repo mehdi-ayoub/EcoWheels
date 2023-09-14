@@ -45,11 +45,11 @@
 
           <div class="mt-3">
             <%= link_to shipment_path(@shipment), data: { controller: "delete-confirmation", action: "click->delete-confirmation#confirm" }, class: 'btn btn-outline-danger bin-icon' do %>
-              <i class="fa fa-pencil fa-trash"></i>
+              <i class="fa fa-pencil fa-trash teal-color"></i>
             <% end %>
-            <%= link_to edit_shipment_path(@shipment), class: 'btn btn-outline-primary ml-2' do %>
-              <i class="fa fa-pencil"></i>
-            <% end %>
+            <%# <%= link_to edit_shipment_path(@shipment), class: 'btn btn-outline-primary ml-2' do %>
+              <i class="fa fa-pencil teal-color"></i>
+            <%# <% end %> 
           </div>
             <div class="card-read"></div>
             <span class="card-tag card-circle subtle">C</span>
