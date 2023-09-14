@@ -4,13 +4,13 @@
 }
 
 .card-image-text {
-  padding-top: 4rem;
-  padding-left: 2.5rem;
+  padding-top: 2rem;
+  padding-left: 2rem;
   font-family: "Playfair Display";
   font-size: 30px;
   h6 {
-    padding-top: 2.5rem;
-    line-height: 4rem;
+    padding-top: 1rem;
+    line-height: 3rem;
   }
 }
 
@@ -24,18 +24,15 @@
   justify-content: center;
   display: grid;
   grid-template-columns: 2fr;
-  height: 91.5vh;
+  height: 62.5vh;
   width: 95%;
   margin-bottom: 5rem;
   margin-left: 5rem;
   // margin-right: rem;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
 }
 
 h1 {
   font-family: "Playfair Display";
-  margin-top: 2rem;
   font-weight: bold;
 
 a {
