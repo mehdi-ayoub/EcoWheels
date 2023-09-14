@@ -60,44 +60,39 @@
   <div class="result" id="result_frame" data-turbo-frame="result_frame">
     <%= render partial: 'pages/result_partial' %>
   </div>
+
 </div>
 
 <%# <%= image_tag 'home-page-animal.jpg', alt: 'Home Page', class: 'card-img2' %>
 
-  <div class="thirdphoto">
+  <%# <div class="thirdphoto">
 
-  </div>
+  </div> %>
 
 
  <%# Carousel container %>
-
 <div class="thirdcontainer">
+<%# d-flex justify-content-between align-items-center flex-wrap %>
+      <div class="column">
+        <%= image_tag 'avatar6.JPG', alt: '', class: 'dashboard-icon2' %>
+	    </div>
+	    <div class="column">
+	      <%= image_tag 'avatar2.png', alt: '', class: 'dashboard-icon2' %>
+	    </div>
+	    <div class="column">
+	      <%= image_tag 'avatar7.JPG', alt: '', class: 'dashboard-icon2' %>
+	    </div>
+      <div class="column">
+	      <%= image_tag 'avatar4.png', alt: '', class: 'dashboard-icon2' %>
+	    </div>
+      <div class="column">
+	     <%= image_tag 'avatar5.png', alt: '', class: 'dashboard-icon2' %>
+	    </div>
+      <div class="home-card-shadow"></div>
 
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <%= image_tag 'home-page-animal.jpeg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
-      </div>
-      <div class="carousel-item">
-        <%= image_tag 'forest-sky.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
-      </div>
-      <div class="carousel-item">
-        <%= image_tag 'homepageimage.jpg', alt: 'animal image home page', class: 'd-block w-100 carousel-image'%>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-  <div class="thirdtext">
+    <%# <div class="thirdtext">
     <h1> The Power Of Nature </h1>
     <h2> Photos Can Save The World </h2>
-  </div>
+  </div> %>
 
 </div>

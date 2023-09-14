@@ -99,7 +99,7 @@
 
 .card-read {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 50px;
   font-weight: 700;
   letter-spacing: 6px;
   margin: 5px 0 20px;
@@ -127,6 +127,9 @@
 .card-media{
   margin-left: 150px;
   //float: right;
+  margin-top: 190px;
+  //background-size: cover;
+
   background-size: cover;
   background-position: center;
 }
@@ -145,5 +148,5 @@
 }
 
 p {
-  word-spacing: 2px;
+  word-spacing: 1px;
 }
