@@ -21,3 +21,44 @@
 //   line-height: 22px;
 //   margin: 10px 0;
 // }
+
+/* rounded corners for containers */
+.container, .showpage-card, .map-container, .info-container, .map-wrapper {
+  border-radius: 10px; 
+}
+
+/* rounded corners for buttons */
+.btn {
+  border-radius: 5px; 
+}
+
+.bin-icon:hover {
+  color: teal;
+}
+
+.custom-padding-left {
+  padding-left: 10vh; 
+}
+
+.map-container {
+  width: 100%;
+  height: 75vh; // this means the map
+}
+
+.showpage-card {
+  width: 100%;
+  height: 75vh; // this means the card
+  display: flex;
+  flex-direction: column;
+}
+
+.last-update .text-muted {
+  margin-bottom: 20px;  // adjusted as will.
+}
+.bin-icons {
+  margin-top: 20px;
+}
+
+.showpage-card-body {
+  flex-grow: 1;
+}
