@@ -9,6 +9,7 @@
   z-index: 1000;  /* Ensures it sits on top of all other content */
   justify-content: center;
   align-items: center;  /* Flexbox for centering the modal content */
+
 }
 
 .modal-content {
@@ -47,5 +48,3 @@
 .close-button-index-form i {
   line-height: 30px; /* Align the icon vertically in the center */
 }
-
-
