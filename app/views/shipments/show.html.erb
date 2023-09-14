@@ -32,15 +32,14 @@
           <br>
           <span class="showpage-card-description card-author subtle">
             <ul style="list-style-type:none;">
-              <li> City:<p> <%=@shipment.city %></p></li>
-              <li> Distance traveled: <p><%= @shipment.distance_traveled %> </p></li>
-              <li> Vehicle type: <p> <%= @shipment.vehicle_type %> </p></li>
-              <li> Fuel type: <p> <%= @shipment.fuel_type %> </p></li>
-              <li> Fuel consumption: <p> <%= @shipment.fuel_consumption %></p></li>
-              <li> Shipment start: <p> <%= @shipment.shipment_start %></p></li>
-              <li> Shipment end: <p><%= @shipment.shipment_end %></p></li>
-              <li> CO2 emissions: <p><%= @shipment.co2_emissions %></p></li>
-              <small class="opacity-50 text-nowrap">Last updated <%= time_ago_in_words @shipment.updated_at %></small>
+              <li>📍 City 📍<p> <%=@shipment.city %></p></li>
+              <li>🌍 Distance 🌍<p><%= @shipment.distance_traveled %> </p></li>
+              <li>🚚 Vehicle 🚚<p> <%= @shipment.vehicle_type %> </p></li>
+              <li>⛽ Fuel ⛽<p> <%= @shipment.fuel_type %> </p></li>
+              <li>📈 Fuel Consump 📈<p> <%= @shipment.fuel_consumption %></p></li>
+              <li>📅 Start | End 📆<p><%= @shipment.shipment_start %> | <%= @shipment.shipment_end %></p></li>
+              <li>📊 CO2 📊<p><%= @shipment.co2_emissions %></p></li>
+              <small class="opacity-60 text-nowrap">Last updated <%= time_ago_in_words @shipment.updated_at %></small>
             </ul>
             <%= link_to shipment_path(@shipment), data: { controller: "delete-confirmation", action: "click->delete-confirmation#confirm" }, class: 'btn btn-outline-danger' do %>
               <i class="fa fa-pencil fa-trash teal-color"></i>

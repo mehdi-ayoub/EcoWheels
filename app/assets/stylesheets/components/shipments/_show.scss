@@ -48,6 +48,7 @@
   //display: inline-block;
   //float: left;
   width: 500px;
+  font-weight: 200%;
 }
 
 .card-number {
@@ -71,10 +72,10 @@
   letter-spacing: .5px;
   margin: 15px 0 0;
   text-transform: uppercase;
+  color: rgb(89, 89, 89);
 }
 
 .showpage-card-title {
-  //font-family: 'Cormorant Garamond', serif;
   font-size: 60px;
   font-weight: 300;
   line-height: 60px;
@@ -85,10 +86,15 @@
 
 .showpage-card-description {
   display: inline-block;
-  font-weight: 300;
+  font-weight: bold;
   line-height: 22px;
   margin: 10px 0;
+  color: rgb(89, 89, 89);
   //align-items: center;
+}
+
+.showpage-card-description {
+
 }
 
 .card-read {
