@@ -23,7 +23,7 @@
           </div>
 
           <div class="card-border-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">  <strong> <h4> Total of deliveries 🚚 </h4></strong> </div>
+            <div class="card-header">  <strong> <h4> Total deliveries 🚚 </h4></strong> </div>
             <div class="card-body text-dark">
               <h4 class="card-text-d text-center"> <%= @shipments.count %> </h4>
             </div>
@@ -51,7 +51,7 @@
             <h4 class="card-title-graph"> <strong>  <h4> Total Co2 emissions per product </h4> </strong> </h4>
           </div>
           <div class="card-body-graph">
-            <p class="card-text">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
+            <p class="card-text-d">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
             </p>
           </div>
           </div>
