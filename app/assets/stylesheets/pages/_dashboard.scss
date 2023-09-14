@@ -75,19 +75,21 @@
 .card-header-graph{
   background-color: white;
   border: none;
+  font-family: "Playfair Display";
 }
 
 .card-title-graph{
   color: black;
   padding: 5px 0;
+  font-family: "Playfair Display";
 }
 
 .card-body-graph {
   background-color: white;
+  font-family: "Playfair Display";
 }
-.card-text {
-  background-color: white;
-  font-family: "Work Sans";
+.card-text-d {
+  font-family: "Playfair Display";
 }
 
 
@@ -95,6 +97,7 @@
 
 .tablinks {
   font-size: 22px !important;
+  font-family: "Playfair Display";
 }
 
 /* Style the tab */
