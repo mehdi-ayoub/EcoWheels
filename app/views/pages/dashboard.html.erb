@@ -16,30 +16,30 @@
       <div class="container-totals d-flex justify-content-around">
 
           <div class="card-border-light mb-3" style="max-width: 18rem;">
-            <div class="card-header"> <strong> <h5> Total CO-2 emissions 🍃</h5></strong> </div>
+            <div class="card-header"> <strong> <h4> Total CO-2 emissions 🍃</h4></strong> </div>
             <div class="card-body text-dark">
-              <h5 class="card-text-d text-center"> <%= @shipments.sum(:co2_emissions).round(2) %> kg </h5>
+              <h4 class="card-text-d text-center"> <%= @shipments.sum(:co2_emissions).round(2) %> kg </h4>
             </div>
           </div>
 
           <div class="card-border-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">  <strong> <h5> Total of deliveries 🚚 </h5></strong> </div>
+            <div class="card-header">  <strong> <h4> Total of deliveries 🚚 </h4></strong> </div>
             <div class="card-body text-dark">
-              <h5 class="card-text-d text-center"> <%= @shipments.count %> </h5>
+              <h4 class="card-text-d text-center"> <%= @shipments.count %> </h4>
             </div>
           </div>
 
           <div class="card-border-light mb-3" style="max-width: 18rem;">
-            <div class="card-header"> <strong> <h5> Total distance traveled 🌍</h5> </strong> </div>
+            <div class="card-header"> <strong> <h4> Total distance traveled 🌍</h4> </strong> </div>
             <div class="card-body text-dark">
-              <h5 class="card-text-d text-center"> <%= @shipments.sum(:distance_traveled).round(2) %> km </h5>
+              <h4 class="card-text-d text-center"> <%= @shipments.sum(:distance_traveled).round(2) %> km </h4>
             </div>
           </div>
 
           <div class="card-border-light mb-3" style="max-width: 18rem;">
-            <div class="card-header">  <h5>Total fuel consumption ⛽ </h5> </div>
+            <div class="card-header">  <h4>Total fuel consumption ⛽ </h4> </div>
             <div class="card-body text-dark">
-              <h5 class="card-text-d text-center"> <%= @shipments.sum(:fuel_consumption).round(2) %> L </h5>
+              <h4 class="card-text-d text-center"> <%= @shipments.sum(:fuel_consumption).round(2) %> L </h4>
             </div>
           </div>
       </div>
@@ -47,8 +47,8 @@
 
     <div class="area2">
         <div class="card text-center mt-3">
-          <div class="card-header">
-            <h5 class="card-title"> <strong>  <h4> Total Co2 emissions per product </h4> </strong> </h5>
+          <div class="card-header-graph">
+            <h4 class="card-title-graph"> <strong>  <h4> Total Co2 emissions per product </h4> </strong> </h4>
           </div>
           <div class="card-body-graph">
             <p class="card-text">  <%= column_chart Shipment.group(:product_name).sum(:co2_emissions), xtitle: "Product", ytitle: "CO-2 Emissions", download: true, thousands: ","  %>
@@ -167,14 +167,14 @@
             </div>
           </div>
 
-          <div class="wrapper m-2 p-2">
+<%#           <div class="wrapper m-2 p-2">
             <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
-              <div class="graphic">  <%= bar_chart Shipment.group(:vehicle_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Vehicle", download: true, thousands: "," %> </div>
-              <div class="brief">
+              <div class="graphic">  <%= bar_chart Shipment.group(:vehicle_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Vehicle", download: true, thousands: "," %><%#  </div> %>
+           <%#    <div class="brief">
                 <div class="typo"><span>Distance traveled per vehicle</span></div>
               </div>
             </div>
-          </div>
+          </div> %>
 
           <div class="wrapper m-2 p-2">
             <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
@@ -185,14 +185,14 @@
             </div>
           </div>
 
-          <div class="wrapper m-2 p-2">
+        <%# <div class="wrapper m-2 p-2">
             <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
-              <div class="graphic">   <%= bar_chart Shipment.group(:vehicle_type, :fuel_type).count, xtitle: "Number of Vehicle Type", ytitle: "Fuel Type", download: true, thousands: "," %></div>
-              <div class="brief">
-                <div class="typo"><span>Fuel type per vehicle  </span></div>
+              <div class="graphic">   <%= bar_chart Shipment.group(:vehicle_type, :fuel_type).count, xtitle: "Number of Vehicle Type", ytitle: "Fuel Type", download: true, thousands: "," %><%# </div> %>
+             <%#  <div class="brief"> %>
+              <%#   <div class="typo"><span>Fuel type per vehicle  </span></div>
               </div>
             </div>
-          </div>
+          </div> %>
 
           <div class="wrapper m-2 p-2">
             <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
@@ -225,14 +225,14 @@
             </div>
           </div>
 
-          <div class="wrapper m-2 p-2">
+<%#           <div class="wrapper m-2 p-2">
             <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
-              <div class="graphic">    <%= bar_chart Shipment.group(:fuel_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Fuel Type", download: true, thousands: "," %></div>
-              <div class="brief">
+              <div class="graphic">    <%= bar_chart Shipment.group(:fuel_type).sum(:distance_traveled), xtitle: "Distance (km)", ytitle: "Fuel Type", download: true, thousands: "," %><%# </div> %>
+<%#               <div class="brief">
                 <div class="typo"><span>Distance traveled per fuel type </span></div>
               </div>
             </div>
-          </div>
+          </div> %>
 
           <div class="wrapper m-2 p-2">
             <div class="item" data-action="click->dashboard#toggleAnimate"> <span class="close"></span>
