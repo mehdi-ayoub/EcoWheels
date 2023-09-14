@@ -21,7 +21,7 @@
     <div class="nav-item search-box">
       <%= form_with url: shipments_path, method: :get, class: "d-flex" do |f| %>
         <div class="search-input">
-          <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Track your shipment" %>
+          <%= f.text_field :query, value: params[:query], class: "form-control", placeholder: "Find your shipment" %>
           <%= f.submit "", class: "button-search", style: "margin-top: 1rem ; margin-bottom:2rem;" %>
         </div>
       <% end %>
@@ -30,6 +30,11 @@
        </div>
     </div>
 
+    <div class="nav-item">
+        <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
+            Filter
+        </a>
+    </div>
 
 
   </div>
