@@ -182,7 +182,7 @@
     <!-------------This line code covers the ( Add Shipment) button section in the index page  ------------->
 
             <div data-controller="add-shipment" class="mb-2">
-                <%# <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue add-shipment-button-index' %> 
+                <%# <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue add-shipment-button-index' %>
                 <!-- Add a button to open the popup form -->
                 <button class= 'btn btn-light custom-bg-blue' data-action="click->add-shipment#open">Add New Shipment</button>
 
@@ -332,7 +332,7 @@
                   <%= form_for(shipment, url: shipment_path(shipment), method: :patch) do |f| %>
                     <%= hidden_field_tag :_method, 'patch' %>
                     <%= f.select :status, Shipment.statuses.keys, {},
-                        class: 'form-control',
+                        class: "btn btn-light status-index-button-new #{'btn-yellow' if shipment.status == 'scheduled'} #{'btn-green' if shipment.status == 'completed'}",
                         data: {
                           target: "status.select",
                           action: "change->status#updateStatus"
