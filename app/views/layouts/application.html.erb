@@ -40,7 +40,7 @@
   <body class="<%=params[:controller] %> <%= params[:action] %> <%= yield(:body_class) %>">
   <%= render "shared/flashes" %>
     <%= yield %>
-    <div class="footer-page text-center"><%= render "shared/footer" %></div>
+    <div class="footer-page text-center " style="padding: 60px"><%= render "shared/footer" %></div>
   </body>
 </html>
 

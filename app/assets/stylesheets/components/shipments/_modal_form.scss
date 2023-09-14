@@ -12,14 +12,18 @@
 }
 
 .modal-content {
-  // background: white;
   padding: 20px;
   border-radius: 8px;
-  // box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   width: 47%;
-  max-width: 90%; /* Or whatever width you desire */
-  max-height: 90%;
-  overflow-y: auto; /* Enable scroll if content is too tall */
+  height: 80%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.title-index-form-new {
+  margin-top: 20px !important;
+  color: white !important;
 }
 
 .close-button-index-form {
@@ -49,10 +53,11 @@
 }
 
 
-// .new-container-holding-form {
-//   width: 151% !important;
-// }
+.new-container-holding-form {
+  width: 151% !important;
+  height: 151% !important;
+}
 
-// .container-card-edit {
-//   width: 645px;
-// }
+.container-card-edit {
+  width: 650px;
+}
