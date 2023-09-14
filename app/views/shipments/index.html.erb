@@ -73,63 +73,89 @@
 
   <div class="innerboxindex">
 
-    <div class="index-new-card-1">
-
+    <%# first box %>
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
         <h4> Mileage </h4>
         <p class="card-text-new"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('https://static.thenounproject.com/png/1003828-200.png', alt: 'Root image - idex', class: 'root-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Total distance covered by all shipments.
+      </div>
     </div>
 
     <%# second box %>
-
-    <div class="index-new-card-1">
-
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
         <h4> Co2 Emissions </h4>
         <p class="card-text-new "> <%= @shipments.sum(:co2_emissions).round(1) %> kg </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('https://www.svgrepo.com/show/214706/factory-pollution.svg', class: 'emission-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Carbon dioxide produced from shipping activities.
+      </div>
     </div>
 
     <%# third box %>
-    <div class="index-new-card-1">
-
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
         <h4> Fuel efficiency </h4>
         <p class="card-text-new "> <%= @shipments.sum(:fuel_consumption).round(1) %> L </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('gas-station.png', class: 'gas-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Fuel consumed per distance traveled.
+      </div>
     </div>
 
     <%# forth box  %>
-    <div class="index-new-card-1">
-
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
         <h4> Shipments </h4>
         <p class="card-text-new "> <%= @total_shipments %> shipment </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('https://cdn-icons-png.flaticon.com/512/5952/5952766.png', alt: 'Root image - idex', class: 'root-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Total number of shipments made.
+      </div>
     </div>
   </div>
 </div>
+
+
 
 <%# ------------ start of third container in the index page ---------- %>
 
@@ -156,7 +182,7 @@
     <!-------------This line code covers the ( Add Shipment) button section in the index page  ------------->
 
             <div data-controller="add-shipment" class="mb-2">
-                <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue add-shipment-button-index' %>
+                <%# <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue add-shipment-button-index' %> 
                 <!-- Add a button to open the popup form -->
                 <button class= 'btn btn-light custom-bg-blue' data-action="click->add-shipment#open">Add New Shipment</button>
 
