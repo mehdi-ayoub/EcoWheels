@@ -29,7 +29,7 @@
        <i class="fa-solid fa-magnifying-glass"></i>
        </div>
     </div>
-    
+
 
 
   </div>
@@ -73,91 +73,152 @@
 
   <div class="innerboxindex">
 
-    <div class="index-new-card-1">
-
+    <%# first box %>
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
-        <h4> Distance Traveled </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
+        <h4> Mileage </h4>
+        <p class="card-text-new"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('https://static.thenounproject.com/png/1003828-200.png', alt: 'Root image - idex', class: 'root-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Total distance covered by all shipments.
+      </div>
     </div>
 
     <%# second box %>
-
-    <div class="index-new-card-1">
-
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
         <h4> Co2 Emissions </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:co2_emissions).round(1) %> kg </p>
+        <p class="card-text-new "> <%= @shipments.sum(:co2_emissions).round(1) %> kg </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('https://www.svgrepo.com/show/214706/factory-pollution.svg', class: 'emission-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Carbon dioxide produced from shipping activities.
+      </div>
     </div>
 
     <%# third box %>
-    <div class="index-new-card-1">
-
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
-        <h4> Fuel Consumption </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:fuel_consumption).round(1) %> L </p>
+        <h4> Fuel efficiency </h4>
+        <p class="card-text-new "> <%= @shipments.sum(:fuel_consumption).round(1) %> L </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('gas-station.png', class: 'gas-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Fuel consumed per distance traveled.
+      </div>
     </div>
 
     <%# forth box  %>
-    <div class="index-new-card-1">
-
+    <div class="index-new-card-1" data-controller="info-popup">
       <div class="index-new-title-1">
-        <h4> Total Shipments </h4>
-        <p class="card-text text-center"> <%= @shipments.sum(:distance_traveled).round(1) %> km </p>
+        <h4> Shipments </h4>
+        <p class="card-text-new "> <%= @total_shipments %> shipment </p>
       </div>
-
       <div class="emission-image-index">
         <%= image_tag('https://cdn-icons-png.flaticon.com/512/5952/5952766.png', alt: 'Root image - idex', class: 'root-image-index') %>
       </div>
 
+      <!-- Information Icon -->
+      <div class="info-icon" data-action="click->info-popup#toggle">
+        ⓘ
+      </div>
+      <!-- Information Modal below the image -->
+      <div class="info-modal" data-info-popup-target="modal" style="display: none;">
+        Total number of shipments made.
+      </div>
     </div>
   </div>
 </div>
+
+
 
 <%# ------------ start of third container in the index page ---------- %>
 
 <div class="container-index mt-5">
   <div class="row">
     <div class="col" data-controller="filter">
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between">
         <div class="title-index">
           <div class="status-buttons">
             <h4 class="mb-1">Shipments Status</h4>
-            <%= link_to "Completed", shipments_path(status: "completed"), class: "btn btn-light filter-buttons-index #{'active' if params[:status] == 'completed'}", data: { action: "click->filter#filterByStatus" } %>
-            <%= link_to "Scheduled", shipments_path(status: "scheduled"), class: 'btn btn-light filter-buttons-index', data: { action: "click->filter#filterByStatus" } %>
+            <%= link_to "Completed", shipments_path(status: "completed"), class: "btn btn-light filter-buttons-index-green #{'active' if params[:status] == 'completed'}", data: { action: "click->filter#filterByStatus" } %>
+            <%= link_to "Scheduled", shipments_path(status: "scheduled"), class: "btn btn-light filter-buttons-index-yellow #{'btn-yellow' if params[:status] == 'scheduled'}", data: { action: "click->filter#filterByStatus" } %>
             <%# <%= link_to "Canceled", shipments_path(status: "canceled"), class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
             <%# <%= link_to "All", shipments_path, class: 'btn btn-light', data: { action: "click->filter#filterByStatus" } %>
-            
+
           </div>
-          <div class="nav-item">
-            <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
-                Filter
-            </a>
+          <div class="filter-and-add-shipment">
+            <div class="nav-item">
+              <a class="btn btn-light custom-bg-blue" href="#" data-bs-toggle="collapse" data-bs-target="#filterForm">
+                  Filter
+              </a>
+            </div>
+
+    <!-------------This line code covers the ( Add Shipment) button section in the index page  ------------->
+
+            <div data-controller="add-shipment" class="mb-2">
+                <%# <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue add-shipment-button-index' %> 
+                <!-- Add a button to open the popup form -->
+                <button class= 'btn btn-light custom-bg-blue' data-action="click->add-shipment#open">Add New Shipment</button>
+
+                <!-- The modal containing the form, initially hidden -->
+                <div data-add-shipment-target="modal" class="modal-overlay">
+                    <div class="modal-content">
+                        <div class="col-lg-6">
+                            <div class="container-card-edit" style="width: 40rem; mt-4; pl-4; p-1;">
+                                <div class="card-edit" style="m-0 auto; mt-3;">
+                                    <div class="title-page" style="mt-2; mb-1; ml-2; text-center">
+                                        <h1>Add Your Shipment</h1>
+                                    </div>
+                                    <div class="card-form-edit" style="mt-5; ml-4; p-0 auto;">
+                                        <%= render 'form_modal', shipment: @shipment %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add a button or element to close the modal -->
+                        <button class="close-button-index-form" data-action="click->add-shipment#close">
+                          <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+    <!--------------------------------- End of the line code -------------------------------->
+
           </div>
+
+
         </div>
 
 
 
-        <div class="mb-2">
-          <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
-        </div>
+
       </div>
 
       <% if flash[:notice] %>
@@ -169,19 +230,19 @@
         <%= form_with url: shipments_path, method: :get, local: true do |form| %>
         <div class="form-group">
             <!-- First Row -->
-            <div class="row align-items-center">
+            <div class="row">
                 <div class="col-12 col-sm-3 mb-2">
                     <%= form.label :vehicle_type, 'Vehicle Type', class: 'col-form-label' %>
-                    <%= form.select :vehicle_type, 
-                                    ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], 
-                                    { selected: params[:vehicle_type], include_blank: 'Vehicle Type' }, 
+                    <%= form.select :vehicle_type,
+                                    ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'],
+                                    { selected: params[:vehicle_type], include_blank: 'Vehicle Type' },
                                     class: 'form-control' %>
                 </div>
                 <div class="col-12 col-sm-3 mb-2">
                     <%= form.label :fuel_type, 'Fuel Type', class: 'col-form-label' %>
-                    <%= form.select :fuel_type, 
-                                    ['Gasoline', 'Diesel'], 
-                                    { selected: params[:fuel_type], include_blank: 'Fuel Type' }, 
+                    <%= form.select :fuel_type,
+                                    ['Gasoline', 'Diesel'],
+                                    { selected: params[:fuel_type], include_blank: 'Fuel Type' },
                                     class: 'form-control' %>
                 </div>
                 <div class="col-12 col-sm-3 mb-2">
@@ -189,9 +250,9 @@
                     <%= form.text_field :product_name, value: params[:product_name], class: 'form-control' %>
                 </div>
             </div>
-            
+
             <!-- Second Row -->
-            <div class="row align-items-center">
+            <div class="row">
                 <div class="col-12 col-sm-3 mb-2">
                     <%= form.label :shipment_start, 'Order Date', class: 'col-form-label' %>
                     <%= form.date_field :shipment_start, value: params[:shipment_start], class: 'form-control' %>
@@ -242,10 +303,27 @@
                 <td class="align-middle"><%= shipment.product_name %></td>
                 <td class="align-middle"><%= shipment.shipment_start %></td>
                 <td class="align-middle"><%= shipment.shipment_end %></td>
-                <td class="align-middle"><%= shipment.co2_emissions %></td>
+
+                <td class="align-middle">
+                  <div class="emissions-container">
+                    <% if shipment.co2_emissions > 300 %>
+                      <i class="fas fa-arrow-up" style="color: red;"></i>
+                      <span style="color: red; font-weight: lighter;">
+                        <%= shipment.co2_emissions.round(1) %> Kg
+                      </span>
+                    <% else %>
+                      <i class="fas fa-arrow-down" style="color: green;"></i>
+                      <span style="color: green; font-weight: lighter;">
+                        <%= shipment.co2_emissions.round(1) %> Kg
+                      </span>
+                    <% end %>
+                  </div>
+                </td>
+
+
                 <td class="align-middle">
                   <% if shipment.distance_traveled.present? && shipment.distance_traveled > 0 %>
-                    <%= shipment.distance_traveled.round(2) %> km
+                    <%= shipment.distance_traveled.round(1) %> km
                   <% else %>
                     N/A
                   <% end %>
