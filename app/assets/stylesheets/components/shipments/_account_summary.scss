@@ -195,3 +195,30 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+
+// styling the info icon in the index
+
+.index-new-card-1 {
+  position: relative;
+}
+
+.info-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.info-modal {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);  /* This will ensure that the modal appears just below the card */
+  z-index: 5;  /* Keep it below the info icon */
+}
