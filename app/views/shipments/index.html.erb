@@ -155,9 +155,37 @@
 
 
 
-        <div class="mb-2">
-          <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
+        <div data-controller="add-shipment" class="mb-2">
+            <%= link_to "Add Shipment", new_shipment_path, class: 'btn btn-light custom-bg-blue' %>
+            <!-- Add a button to open the popup form -->
+            <button class= 'btn btn-light custom-bg-blue' data-action="click->add-shipment#open">Add New Shipment</button>
+
+            <!-- The modal containing the form, initially hidden -->
+            <div data-add-shipment-target="modal" class="modal-overlay">
+                <div class="modal-content">
+                    <div class="col-lg-6">
+                        <div class="container-card-edit" style="width: 40rem; mt-4; pl-4; p-1;">
+                            <div class="card-edit" style="m-0 auto; mt-3;">
+                                <div class="title-page" style="mt-2; mb-1; ml-2; text-center">
+                                    <h1>Add Your Shipment</h1>
+                                </div>
+                                <div class="card-form-edit" style="mt-5; ml-4; p-0 auto;">
+                                    <%= render 'form_modal', shipment: @shipment %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add a button or element to close the modal -->
+                    <button class="close-button-index-form" data-action="click->add-shipment#close">
+                      <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
         </div>
+
+
+
+
       </div>
 
       <% if flash[:notice] %>

@@ -3,6 +3,7 @@ class ShipmentsController < ApplicationController
 
   def index
     @shipments = current_user.shipments
+    @shipment = Shipment.new
     @shipments = filter_shipments(@shipments)
 
     if params[:sort_by]
