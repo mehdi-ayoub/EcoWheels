@@ -7,7 +7,7 @@
 
   <%= simple_form_for shipment, html: { id: "new_shipment" }, data: { controller: 'flatpickr sweet-alert' } do |f| %>
     <div class="form-field product-name">
-      <%= f.input :product_name, input_html: { style: 'width: 600px; text-align: left;', placeholder: 'Product Name' }, label: false %>
+      <%= f.input :product_name, input_html: { style: 'width: 605px; text-align: left; margin-bottom: 35px; margin-top: 25px;', placeholder: 'Product Name' }, label: false %>
     </div>
     <div class="form-field">
       <div class="date-field">
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form-field">
-      <%= f.input :photos, as: :file, input_html: { multiple: true, style: 'width: 600px', placeholder: 'Upload Photos' }, label: false %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true, style: 'width: 605px', placeholder: 'Upload Photos' }, label: false %>
     </div>
 
     <%# Only show for update %>
