@@ -20,22 +20,29 @@
   <div class="row content-row">
 
     <!-- Shipment Info -->
+          <%# <div class="row"> %>
+
+          <!-- Left side -->
+          <%# <div class="col-6"> %>
+
+    <!-- Shipment Info -->
         <div class="col-md-6 p-4 info-container">
       <div class="showpage-card shadow">
         <div class="showpage-card-body">
           <span class="card-author subtle">The shipment product</span>
           <h2 class="showpage-card-title"><%= @shipment.product_name %></h2>
           <ul class="list-unstyled mt-4">
-            <li>City: <strong><%= @shipment.city %></strong></li>
-            <li>Distance traveled: <strong><%= @shipment.distance_traveled %></strong> </li>
-            <li>Vehicle type: <strong><%= @shipment.vehicle_type %></strong></li>
-            <li>Fuel type: <strong><%= @shipment.fuel_type %></strong></li>
-            <li>Fuel consumption: <strong><%= @shipment.fuel_consumption %> l</strong></li>
-            <li>Shipment start: <strong><%= @shipment.shipment_start ? @shipment.shipment_start.strftime("%A, %d %b %Y") : "N/A" %></strong></li>
-            <li>Shipment end: <strong><%= @shipment.shipment_end ? @shipment.shipment_end.strftime("%A, %d %b %Y") : "N/A" %></strong></li>
-            <li>CO2 emissions: <strong><%= @shipment.co2_emissions %></strong></li>
+            <li>📍 City - <strong><%= @shipment.city %></strong></li>
+            <li>🌍 Distance - <strong><%= @shipment.distance_traveled %></strong> </li>
+            <li>🚚 Vehicle - <strong><%= @shipment.vehicle_type %></strong></li>
+            <li>⛽ Fuel - <strong><%= @shipment.fuel_type %></strong></li>
+            <li>📈 Fuel consump - <strong><%= @shipment.fuel_consumption %> l</strong></li>
+            <li>📅 Shipment Start - <strong><%= @shipment.shipment_start ? @shipment.shipment_start.strftime("%A, %d %b %Y") : "N/A" %></strong></li>
+            <li>📆 Shipment End - <strong><%= @shipment.shipment_end ? @shipment.shipment_end.strftime("%A, %d %b %Y") : "N/A" %></strong></li>
+            <li>📊 CO2 - <strong><%= @shipment.co2_emissions %></strong></li>
             <li class="mt-2 text-muted">Last updated <%= time_ago_in_words @shipment.updated_at %></li>
           </ul>
+
           <div class="mt-3">
             <%= link_to shipment_path(@shipment), data: { controller: "delete-confirmation", action: "click->delete-confirmation#confirm" }, class: 'btn btn-outline-danger bin-icon' do %>
               <i class="fa fa-pencil fa-trash"></i>
