@@ -11,11 +11,13 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/show";
 @import "components/shipments/edit";
 @import "components/shipments/index_page";
 @import "components/shipments/search_index";
 @import "components/shipments/account_summary";
 @import "components/login";
+
 //@import "components/shipments/fuel_consumption";
 //@import "components/shipments/co2_emission_graph";
 @import "components/shipments/index_buttons";
