@@ -4,36 +4,36 @@
       <p style="color: red"><%= error %></p>
     <% end %>
   <% end %>
+
   <%= simple_form_for @shipment, html: { id: "new_shipment" }, data: { controller: 'flatpickr sweet-alert' } do |f| %>
     <div class="form-field product-name">
-      <%= f.input :product_name, input_html: { style: 'width: 600px; text-align: left;' } %>
+      <%= f.input :product_name, input_html: { style: 'width: 600px; text-align: left;', placeholder: 'Product Name' }, label: false %>
     </div>
     <div class="form-field">
       <div class="date-field">
-        <%= f.input :shipment_start, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
-
-        <%= f.input :shipment_end, as: :string, input_html: { data: { flatpickr_target: "endTime" } } %>
+        <%= f.input :shipment_start, as: :string, input_html: { data: { flatpickr_target: "startTime" }, placeholder: 'Shipment Start' }, label: false %>
+        <%= f.input :shipment_end, as: :string, input_html: { data: { flatpickr_target: "endTime" }, placeholder: 'Shipment End' }, label: false %>
       </div>
     </div>
 
     <div class="form-field">
       <div class="date-field">
-        <%= f.input :vehicle_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'] %>
-
-        <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], label: 'Fuel Type' %>
+        <%= f.input :vehicle_type, as: :select, collection: ['4 Cylinder', '6 Cylinder', '8 Cylinder', 'Heavy Truck', 'Medium Truck'], prompt: 'Select Vehicle Type', label: false %>
+        <%= f.input :fuel_type, as: :select, collection: ['Gasoline', 'Diesel'], prompt: 'Select Fuel Type', label: false %>
       </div>
     </div>
 
     <div class="form-field">
       <div class="date-field">
-        <%= f.input :start_location %>
-        <%= f.input :end_location %>
+        <%= f.input :start_location, input_html: { placeholder: 'Start Location' }, label: false %>
+        <%= f.input :end_location, input_html: { placeholder: 'End Location' }, label: false %>
       </div>
     </div>
 
     <div class="form-field">
-      <%= f.input :photos, as: :file, input_html: { multiple: true, style: 'width: 600px' } %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true, style: 'width: 600px', placeholder: 'Upload Photos' }, label: false %>
     </div>
+
     <%# Only show for update %>
     <% if @shipment.persisted? %>
       <div class="form-field">
