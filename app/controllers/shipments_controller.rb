@@ -2,7 +2,7 @@ class ShipmentsController < ApplicationController
   include DistanceHelper
 
   def index
-    
+
     @total_shipments = current_user.shipments.count
     @shipments = current_user.shipments
     @shipment = Shipment.new
