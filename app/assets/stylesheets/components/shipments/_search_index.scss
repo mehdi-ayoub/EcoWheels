@@ -75,8 +75,39 @@
   cursor: pointer;
 }
 
-// .text-search {
-//     background: url("") top left     no-repeat;
-//     height:30px;
-//     padding-left:25px;
-//     }
+@media only screen and (max-width: 600px) {
+  // search box in the index
+
+  //styling the search box and the user details
+  .search-index {
+    display: block;
+    flex-direction: column;
+
+    .index-left {
+
+      .search-box {
+        padding: 0px;
+        width: 190px;
+
+        .search-icon {
+
+        }
+        .search-input {
+          width: 165px;
+          
+          .form-control {
+            font-size: 12px;
+            width: 250px
+          }
+        }
+      }
+    }
+  }
+
+  .user-details {
+    justify-content: flex-start;
+    margin-left: 10px;
+    width: 222px;
+    font-size: 14px;
+  }
+}
