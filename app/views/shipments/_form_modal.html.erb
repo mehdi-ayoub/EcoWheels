@@ -30,9 +30,6 @@
       </div>
     </div>
 
-    <div class="form-field">
-      <%= f.input :photos, as: :file, input_html: { multiple: true, style: 'width: 605px', placeholder: 'Upload Photos' }, label: false %>
-    </div>
 
     <%# Only show for update %>
     <% if shipment.persisted? %>
